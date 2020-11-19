@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <style> 
+         img {
+            position: absolute;
+            animation-name: example;
+            animation-duration: 15s;
+            animation-iteration-count: infinite;
+            /* animation-direction: alternate-reverse;   */
+        }
+
+        @keyframes example {
+            0%   {transform: rotate( 0deg ); left:0px; top:0px;}
+            25%  {transform: rotate( 45deg ); left:1000px; top:0px;}
+            50%  {transform: rotate( 90deg ); left:1000px; top:300px;}
+            75%  {transform: rotate( 135deg ); left:0px; top:300px;}
+            100% {transform: rotate( 180deg ); left:0px; top:0px;}
+        }
+ 
+        nav {
+            position: static;
+        }
+    </style>
+    
+<body>
+    
+    <div>
+        <img id="index_small_metamong" src="../res/index_shape_1.png" alt="indexImage">
+        <img id="index_big_metamong" src="../res/index_shape_2.png" alt="indexImage">
+        <img id="index_rectangle" src="../res/index_shape_3.png" alt="indexImage">
+        <img id="index_circle" src="../res/index_shape_4.png" alt="indexImage">
+    </div>
+</body>
+</html>
