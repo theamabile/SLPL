@@ -1,0 +1,147 @@
+
+form * {
+    margin: 5px 0px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+select,
+textarea {
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #c2c2c2;
+}
+    /* 입력창 활성화는 focus */
+    input[type="text"]:focus,          
+    input[type="password"]:focus,
+    input[type="number"]:focus,
+    textarea:focus  {
+        outline: none;
+        border: 1px solid #6455af;
+    }
+
+    /* 입력창 활성화는 focus */
+    input[type="text"]:disabled,          
+    input[type="password"]:disabled,
+    input[type="number"]:disabled,
+    textarea:focus  {
+        outline: none;
+        color: #888888;
+        background-color: #ececec;
+    }
+    
+
+label{
+    width: 100%;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.input-wf {
+    width: 100%;
+}
+
+.form-group {
+    margin-top: 20px;
+}
+
+.button-area {
+    margin-top: 30px;
+}
+
+.radio-group *{
+    margin-left: 30px;
+}
+
+.radio-group *:first-child {
+    margin-left: 0px;
+}
+
+/* ==================================add, detail==================================== */
+
+.detail-container {
+    flex-basis: 400px;
+    width: 700px;
+    margin: auto;
+    align-content: center;
+}
+
+
+.input-btn-box {
+    display: flex;    
+    align-items: center;
+}
+    .input-btn-box > input[type="text"] {
+        flex-grow: 1;
+        margin-right: 5px;
+    }
+
+
+.email-box {
+    display: flex;
+    align-items: center;
+    margin: 0px;
+}
+    .email-box * {
+        flex-grow: 1;
+    }
+    .email-box *:nth-child(3){
+        margin-left: 5px;
+    }
+
+
+
+.birth-box {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;   
+}
+    .birth-box input {
+        margin-right: 5px;
+    }
+
+    .birth-box input:nth-child(5){
+        margin-right: 0px;
+    }
+
+
+/* =================================== list =================================== */
+
+    
+table {
+    width: 100%;
+}
+
+.member-container {
+   min-width: 700px; 
+}
+
+
+.tools {
+    display: flex;
+}
+    .tools .filter {
+        flex: 1 0 300px;
+    }
+        .filter .category {
+            width: 100px;
+        }
+
+        .filter .search-keyword {
+            width: 200px;
+        }
+
+    .tools .delete-box {
+        flex: 0 0 210px;
+    }
+        
+
+
+
+

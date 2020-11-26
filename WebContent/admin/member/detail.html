@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 - 회원추가</title>
+    <title>관리자 - 회원관리</title>
     <link href="../../assets/css/reset.css" type="text/css" rel="stylesheet">
     <link href="../../assets/css/admin/style.css" type="text/css" rel="stylesheet">
     <link href="../../assets/css/admin/member.css" type="text/css" rel="stylesheet">
@@ -80,21 +80,18 @@
 
                 <div class="detail-container">  <!-- container-item클래스로 제작된걸 사이징만 해주기 위해 감쌌음 -->
                     <section class="container-item">     
-                        <h1> 회원 추가 </h1> 
+                        <h1> 회원 정보 수정 </h1> 
                         <form>
                             <div class="form-group">
                                 <label>이름</label>
                                 <input type="text" name="name" class="input-wf" placeholder="이름" autofocus required>
                 
                                 <label>아이디</label>
-                                <div class="input-btn-box">
-                                    <input type="text" name="id" class="input-wf" placeholder="아이디" required>
-                                    <input type="button" name="nickname_confirm" class="gray-button-m" value="중복확인"> <p>
-                                </div>
-
+                                <input type="text" name="id" class="input-wf" placeholder="아이디" value="hyejinZZang" required  disabled>
+                                
                                 <label>닉네임</label>     
                                 <div class="input-btn-box">
-                                    <input type="text" name="nickname" class="input-wf" placeholder="닉네임" required>
+                                    <input type="text" name="nickname" placeholder="닉네임" value="hyejinZZang" required>
                                     <input type="button" name="nickname_confirm" class="gray-button-m" value="중복확인"> <p>
                                 </div>
 
@@ -179,7 +176,8 @@
                             </div>
                             
                             <div class="button-area">
-                                <input type="submit" value="추가" id="addBtn" class="puple-button-wf" onclick="location.href='../main/main.html'"> 
+                                <input type="submit" value="수정" id="updateBtn" class="puple-button-wf" onclick="location.href='../main/main.html'"> 
+                            <input type="submit" value="삭제" id="deleteBtn" class="gray-button-wf" onclick="location.href='../main/main.html'"> 
                             </div>
                             
                         </form>

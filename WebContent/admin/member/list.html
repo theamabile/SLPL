@@ -4,51 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 - 회원관리</title>
-    <link href="../../css/reset.css" type="text/css" rel="stylesheet">
-    <link href="../../css/admin/style.css" type="text/css" rel="stylesheet">
+    <link href="../../assets/css/reset.css" type="text/css" rel="stylesheet">
+    <link href="../../assets/css/admin/style.css" type="text/css" rel="stylesheet">
+    <link href="../../assets/css/admin/member.css" type="text/css" rel="stylesheet">
+    
+    <script>
+        
+    window.onload = function() {
+        console.log("시작");
+
+        var allCheckBox = document.getElementById("checkAll");
+        allCheckBox.onchange = function() {
+            var checks = document.getElementsByName("checkMember");
+            for(var check of checks) {
+                check.checked = !(check.checked);
+            }
+        }
+        
+    };
+
+    </script>
 </head>
 <body>    
     <header class="header">
+        <h1 class="d-none"> 심리플리</h1>     
+
         <section class="logo">
-            <h1 class="d-none"> 
-                MBTI        
-            </h1>            
+            <h1 class="d-none">HOME</h1>            
             <a href="index.html">                    
-                <img src="../../images/admin/admin-title.png" alt="홈" />
+                <img src="../../assets/images/admin/admin-title.png" alt="홈" />
             </a>    
         </section>
         
         <div class="title">
             ADMIN DASHBOARD
         </div>
-        <input type="button" id="logout" value="LOGOUT" class="white-button-s"/>
+
+        <div class="login-menu">
+            <input type="button" id="logout" value="LOGOUT" class="white-button-s"/>
+        </div>        
     </header>
 
     <div id="body" class="body" >  
         <nav>
             <h1 class="d-none">메인 메뉴</h1>
-            <ul>
+            <ul class="main-menu">
                 <li>
-                    <a href="" class="menu-first" href="#">
-                        <img class="menu-img" src="../../images/admin/admin_menu_dashboard.png" alt="대시보드"/>
-                        DASH BOARD
-                    </a>
+                    <div class="menu-item">
+                        <a href="" class="menu-first" href="#">
+                            <img class="menu-img" src="../../assets/images/admin/admin_menu_dashboard.png" alt="대시보드"/> 
+                            DASH BOARD
+                        </a>
+                    </div>
                 </li>
                 <li>
-                    <a href="" class="menu-first">
-                        <img src="../../images/admin/admin_menu_member.png" alt="회원관리"/>
-                        MEMBER
-                    </a>
+                    <div class="menu-item">
+                        <a href="">
+                            <img src="../../assets/images/admin/admin_menu_member.png" alt="회원관리"/>
+                            MEMBER
+                        </a>
+                    </div>
+                    
                     <ul>
-                        <li><a href="member/list.html">LIST</a></li>
-                        <li><a href="member/insert.html">ADD</a></li>
+                        <li><a href="list.html">LIST</a></li>
+                        <li><a href="add.html">ADD</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="" class="menu-first">
-                        <img src="../../images/admin/admin_menu_community.png" alt="게시판관리"/>
-                        COMMUNITY
-                    </a>
+                    <div class="menu-item">
+                        <a href="">
+                            <img src="../../assets/images/admin/admin_menu_community.png" alt="게시판관리"/>
+                            COMMUNITY
+                        </a>
+                    </div>
                 </li>
             </ul>
         </nav> 
@@ -58,32 +86,37 @@
             <section class="container">
                 <h1 class="d-none"> 회원관리 </h1> 
 
-                <section class="container-item">                
+                <!-- container-item클래스가 꽉 채워진 박스 기준이라 min-width만 설정해주기 위해 member-container를 같이 넣어줌-->            
+                <section class="container-item member-container">             
                     <h1> 회원목록 </h1> 
-                    <section>
-                        <h1 class="d-none">필터</h1>
-                        <form>
-                            <select>
-                                <option value="name">이름</option>
-                                <option value="id">아이디</option>
-                            </select>
-                            <input type="text" name="keyword" placeholder="검색어 입력">
-                            <input type="button" name="search" value="검색"> 
-                        </form>
-                    </section>   
-        
-                    <section>
-                        <h1 class="d-none">삭제 메뉴</h1>
-                        <input type="button" value="전체 삭제" class="puple-button-m">
-                        <input type="button" value="선택 삭제" class="gray-button-m">
-                    </section>
+
+                    <div class="tools">
+                        <section class="filter">
+                            <h1 class="d-none">필터</h1>
+                            <form>
+                                <select class="category">
+                                    <option value="name">이름</option>
+                                    <option value="id">아이디</option>
+                                </select>
+                                <input type="text" name="keyword" class="search-keyword" placeholder="검색어 입력">
+                                <input type="button" class="gray-button-m" name="search" value="검색"> 
+                            </form>
+                        </section>   
+            
+                        <section class="delete-box">
+                            <h1 class="d-none">삭제 메뉴</h1>
+                            <input type="button" value="전체 삭제" class="puple-button-m">
+                            <input type="button" value="선택 삭제" class="gray-button-m">
+                        </section>
+                    </div>
+                    
                         
                     <section>
                         <h1 class="d-none">회원 목록</h1>
                         <table>
                             <thead>
                                 <tr>
-                                    <th><input type="checkbox" name="checkAll"></th>
+                                    <th><input type="checkbox" id="checkAll"></th>
                                     <th>아이디</th>
                                     <th>이름</th>
                                     <th>권한</th>
@@ -93,105 +126,15 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><input type="checkbox" name="checkAll"></td>
+                                    <td><input type="checkbox" name="checkMember"></td>
                                     <td><a href="">hyeyoung123</a></td>
                                     <td>임혜영</td>
                                     <td>운영자</td>
                                     <td>RED</td>
                                     <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" name="checkAll"></td>
-                                    <td><a href="">hyeyoung123</a></td>
-                                    <td>임혜영</td>
-                                    <td>운영자</td>
-                                    <td>RED</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" name="checkAll"></td>
-                                    <td><a href="">hyeyoung123</a></td>
-                                    <td>임혜영</td>
-                                    <td>운영자</td>
-                                    <td>RED</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" name="checkAll"></td>
-                                    <td><a href="">hyeyoung123</a></td>
-                                    <td>임혜영</td>
-                                    <td>운영자</td>
-                                    <td>RED</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" name="checkAll"></td>
-                                    <td><a href="">hyeyoung123</a></td>
-                                    <td>임혜영</td>
-                                    <td>운영자</td>
-                                    <td>RED</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" name="checkAll"></td>
-                                    <td><a href="">hyeyoung123</a></td>
-                                    <td>임혜영</td>
-                                    <td>운영자</td>
-                                    <td>RED</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" name="checkAll"></td>
-                                    <td><a href="">hyeyoung123</a></td>
-                                    <td>임혜영</td>
-                                    <td>운영자</td>
-                                    <td>RED</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" name="checkAll"></td>
-                                    <td><a href="">hyeyoung123</a></td>
-                                    <td>임혜영</td>
-                                    <td>운영자</td>
-                                    <td>RED</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" name="checkAll"></td>
-                                    <td><a href="">hyeyoung123</a></td>
-                                    <td>임혜영</td>
-                                    <td>운영자</td>
-                                    <td>RED</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" name="checkAll"></td>
-                                    <td><a href="">hyeyoung123</a></td>
-                                    <td>임혜영</td>
-                                    <td>운영자</td>
-                                    <td>RED</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" name="checkAll"></td>
-                                    <td><a href="">hyeyoung123</a></td>
-                                    <td>임혜영</td>
-                                    <td>운영자</td>
-                                    <td>RED</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" name="checkAll"></td>
-                                    <td><a href="">hyeyoung123</a></td>
-                                    <td>임혜영</td>
-                                    <td>운영자</td>
-                                    <td>RED</td>
-                                    <td>5</td>
-                                </tr>                                
+                                </tr>                                                     
                             </tbody>
                         </table>
-                        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                        <br><br><br><br><br><br><br><br><br><br><br>
                     </section>
                 </section >
             </section>
