@@ -17,6 +17,54 @@ h1 {
     display: none;
 }
 
+.input-wf {
+    width: 100%;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+select,
+textarea {
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #c2c2c2;
+}
+    /* 입력창 활성화는 focus */
+    input[type="text"]:focus,          
+    input[type="password"]:focus,
+    input[type="number"]:focus,
+    textarea:focus  {
+        outline: none;
+        border: 1px solid #6455af;
+    }
+
+    /* 입력창 활성화는 focus */
+    input[type="text"]:disabled,          
+    input[type="password"]:disabled,
+    input[type="number"]:disabled,
+    textarea:focus  {
+        outline: none;
+        color: #888888;
+        background-color: #ececec;
+    }
+    
+
+.input-wf {
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #c2c2c2;
+}
+
+.form-group {
+    margin-top: 20px;
+}
+
+.button-area {
+    margin-top: 30px;
+}
+
 /* 전체 설정(아웃라인, border)*/
 .puple-button-wf,
 .gray-button-wf,
@@ -191,40 +239,54 @@ body {
         background: white;          
         box-shadow: 1px 1px 5px#a9a9a9;    
     }
-        nav > .main-menu .menu-item{
-            display: flex;
-            flex-grow: 1;
-            justify-content: center;
-            align-items: center;
-            margin: auto;
-        }
-        nav > .main-menu img {
-            width: 22px;
-            height: 22px;
-        }
-    
-         /*
-        nav > .main-menu li {
-            background: url("../../images/admin/admin_menu_dashboard.png") no-repeat left center;
-        }
-         */
 
-        nav > .main-menu li a.current, 
-        nav > .main-menu li a:hover{
-            color: #6455af;
-            font-weight: bold;
-            text-decoration: none;
+        nav > .main-menu  {
+            padding: 10px 20px;
+        }
             
-
-            --background : url("../images/icon-current.png") no-repeat 9px center;
-        }
-
-            nav > .main-menu li a:hover > img{      
-                /* 원하는 색으로 필터 만들어 주는 사이트 :  https://codepen.io/sosuke/pen/Pjoqqp */
-                filter: invert(34%) sepia(8%) saturate(4739%) hue-rotate(211deg) brightness(100%) contrast(83%);
+            nav > .main-menu img {
+                width: 25px;
+                height: 25px;
             }
 
-        
+            nav > .main-menu li {
+                margin: 10px 0px;
+            }
+            nav > .main-menu li a.current, 
+            nav > .main-menu li a:hover{
+                color: #6455af;
+                font-weight: bold;
+                text-decoration: none;
+            }
+
+                nav > .main-menu li a:hover > img{      
+                    /* 원하는 색으로 필터 만들어 주는 사이트 :  https://codepen.io/sosuke/pen/Pjoqqp */
+                    filter: invert(34%) sepia(8%) saturate(4739%) hue-rotate(211deg) brightness(100%) contrast(83%);
+                }
+
+                
+                nav > .main-menu li .first-menu-item {
+                    display: flex;
+                    align-items: center;
+                }
+                
+                    nav > .main-menu li .first-menu-item:hover {
+                        color: #6455af;
+                        font-weight: bold;
+                        text-decoration: none;
+                    }
+                        nav > .main-menu li .first-menu-item:hover > img{      
+                            /* 원하는 색으로 필터 만들어 주는 사이트 :  https://codepen.io/sosuke/pen/Pjoqqp */
+                            filter: invert(34%) sepia(8%) saturate(4739%) hue-rotate(211deg) brightness(100%) contrast(83%);
+                        }
+
+
+                nav > .main-menu li .first-menu-item img{
+                    margin-right: 10px;
+                }  
+
+               
+
 
 
     .main {
@@ -256,12 +318,14 @@ body {
 
         .main .footer {
             width : 100%;
-            flex : 0 0 250px;
+            flex : 0 0 120px;
 
             background: #191919;
             color: white;
             font-size: 12px;
+            text-align: center;
 
+            padding-top: 10px;
             margin-top: auto;       /* 밑에 고정 */
         }
 

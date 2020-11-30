@@ -1,71 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원가입</title>
+    <title>Document</title>
+    <!-- reset을 제일 위에 -->
+    <link rel="stylesheet" href="../assets/css/reset.css" type="text/css">
+    <link rel="stylesheet" href="../assets/css/common/style.css" type="text/css">
+    <link rel="stylesheet" href="../assets/css/member/member.css" type="text/css">
 </head>
+
 <body>
-    <section>
-        <h1>JOIN</h1>
-        <div>
-            <form>
-                <input type="text" name="name" placeholder="이름" autofocus required> <p>
-                <input type="text" name="id" placeholder="아이디" required>
-                <input type="button" name="id_confirm" value="중복확인"> <p>
-                <input type="password" name="pw" placeholder="비밀번호" required> <p>
-                <input type="password" name="pw_confirm" placeholder="비밀번호 확인" required> <p></p>
-                <input type="number" name="phone" pattern="01[016789]-\d{3,4}-\d{4}" placeholder="010-8888-6666" required><p>
-                <input type="email" name="email_id" placeholder="이메일" list="emailAddress">
-                @
-                <select id="emailAddress">
-                    <option value="naver.com">naver.com</option>
-                    <option value="daum.net">daum.net</option>
-                    <option value="hanmail.net">hanmail.net</option>
-                    <option value="gmail.com">gmail.com</option>
-                    <option value="직접입력"></option>
-                </select>
-                <input type="text" name="customAddr" placeholder="naver.com"><p>
+    <header id="header">
+        <div id="top_header" class="top_header">
+            <div>
+                mypage
+            </div>
+            <div>
+                logout
+            </div>
+        </div>
+        <div id="main_header" class="main_header">
+            <ul class="main_nav">
+            <a href="index.html"><img src="../assets/images/common/logo.png" alt="MBTI로고"></a>
 
+            <!-- <div class="menu"> -->
+            <li><a href="#">MAKE</a></li>
+            <li><a href="#">TEST</a></li>
+            <li><a href="#">COMMUNITY</a></li>
+            </ul>
+        </div>
+    </header>
 
-                <input type="number" name="year" list="year" placeholder="1997"> 
-                    <datalist id="year">
-                        <option value="1995"></option>
-                        <option value="1996"></option>
-                        <option value="1997"></option>
-                        <option value="1998"></option>
-                        <option value="1999"></option>
-                    </datalist>
-                <input type="number" name="month" list="month" pattern="[1-12]" placeholder="6">
-                    <datalist id="month">
-                        <option value="1"></option>
-                        <option value="2"></option>
-                        <option value="3"></option>
-                        <option value="4"></option>
-                        <option value="5"></option>
-                        <option value="6"></option>
-                    </datalist>
+    <section id="body" class="body">
+        <div class="container">
+            <nav class="body_nav">
+                <ul>
+                    <li><a href="#">MAKE</a></li>
+                    <li><a href="#">TEST</a></li>
+                    <li><a href="#">COMMUNITY</a></li>
 
-                <input type="number" name="day" list="day" placeholder="18"> <p>
-                    <datalist id="day">
-                        <option value="16"></option>
-                        <option value="17"></option>
-                        <option value="18"></option>
-                        <option value="19"></option>
-                        <option value="20"></option>
-                        <option value="21"></option>
-                    </datalist>
+                </ul>
+            </nav>
 
-                <input type="radio" value="girl" name="gender">여자</input>
-                <input type="radio" value="man" name="gender">남자</input>
-                <input type="radio" value="none" name="gender">선택안함</input> <p>
-
-                <input type="checkbox" name="agree">개인정보 제공 동의</input> <p>
-
-                <input type="submit" value="JOIN US" onclick="location.href='../main/main.html'"> 
-            </form>
+            <main id="main" class="main">
+                <article id="article" class="article">
+                    <h1>로그인</h1>
+                    <div class="login-box">
+                        <section class="container-item">
+                            <h1 class="d-none"> LOGIN </h1> 
+                            <div class="login-img">
+                                <img src="../assets/images/member/login_icon.png" alt="LOGIN">
+                            </div>
+                            <form>
+                                <input type="text" name="id" class="input-wf" placeholder="ID"><br>
+                                <input type="password" name="pw" class="input-wf" placeholder="PASSWORD"><br>
+                                <input type="submit" class="puple-button-wf" value="LOGIN"> 
+                            </form>
+                        </section>
+                    </div>
+                </article>
+            </main>
         </div>
     </section>
 
+    <!-- <section id="footer" class="footer">
+        <div class="container">
+            <footer id="footer">
+                한국심리콘텐츠개발연구소
+                대표이사 : 정혜진 사업자등록번호 : 197-06-18554 사업자 정보확인 통신판매업 신고 : 2020-서울특별시-1102
+
+                사업장주소 : 서울 종로구 인사동길 12 대일빌딩 7층, 15층 대표번호 : 010-9965-2278 제품/서비스/멤버십: 1588-3366 구매문의 : 1588-6084
+
+                본 사이트의 컨텐츠는 저작권법의 보호를 받는 바 무단 전재, 복사, 배포 등을 금합니다.
+
+                게시된 이메일 주소가 자동 수집되는 것을 거부하며, 이를 위반 시 정보통신법에 의해 처벌됨을 유념하시기 바랍니다.
+
+                Copyright © 2020-2020 KCPDL. All Rights Reserved.
+            </footer>
+        </div>
+    </section>  -->
+
+
 </body>
+
 </html>
