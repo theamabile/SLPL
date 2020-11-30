@@ -1,0 +1,103 @@
+
+form * {
+    margin: 5px 0px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+
+label{
+    width: 100%;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.radio-group *{
+    margin-left: 30px;
+}
+
+    .radio-group *:first-child {
+        margin-left: 0px;
+    }
+
+/* ==================================add, detail==================================== */
+
+.detail-container {
+    flex-basis: 400px;
+    width: 700px;
+    margin: auto;
+    align-content: center;
+}
+
+
+.input-btn-box {
+    display: flex;    
+    align-items: center;
+}
+    .input-btn-box > input[type="text"] {
+        flex-grow: 1;
+        margin-right: 5px;
+    }
+
+
+.email-box {
+    display: flex;
+    align-items: center;
+    margin: 0px;
+}
+    .email-box * {
+        flex-grow: 1;
+    }
+    .email-box *:nth-child(3){
+        margin-left: 5px;
+    }
+
+
+
+.birth-box {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;   
+}
+    .birth-box input {
+        margin-right: 5px;
+    }
+
+    .birth-box input:nth-child(5){
+        margin-right: 0px;
+    }
+
+
+/* =================================== list =================================== */
+
+    
+table {
+    width: 100%;
+}
+
+.member-container {
+   min-width: 700px; 
+}
+
+
+.tools {
+    display: flex;
+}
+    .tools .filter {
+        flex: 1 0 300px;
+    }
+        .filter .category {
+            width: 100px;
+        }
+
+        .filter .search-keyword {
+            width: 200px;
+        }
+
+    .tools .delete-box {
+        flex: 0 0 210px;
+    }
+        
+

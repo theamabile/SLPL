@@ -1,4 +1,14 @@
 
+* {
+    box-sizing: border-box;  
+    font-family: "IBM Plex Sans KR";
+}
+
+h1 {
+    font-size: 22px;
+    font-weight: bold;
+}
+
 .full-button {
     width : 100%;
 }
@@ -6,6 +16,152 @@
 .d-none {
     display: none;
 }
+
+.input-wf {
+    width: 100%;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+select,
+textarea {
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #c2c2c2;
+}
+    /* 입력창 활성화는 focus */
+    input[type="text"]:focus,          
+    input[type="password"]:focus,
+    input[type="number"]:focus,
+    textarea:focus  {
+        outline: none;
+        border: 1px solid #6455af;
+    }
+
+    /* 입력창 활성화는 focus */
+    input[type="text"]:disabled,          
+    input[type="password"]:disabled,
+    input[type="number"]:disabled,
+    textarea:focus  {
+        outline: none;
+        color: #888888;
+        background-color: #ececec;
+    }
+    
+
+.input-wf {
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #c2c2c2;
+}
+
+.form-group {
+    margin-top: 20px;
+}
+
+.button-area {
+    margin-top: 30px;
+}
+
+/* 전체 설정(아웃라인, border)*/
+.puple-button-wf,
+.gray-button-wf,
+.white-button-wf,
+.puple-button-m,
+.gray-button-m,
+.white-button-m,
+.puple-button-s,
+.white-button-s, 
+.gray-button-s  {	
+ 	border:none;
+    outline: none;    
+}
+
+/* width full 사이즈 버튼(크기, 폰트 등)*/
+.puple-button-wf,
+.gray-button-wf,
+.white-button-wf {
+    width: 100%;
+    height: 40px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/* m사이즈 버튼(크기, 폰트 등)*/
+.puple-button-m,
+.gray-button-m,
+.white-button-m {
+    width: 100px;
+    height: 40px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/* s사이즈 버튼(크기, 폰트 등)*/
+.puple-button-s,
+.gray-button-s,
+.white-button-s {
+    width: 60px;
+    height: 25px;
+    border-radius: 5px;
+    font-size: 10px;
+}
+
+
+/* 버튼 컬러별 설정(배경 컬러, 폰트 컬러, hover 시 컬러) */
+.puple-button-wf,
+.puple-button-m,
+.puple-button-s {
+    background: #6455af;
+    color:white;
+}
+    .puple-button-wf:hover,
+    .puple-button-m:hover,
+    .puple-button-m:hover{
+        background:#5a4ba3;
+    }
+
+    .puple-button-wf:active,
+    .puple-button-m:active,
+    .puple-button-m:active{
+        background:#524696;
+    }
+
+.gray-button-wf,
+.gray-button-m,
+.gray-button-s {
+    background: #5c5c5c;
+    color:white;
+}
+    .gray-button-wf:hover,
+    .gray-button-m:hover,
+    .gray-button-s:hover {
+        background:#4e4e4e;
+    }
+    .gray-button-wf:active,
+    .gray-button-m:active,
+    .gray-button-s:active{
+        background:#3f3b41;
+    }
+
+.white-button-wf,
+.white-button-m,
+.white-button-s {
+    background: white;
+    color: #574b97;
+}
+    .white-button-wf:hover,
+    .white-button-m:hover,
+    .white-button-s:hover{
+        background:#f1f1f1;
+    }
+    .white-button-wf:active,
+    .white-button-m:active,
+    .white-button-s:active{
+        background:#e7e2eb;
+    }
 
 /* ==================================================================================*/
 
@@ -38,6 +194,15 @@ body {
         flex-basis: 250px;
         min-width: 200px;
     }
+
+    .header > .login-menu {        /* login 영역도 body의 nav와 width를 동일하게 감*/
+        flex-basis: 250px;
+        min-width: 200px;
+    }
+        .header > .login-menu > input {     
+            float: right;
+            margin-right: 10px;
+        }
     
     .header > .title{         
         flex-shrink: 1;      /* 나머지 공백 영역에 따라 크기가 결정 되지만 */      
@@ -74,17 +239,54 @@ body {
         background: white;          
         box-shadow: 1px 1px 5px#a9a9a9;    
     }
-    
-        .body > nav > ul > li :hover{
-            background: #f6f6f6;
+
+        nav > .main-menu  {
+            padding: 10px 20px;
         }
-        .body > nav > ul > li :after{
-            color: #6455af;
-        }
-            .body > nav > ul > li > a > img :hover{       /* 클래스로 바꾸자*/
-                -webkit-filter: opacity(.5) drop-shadow(0 0 0 #6455af);
-                filter: opacity(.5) drop-shadow(0 0 0 #6455af);
+            
+            nav > .main-menu img {
+                width: 25px;
+                height: 25px;
             }
+
+            nav > .main-menu li {
+                margin: 10px 0px;
+            }
+            nav > .main-menu li a.current, 
+            nav > .main-menu li a:hover{
+                color: #6455af;
+                font-weight: bold;
+                text-decoration: none;
+            }
+
+                nav > .main-menu li a:hover > img{      
+                    /* 원하는 색으로 필터 만들어 주는 사이트 :  https://codepen.io/sosuke/pen/Pjoqqp */
+                    filter: invert(34%) sepia(8%) saturate(4739%) hue-rotate(211deg) brightness(100%) contrast(83%);
+                }
+
+                
+                nav > .main-menu li .first-menu-item {
+                    display: flex;
+                    align-items: center;
+                }
+                
+                    nav > .main-menu li .first-menu-item:hover {
+                        color: #6455af;
+                        font-weight: bold;
+                        text-decoration: none;
+                    }
+                        nav > .main-menu li .first-menu-item:hover > img{      
+                            /* 원하는 색으로 필터 만들어 주는 사이트 :  https://codepen.io/sosuke/pen/Pjoqqp */
+                            filter: invert(34%) sepia(8%) saturate(4739%) hue-rotate(211deg) brightness(100%) contrast(83%);
+                        }
+
+
+                nav > .main-menu li .first-menu-item img{
+                    margin-right: 10px;
+                }  
+
+               
+
 
 
     .main {
@@ -103,7 +305,7 @@ body {
             .main .container .container-item {
                 flex-shrink: 1;     /* 메인 영역만 줄어들게 할거임*/
                 flex-grow: 1;       /* 메인이 나머지 공백 다 차지할것*/
-                margin : 15px;
+                margin : 30px 30px 50px 30px;
                 box-sizing: border-box;     /* 메인은 기본적으로 10px inner로 적용됨 */
                 border-radius: 5px;
                 background: white;
@@ -111,17 +313,19 @@ body {
                 border-style: solid black;
                 box-shadow: 3px 3px 5px#a9a9a9;
 
-                padding: 10px;
+                padding: 30px;
             }
 
         .main .footer {
             width : 100%;
-            flex : 0 0 150px;
+            flex : 0 0 120px;
 
             background: #191919;
             color: white;
             font-size: 12px;
+            text-align: center;
 
+            padding-top: 10px;
             margin-top: auto;       /* 밑에 고정 */
         }
 
@@ -162,69 +366,3 @@ th {
 td {
     padding: 10px;
 }
-
-.puple-button-m {
-    width: 100px;
-    height: 38px;
-    background: #6455af;
-    box-sizing: border-box;  
-    border-radius: 8px;
-    border: none;
-
-    font-size: 14px;
-    color:white;
-}
-    .puple-button-m:hover{
-        background:#574b97;
-    }
-
-.gray-button-m {
-    width: 100px;
-    height: 38px;
-    background: #5c5c5c;
-    box-sizing: border-box;  
-    border-radius: 8px;
-    border: none;
-
-    font-size: 14px;
-    color:white;
-}
-    .gray-button-m:hover{
-        background:#4e4e4e;
-    }
-
-.white-button-m {
-    width: 100px;
-    height: 38px;
-    background: white;
-    box-sizing: border-box;  
-    border-radius: 8px;
-    border: none;
-
-    font-size: 14px;
-    color: #574b97;
-}
-    .white-button-m:hover{
-        background:#eeeeee;
-    }
-
-.white-button-s {
-    width: 60px;
-    height: 25px;
-    background: white;
-    box-sizing: border-box;  
-    border-radius: 5px;
-    border: none;
-
-    font-size: 10px;
-    color: #574b97;
-}
-    .white-button-s:hover{
-        background:#f1f1f1;
-        border:none;
-
-    }
-    .white-button-s:active{
-        background:red;
-        border:none;
-    }

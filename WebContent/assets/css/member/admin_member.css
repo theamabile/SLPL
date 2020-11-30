@@ -1,0 +1,20 @@
+
+form * {
+    margin: 5px 0px;
+}
+
+.login-box {
+    width: 450px;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;    
+    flex-grow: 1;
+    margin: auto;
+}
+
+
+.login-img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
