@@ -13,7 +13,7 @@
         <section class="logo">
             <h1 class="d-none">HOME</h1>            
             <a href="index.html">                    
-                <img src="../../assets/images/admin/admin-title.png" alt="홈" />
+                <img src="<%=request.getContextPath()%>/assets/images/admin/admin-title.png" alt="홈" />
             </a>    
         </section>
         
