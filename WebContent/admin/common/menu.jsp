@@ -30,13 +30,13 @@
 	    <ul class="main-menu">
 	        <li>
 	            <div class="first-menu-item">
-	                <img class="menu-img" src="../../assets/images/admin/admin_menu_dashboard.png" alt="대시보드"/>   
+	                <img class="menu-img" src="<%=request.getContextPath()%>/assets/images/admin/admin_menu_dashboard.png" alt="대시보드"/>   
 	                <a href="#">DASH BOARD</a>    
 	            </div>                    
 	        </li>
 	        <li>
 	            <div class="first-menu-item">
-	                <img class="menu-img" src="../../assets/images/admin/admin_menu_member.png" alt="회원 관리"/> 
+	                <img class="menu-img" src="<%=request.getContextPath()%>/assets/images/admin/admin_menu_member.png" alt="회원 관리"/> 
 	                <a href="#">MEMBER</a>    
 	            </div>                    
 	            
@@ -48,13 +48,14 @@
 	        </li>
 	        <li>
 	            <div class="first-menu-item">
-	                <img class="menu-img" src="../../assets/images/admin/admin_menu_community.png" alt="게시판 관리"/> 
+	            	<img class="menu-img" src="<%=request.getContextPath()%>/assets/images/admin/admin_menu_community.png" alt="게시판 관리"/> 
+	                <!-- <img class="menu-img" src="../../assets/images/admin/admin_menu_community.png" alt="게시판 관리"/>  -->
 	                <a href="#">COMMUNITY</a>    
 	            </div>                    
 	        </li>
 	        <li>
 	            <div class="first-menu-item">
-	                <img class="menu-img" src="../../assets/images/admin/admin_menu_test.png" alt="테스트 관리"/> 
+	                <img class="menu-img" src="<%=request.getContextPath()%>/assets/images/admin/admin_menu_test.png" alt="테스트 관리"/> 
 	                <a href="#">TEST</a>
 	            </div>                    
 	
