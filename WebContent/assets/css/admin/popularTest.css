@@ -1,0 +1,82 @@
+form * {
+	margin: 5px 0px;
+}
+
+h1 {
+	margin-bottom: 20px;
+}
+
+/* ==================================popularTest==================================== */
+table {
+	width: 100%;
+}
+
+.member-container {
+	min-width: 700px;
+}
+
+.tools {
+	display: flex;
+}
+
+.tools .filter {
+	flex: 1 0 300px;
+}
+
+.filter .category {
+	width: 100px;
+}
+
+.filter .search-id {
+	width: 200px;
+}
+
+/*   .popular-container table tr {
+            display:flex;
+    }
+       .popular-container table th{
+       flex-grow: 1;
+       }
+       */
+.list-container table th.w40 {
+	width: 40px;
+}
+
+.list-container table th.w70 {
+	width: 70px;
+}
+
+.list-container table th.w110 {
+	width: 110px;
+}
+
+.list-container table th.w200 {
+	width: 200px;
+}
+
+main  .page-nav {
+	display: inline-block;;
+}
+
+main  .page-nav {
+	display: flex;
+	justify-content: center;
+	padding: 15px 0px;
+}
+
+main .register-box {
+	text-align: right
+}
+
+main  .page-nav .page-list {
+	display: flex;
+	padding: 0px 8px;
+}
+
+main  .page-nav .page-list li {
+	padding: 0px 5px;
+}
+
+main .container .tools {
+	text-align: right;
+}
