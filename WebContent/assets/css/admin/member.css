@@ -61,6 +61,10 @@ label{
     flex-grow: 1;
     flex-shrink: 1;   
 }
+	.birth-box *{
+	    flex-grow: 1;
+	    flex-shrink: 1;   
+	}
     .birth-box input {
         margin-right: 5px;
     }
@@ -84,6 +88,7 @@ table {
 
 .tools {
     display: flex;
+    justify-content: flex-end;
 }
     .tools .filter {
         flex: 1 0 300px;
@@ -96,8 +101,14 @@ table {
             width: 200px;
         }
 
-    .tools .delete-box {
+    .tools .tools-box {
         flex: 0 0 210px;
     }
-        
+       
+       
+/* =================================== message =================================== */
+ 
+.input-message {
+	height: 500px;
+}
 

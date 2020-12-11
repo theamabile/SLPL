@@ -1,4 +1,30 @@
 
+
+
+.first-menu {
+    display: flex;
+    align-items: center;
+}
+
+    .first-menu:hover,
+    .first-menu-selected {
+        color: #6455af;
+        font-weight: bold;
+        text-decoration: none;
+    }
+        .first-menu:hover > img
+        .first-menu-selected > img{      
+            /* 원하는 색으로 필터 만들어 주는 사이트 :  https://codepen.io/sosuke/pen/Pjoqqp */
+            filter: invert(34%) sepia(8%) saturate(4739%) hue-rotate(211deg) brightness(100%) contrast(83%);
+        }
+
+
+    .first-menu img{
+        margin-right: 10px;
+    }  
+
+
+
 * {
     box-sizing: border-box;  
     font-family: "IBM Plex Sans KR";
@@ -31,6 +57,15 @@ textarea {
     border-radius: 5px;
     border: 1px solid #c2c2c2;
 }
+	
+	/* 입력창 활성화는 focus */
+	input:read-only, 
+	textarea:read-only {
+        outline: none;
+        color: #888888;
+        background-color: #ecedf7;
+    }
+
     /* 입력창 활성화는 focus */
     input[type="text"]:focus,          
     input[type="password"]:focus,
@@ -39,12 +74,12 @@ textarea {
         outline: none;
         border: 1px solid #6455af;
     }
-
+    
     /* 입력창 활성화는 focus */
     input[type="text"]:disabled,          
     input[type="password"]:disabled,
     input[type="number"]:disabled,
-    textarea:focus  {
+    textarea:disabled {
         outline: none;
         color: #888888;
         background-color: #ececec;
@@ -162,6 +197,55 @@ textarea {
     .white-button-s:active{
         background:#e7e2eb;
     }
+        
+.table-width-xs {
+	width: 2%;
+}
+
+
+
+.table-width-s {
+	width: 5%;
+}
+
+.table-width-m {
+	width: 10%;
+}
+
+.table-width-l {
+	width: 10%;
+}
+
+table {
+    border-top: 2px solid #6455af;
+    border-bottom: 2px solid #6455af;
+    border-collapse: collapse;          /* 테두리 사이의 간격 없애기 */
+    font-size: 15px;
+    margin: 5px;
+}
+
+table *{
+    text-align:center;
+}
+
+tr {
+   border-bottom: 1px solid #b7ade7;
+}
+	table tr:hover{
+        background: #f7f6ff;
+	}
+
+th {
+    background: #efecfd;
+    padding: 10px;
+    font-weight: bold;
+}
+
+td {
+    padding: 10px;
+}
+
+
 
 /* ==================================================================================*/
 
@@ -264,30 +348,6 @@ body {
                     filter: invert(34%) sepia(8%) saturate(4739%) hue-rotate(211deg) brightness(100%) contrast(83%);
                 }
 
-                
-                nav > .main-menu li .first-menu-item {
-                    display: flex;
-                    align-items: center;
-                }
-                
-                    nav > .main-menu li .first-menu-item:hover {
-                        color: #6455af;
-                        font-weight: bold;
-                        text-decoration: none;
-                    }
-                        nav > .main-menu li .first-menu-item:hover > img{      
-                            /* 원하는 색으로 필터 만들어 주는 사이트 :  https://codepen.io/sosuke/pen/Pjoqqp */
-                            filter: invert(34%) sepia(8%) saturate(4739%) hue-rotate(211deg) brightness(100%) contrast(83%);
-                        }
-
-
-                nav > .main-menu li .first-menu-item img{
-                    margin-right: 10px;
-                }  
-
-               
-
-
 
     .main {
         height: 100%;
@@ -318,7 +378,7 @@ body {
 
         .main .footer {
             width : 100%;
-            flex : 0 0 120px;
+            flex : 0 0 25%;
 
             background: #191919;
             color: white;
@@ -339,30 +399,3 @@ body {
         box-shadow: 3px 3px 5px#a9a9a9;
     }
 
-/* ==================================================================================*/
-
-table {
-    --border-top: 2px solid #353535;
-    --border-bottom: 2px solid #353535;
-    border-top: 2px solid #6455af;
-    border-bottom: 2px solid #6455af;
-    border-collapse: collapse;          /* 테두리 사이의 간격 없애기 */
-    font-size: 15px;
-    margin: 5px;
-}
-
-tr {
-   border-bottom: 1px solid #b7ade7;
-}
-
-th {
-    --background: #eae7f5;
-    border-bottom: 2px;
-    background: #efecfd;
-    padding: 10px;
-    font-weight: bold;
-}
-
-td {
-    padding: 10px;
-}
