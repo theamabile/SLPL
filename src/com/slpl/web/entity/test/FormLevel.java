@@ -1,4 +1,4 @@
-package com.slpl.web.entity;
+package com.slpl.web.entity.test;
 
 public class FormLevel {
 	private int id;

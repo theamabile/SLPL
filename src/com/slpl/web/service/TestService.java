@@ -2,9 +2,9 @@ package com.slpl.web.service;
 
 import java.util.List;
 
-import com.slpl.web.dao.TestDao;
 import com.slpl.web.dao.jdbc.JdbcTestDao;
-import com.slpl.web.entity.Test;
+import com.slpl.web.dao.test.TestDao;
+import com.slpl.web.entity.test.Test;
 
 public class TestService {
 	
