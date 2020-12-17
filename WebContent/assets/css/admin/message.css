@@ -1,0 +1,103 @@
+
+
+form * {
+    margin: 5px 0px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+
+label{
+    width: 100%;
+    font-size: 14px;
+    font-weight: bold;
+}
+   
+   
+   
+   
+/* ================================== detail ==================================== */
+    
+ 
+.detail-msg-container {
+    flex-basis: 400px;
+    width: 800px;
+    margin: auto;
+    align-content: center;
+}
+
+.detail-msg-container input:read-only,  
+.detail-msg-container select:read-only,        
+.detail-msg-container textarea:read-only {
+    outline: none;
+    color: black;
+    background-color: #ffffff;
+}
+   
+/* ================================== send ==================================== */
+
+.send-msg-container {
+    flex-basis: 400px;
+    width: 800px;
+    margin: auto;
+    align-content: center;
+}
+
+
+/* ================================== list ==================================== */
+
+.tools {
+    display: flex;
+    justify-content: flex-end;
+}
+    .tools .filter {
+        flex: 1 0 300px;
+    }
+        .filter .category {
+            width: 100px;
+        }
+
+        .filter .search-keyword {
+            width: 200px;
+        }
+
+    .tools .tools-box {
+        flex: 0 0 280px;
+        display: flex;
+        justify-content: flex-end;
+    }
+    	.tools .tools-box *{
+    		margin-right: 5px;
+	    }
+	       
+       
+
+/* ================================== add, detail ==================================== */
+
+.member-box {
+	display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;   
+}
+	.member-box input {
+	    flex-grow: 1;
+	    flex-shrink: 1;   
+	}
+	
+	.member-box select{
+	    flex-basis: 150px;   
+	}
+
+    .member-box select {
+        margin-right: 5px;
+    }
+ 
+
+.input-message {
+	height: 500px;
+}
+
+
+   
