@@ -1,0 +1,71 @@
+ 
+	    
+/* ======================================== detail ==========================================*/
+	    
+ 
+.detail-msg-container {
+    flex-basis: 400px;
+    width: 800px;
+    margin: auto;
+}
+	.detail-msg-container * {
+		margin-bottom: 5px;
+	}
+
+	.detail-msg-container input:read-only,  
+	.detail-msg-container select:read-only,        
+	.detail-msg-container textarea:read-only {
+	    outline: none;
+	    color: black;
+	    background-color: #ffffff;
+	}
+	
+	.detail-msg-container .input-message {
+		height: 500px;
+	}
+
+
+.member-box {
+	display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;   
+}
+	.member-box input {
+	    flex-grow: 1;
+	    flex-shrink: 1;   
+	}
+	
+	.member-box select{
+	    flex-basis: 150px;   
+	}
+
+    .member-box select {
+        margin-right: 5px;
+    }
+
+
+
+.tools {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+    .tools .filter {
+        flex: 1 0 300px;
+    }
+        .filter .category {
+            width: 100px;
+        }
+
+        .filter .search-keyword {
+            width: 200px;
+        }
+       
+    .tools .tools-box {
+        flex: 0 0 210px;
+        display: flex;
+        justify-content: flex-end;
+    }
+    	.tools .tools-box *{
+    		margin-right: 5px;
+	    }
