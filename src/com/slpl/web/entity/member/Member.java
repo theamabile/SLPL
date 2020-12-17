@@ -1,6 +1,7 @@
 package com.slpl.web.entity.member;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Member {
 	
@@ -13,29 +14,13 @@ public class Member {
 	private Date birthday; 
 	private String phoneNumber; 
 	private String email; 
-	private Date regdate;
+	private Timestamp regdate;
 	private String profileImg;
 	private int categoryId;	
 	
-	
+	// select용 - 전체
 	public Member(int id, String loginId, String pw, String name, String nickname, String gender,
-			Date birthday, String phoneNumber, String email, String profileImg, int categoryId) {
-		super();
-		this.id = id;
-		this.loginId = loginId;
-		this.pw = pw;
-		this.name = name;
-		this.nickname = nickname;
-		this.gender = gender;
-		this.birthday = birthday;
-		this.phoneNumber = phoneNumber;
-		this.email = email;
-		this.profileImg = profileImg;
-		this.categoryId = categoryId;
-	}
-	
-	public Member(int id, String loginId, String pw, String name, String nickname, String gender,
-			Date birthday, String phoneNumber, String email, Date regdate, String profileImg, int categoryId) {
+			Date birthday, String phoneNumber, String email, Timestamp regdate, String profileImg, int categoryId) {
 		this.id = id;
 		this.loginId = loginId;
 		this.pw = pw;
@@ -50,6 +35,21 @@ public class Member {
 		this.categoryId = categoryId;
 	}
 	
+	// insert용 - id, regdate 없음
+	public Member(String loginId, String pw, String name, String nickname, String authority, String gender,
+			Date birthday, String phoneNumber, String email, String profileImg, int categoryId) {
+		this.loginId = loginId;
+		this.pw = pw;
+		this.name = name;
+		this.nickname = nickname;
+		this.gender = gender;
+		this.birthday = birthday;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+		this.categoryId = categoryId;
+		this.profileImg = profileImg;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -121,11 +121,11 @@ public class Member {
 		this.email = email;
 	}
 
-	public Date getRegdate() {
+	public Timestamp getRegdate() {
 		return regdate;
 	}
 	
-	public void setRegdate(Date regdate) {
+	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
 	}
 
@@ -144,5 +144,4 @@ public class Member {
 	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
 	}
-
 }
