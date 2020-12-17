@@ -6,10 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../../assets/css/reset.css" type="text/css">
-<link rel="stylesheet" href="../../assets/css/common/test.css"
-	type="text/css">
-<link rel="stylesheet" href="../assets/css/member/member.css"
-	type="text/css">
+<link rel="stylesheet" href="../../assets/css/common/style.css" type="text/css">
+<link rel="stylesheet" href="../assets/css/member/member.css" type="text/css">
 </head>
 <body>
 

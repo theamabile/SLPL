@@ -6,10 +6,8 @@
 <meta charset="UTF-8">
 <title>심리플리 - 회원 정보 수정</title>
 <link rel="stylesheet" href="../../assets/css/reset.css" type="text/css">
-<link rel="stylesheet" href="../../assets/css/common/test.css"
-	type="text/css">
-<link rel="stylesheet" href="../assets/css/member/member.css"
-	type="text/css">
+<link rel="stylesheet" href="../../assets/css/common/style.css" type="text/css">
+<link rel="stylesheet" href="../assets/css/member/member.css" type="text/css">
 </head>
 <body>
 
