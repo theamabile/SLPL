@@ -14,9 +14,14 @@ label{
     font-weight: bold;
 }
 
-.radio-group *{
-    margin-left: 30px;
+.radio-group{
+	display: flex;
 }
+	.radio-group * {
+		flex-grow: 1;
+		flex-shrink: 1;
+	}
+		
 
     .radio-group *:first-child {
         margin-left: 0px;
@@ -72,7 +77,17 @@ label{
     .birth-box input:nth-child(5){
         margin-right: 0px;
     }
-
+    
+.gender-profile-group {
+	display: flex;
+	margin-top: 20px;
+	box-sizing:border-box;
+	justify-content: space-between;
+}
+	.gender-profile-group * {
+		flex-grow: 1;
+		flex-shrink: 1; 
+	}
 
 /* =================================== list =================================== */
 
@@ -93,22 +108,46 @@ table {
     .tools .filter {
         flex: 1 0 300px;
     }
-        .filter .category {
+        .filter .field {
             width: 100px;
         }
 
-        .filter .search-keyword {
+        .filter .query {
             width: 200px;
         }
-
+       
     .tools .tools-box {
         flex: 0 0 210px;
+        display: flex;
+        justify-content: flex-end;
     }
-       
-       
-/* =================================== message =================================== */
- 
-.input-message {
-	height: 500px;
+    	.tools .tools-box *{
+    		margin-right: 5px;
+	    }
+
+/* ================================== login ==================================== */
+.login-container {
+	flex-basis: 200px;
+    width: 450px;
+    margin: auto;
+    align-content: center;
 }
+
+.detail-container {
+    flex-basis: 400px;
+    width: 700px;
+    margin: auto;
+    align-content: center;
+}
+
+
+
+
+.login-img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
 
