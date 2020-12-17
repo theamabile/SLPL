@@ -1,22 +1,24 @@
 package com.slpl.web.entity.member;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Message {
 	private int id;
-	private int adminId;
-	private int memberId;
-    private Date reddate;
     private String title;
     private String content;
+    private String type;
     
-	public Message(int id, int adminId, int memberId, Date reddate, String title, String content) {
+	public Message(int id, String title, String content, String type) {
 		this.id = id;
-		this.adminId = adminId;
-		this.memberId = memberId;
-		this.reddate = reddate;
 		this.title = title;
 		this.content = content;
+		this.type = type;
+	}
+	
+	public Message(String title, String content, String type) {
+		this.title = title;
+		this.content = content;
+		this.type = type;
 	}
 
 	public int getId() {
@@ -25,30 +27,6 @@ public class Message {
 	
 	public void setId(int id) {
 		this.id = id;
-	}
-	
-	public int getAdminId() {
-		return adminId;
-	}
-
-	public void setAdminId(int adminId) {
-		this.adminId = adminId;
-	}
-
-	public int getMemberId() {
-		return memberId;
-	}
-
-	public void setMemberId(int memberId) {
-		this.memberId = memberId;
-	}
-
-	public Date getReddate() {
-		return reddate;
-	}
-	
-	public void setReddate(Date reddate) {
-		this.reddate = reddate;
 	}
 	
 	public String getTitle() {
@@ -67,9 +45,19 @@ public class Message {
 		this.content = content;
 	}
 	
+	public String getType() {
+		return type;
+	}
+	
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	@Override
 	public String toString() {
-		return "Message [id=" + id + ", reddate=" + reddate + ", title=" + title + ", content=" + content + "]";
+		return "Message [id=" + id + ", title=" + title + ", content=" + content + ", type=" + type + "]";
 	}
-    
+	
+	
+	
 }

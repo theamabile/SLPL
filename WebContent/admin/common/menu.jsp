@@ -43,7 +43,7 @@
 	            <ul>
 	                <li><a href="/admin/member/list">LIST</a></li>
 	                <li><a href="/admin/member/add">ADD</a></li>
-	                <li><a href="/admin/member/message">MESSAGE</a></li>
+	                <li><a href="/admin/member/messageList">MESSAGE</a></li>
 	            </ul>
 	        </li>
 	        <li>

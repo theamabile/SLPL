@@ -7,21 +7,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.slpl.web.dao.member.MemberDao;
 import com.slpl.web.entity.member.Member;
+import com.slpl.web.entity.member.MemberView;
 
 public class JdbcMemberDao implements MemberDao {
 
 	@Override
-	public int insert(Member member) {
+	public int insert(Member member) {    //O
 		int result = 0;
 		String url = DBContext.URL;
-		String sql = "insert into member(login_id, pw, name, nickname, gender,"
+		String sql = "insert into member(id, login_id, pw, name, nickname, gender,"
 				+ " birthday, phone_number, email, profile_img, category_id)" + 
-				"values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				"values(member_id_seq.NEXTVAL, ?, ?, ?, ?, ?,"
+				+ " ?, ?, ?, ?, ?)";
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);		
@@ -97,7 +100,7 @@ public class JdbcMemberDao implements MemberDao {
 	@Override
 	public int delete(int id) {
 		int result = 0;
-		
+
 		String url = DBContext.URL;
 		String sql = "delete from member where id=?";
 		try {
@@ -108,7 +111,7 @@ public class JdbcMemberDao implements MemberDao {
 			pst.setInt(1, id);
 			
 			result = pst.executeUpdate();
-		
+			
 			pst.close();
 			con.close();
 			
@@ -124,7 +127,7 @@ public class JdbcMemberDao implements MemberDao {
 	}
 
 	@Override
-	public Member get(int id) {
+	public Member get(int id) {    // O
 		Member m = null;	
 		
 		String url = DBContext.URL;
@@ -134,6 +137,7 @@ public class JdbcMemberDao implements MemberDao {
 			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);		
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
+			
 
 			if(rs.next()) {
 				String loginId = rs.getString("login_id");
@@ -144,7 +148,271 @@ public class JdbcMemberDao implements MemberDao {
 				Date birthday = rs.getDate("birthday");
 				String phoneNumber = rs.getString("phone_number");
 				String email = rs.getString("email");
-				Date regdate = rs.getDate("regdate");
+				Timestamp regdate = rs.getTimestamp("regdate");
+				String profileImg = rs.getString("profile_img");
+				int categoryId = rs.getInt("category_id");
+				
+				m = new Member(id, loginId, pw, name, nickname, gender,
+						birthday, phoneNumber, email, regdate, profileImg, categoryId);
+			}
+			
+			rs.close();
+			st.close();
+			con.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return m;
+	}
+	
+	@Override
+	public List<Member> getList() {
+		List<Member> list = new ArrayList<>();
+		
+		String url = DBContext.URL;
+		String sql = "select * from member order by regdate desc ";
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);		
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+
+			while(rs.next()) {
+				int id = rs.getInt("id");
+				String loginId = rs.getString("login_id");
+				String name = rs.getString("name");
+				String nickname = rs.getString("nickname");
+				String pw = rs.getString("pw");		
+				String gender = rs.getString("gender");
+				Date birthday = rs.getDate("birthday");
+				String phoneNumber = rs.getString("phone_number");
+				String email = rs.getString("email");
+				Timestamp regdate = rs.getTimestamp("regdate");
+				String profileImg = rs.getString("profile_img");
+				int categoryId = rs.getInt("category_id");
+
+				Member m = new Member(id, loginId, pw, name, nickname, gender,
+						birthday, phoneNumber, email, regdate, profileImg, categoryId);
+				
+				list.add(m);
+			}
+			
+			rs.close();
+			st.close();
+			con.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	
+	// ========================================= View ==============================================
+
+	public MemberView getView(int id) {    
+		MemberView m = null;
+		
+		String url = DBContext.URL;
+		String sql = "select * from member_community_category_view where id="+id;
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);		
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			
+
+			if(rs.next()) {
+				String loginId = rs.getString("login_id");
+				String name = rs.getString("name");
+				String nickname = rs.getString("nickname");
+				String pw = rs.getString("pw");		
+				String gender = rs.getString("gender");
+				Date birthday = rs.getDate("birthday");
+				String phoneNumber = rs.getString("phone_number");
+				String email = rs.getString("email");
+				Timestamp regdate = rs.getTimestamp("regdate");
+				String profileImg = rs.getString("profile_img");
+				int categoryId = rs.getInt("category_id");
+				String categoryName = rs.getString("category_name");
+				String authority = rs.getString("authority");
+				
+				m = new MemberView(id, loginId, pw, name, nickname, gender,
+						birthday, phoneNumber, email, regdate, profileImg, categoryId, categoryName, authority);
+			}
+			
+			rs.close();
+			st.close();
+			con.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return m;
+	}
+
+	@Override
+	public List<MemberView> getViewList() {   
+		// TODO Auto-generated method stub 
+		List<MemberView> list = new ArrayList<>();
+		
+		String url = DBContext.URL;
+		String sql = "select * from member_community_category_view order by regdate desc ";
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);		
+			PreparedStatement st = con.prepareStatement(sql);
+
+			ResultSet rs = st.executeQuery();
+
+			while(rs.next()) {
+				int id = rs.getInt("id");
+				String loginId = rs.getString("login_id");
+				String name = rs.getString("name");
+				String nickname = rs.getString("nickname");
+				String pw = rs.getString("pw");		
+				String gender = rs.getString("gender");
+				Date birthday = rs.getDate("birthday");
+				String phoneNumber = rs.getString("phone_number");
+				String email = rs.getString("email");
+				Timestamp regdate = rs.getTimestamp("regdate");
+				String profileImg = rs.getString("profile_img");
+				int categoryId = rs.getInt("category_id");
+				String categoryName = rs.getString("category_name");
+				String authority = rs.getString("authority");
+				
+				MemberView m = new MemberView(id, loginId, pw, name, nickname, gender,
+						birthday, phoneNumber, email, regdate, profileImg, categoryId, categoryName, authority);
+				
+				list.add(m);
+			}
+			
+			rs.close();
+			st.close();
+			con.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+
+	@Override
+	public List<MemberView> getViewList(int startIndex, int endIndex, String field, String query) {  // O
+		
+		// 동적 쿼리 만들기
+		String url = DBContext.URL;
+		StringBuilder sb = new StringBuilder();
+		sb.append("select * " + 
+				  "from ( select rownum num, m.* " + 
+						 "from ( select * from MEMBER_COMMUNITY_CATEGORY_VIEW ");
+						
+		if(field != null && query != null) {
+			sb.append(" 	where REGEXP_LIKE("+field+", '.*"+query+".*') ");
+		}
+
+		sb.append(" order by regdate desc"+
+	              " ) m " +
+	              " )where num between ? and ?");
+		
+
+		String sql = sb.toString();
+		
+		List<MemberView> list = new ArrayList<>();
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);		
+			PreparedStatement pst = con.prepareStatement(sql);
+		
+			pst.setInt(1, startIndex);
+			pst.setInt(2, endIndex);
+			
+			ResultSet rs = pst.executeQuery();
+
+			while(rs.next()) {
+				int id = rs.getInt("id");
+				String loginId = rs.getString("login_id");
+				String name = rs.getString("name");
+				String nickname = rs.getString("nickname");
+				String pw = rs.getString("pw");		
+				String gender = rs.getString("gender");
+				Date birthday = rs.getDate("birthday");
+				String phoneNumber = rs.getString("phone_number");
+				String email = rs.getString("email");
+				Timestamp regdate = rs.getTimestamp("regdate");
+				String profileImg = rs.getString("profile_img");
+				int categoryId = rs.getInt("category_id");
+				String categoryName = rs.getString("category_name");
+				String authority = rs.getString("authority");
+				
+				MemberView m = new MemberView(id, loginId, pw, name, nickname, gender,
+						birthday, phoneNumber, email, regdate, profileImg, categoryId, categoryName, authority);
+				
+				list.add(m);
+			}
+			
+			rs.close();
+			pst.close();
+			con.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+	
+	// ---------------------------------------------------------------------------
+	
+	@Override
+	public Member getLast() {    //O
+		Member m = null;	
+		
+		String url = DBContext.URL;
+		String sql = "select * from member where id = (select max(id) from member)";
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);		
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			
+
+			if(rs.next()) {
+				int id = rs.getInt("id");
+				String loginId = rs.getString("login_id");
+				String name = rs.getString("name");
+				String nickname = rs.getString("nickname");
+				String pw = rs.getString("pw");		
+				String gender = rs.getString("gender");
+				Date birthday = rs.getDate("birthday");
+				String phoneNumber = rs.getString("phone_number");
+				String email = rs.getString("email");
+				Timestamp regdate = rs.getTimestamp("regdate");
 				String profileImg = rs.getString("profile_img");
 				int categoryId = rs.getInt("category_id");
 				
@@ -167,81 +435,4 @@ public class JdbcMemberDao implements MemberDao {
 		return m;
 	}
 
-	@Override
-	public List<Member> getList() {
-		List<Member> list = new ArrayList<>();
-		
-		String url = DBContext.URL;
-		String sql = "select * from member";
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);		
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(sql);
-
-			while(rs.next()) {
-				int id = rs.getInt("id");
-				String login_id = rs.getString("login_id");
-				String name = rs.getString("name");
-				String nickname = rs.getString("nickname");
-				String pw = rs.getString("pw");		
-				String gender = rs.getString("gender");
-				Date birthday = rs.getDate("birthday");
-				String phoneNumber = rs.getString("phone_number");
-				String email = rs.getString("email");
-				Date regdate = rs.getDate("regdate");
-				String profileImg = rs.getString("profile_img");
-				int categoryId = rs.getInt("category_id");
-				
-				Member m = new Member(id, login_id, pw, name, nickname, gender,
-						birthday, phoneNumber, email, regdate, profileImg, categoryId);
-				
-				list.add(m);
-			}
-			
-			rs.close();
-			st.close();
-			con.close();
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return list;
-	}
-
-	@Override
-	public List<Member> getList(int page) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Member> getList(int page, String category, String keyword) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int delete(int[] ids) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getByLoginId(String loginId) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getByNickname(String nickname) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
 }
