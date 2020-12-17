@@ -1,0 +1,19 @@
+ <svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'> 
+      <rect x='10' y='10' height='250' width='250' fill='rgba(23, 114, 248, 0.4)'>
+        <animateTransform attributeName='transform' type='rotate' from='360 100 300' to='0 100 300' begin='0s' dur='30s' repeatCount='indefinite'/>  
+      </rect> 
+
+      <circle cx='100' cy='700' r='100' fill='rgba(240, 150, 35, 0.3)'>
+        <animateTransform attributeName='transform' type='rotate' from='0 200 700' to='360 200 700' begin='0s' dur='20s' repeatCount='indefinite'/>  
+      </circle>
+
+       <polygon points = "1600,100 1800,100 1700,300" fill='rgba(0, 200, 178, 0.3)'>
+            
+            <animateTransform attributeName='transform' begin='0s' dur='20s' type='rotate' from='0 1700 150' to='360 1700 150' repeatCount='indefinite'/> 
+           <!-- <animateTransform attributeName='transform' type='rotate' from='360 1000 1000' to='0 1000 1000' begin='0s' dur='30s' repeatCount='indefinite'/>   -->
+       </polygon>
+
+       <rect x='1600' y='800' height='400' width='400' fill='rgba(255, 114, 248, 0.3)'>
+        <animateTransform attributeName='transform' type='rotate' from='360 1600 800' to='0 1600 800' begin='0s' dur='30s' repeatCount='indefinite'/>  
+      </rect> 
+    </svg>
