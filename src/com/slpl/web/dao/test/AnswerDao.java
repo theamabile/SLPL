@@ -2,12 +2,13 @@ package com.slpl.web.dao.test;
 
 import java.util.List;
 
-import com.slpl.web.entity.test.Question;
+import com.slpl.web.entity.test.Answer;
 
 public interface AnswerDao {
-	int insert(Question question);
-	int update(Question question);
+	int insert(Answer answer);
+	int update(int id, String coulumn, int value);
 	int delete(int id);
 	
-	List<Question> getList();
+	Answer get(int id);
+	List<Answer> getList();
 }
