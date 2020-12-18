@@ -9,8 +9,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.slpl.web.dao.TestDao;
-import com.slpl.web.entity.Test;
+import com.slpl.web.dao.test.TestDao;
+import com.slpl.web.entity.test.Test;
 
 public class JdbcTestDao implements TestDao {
 

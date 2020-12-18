@@ -1,8 +1,8 @@
-package com.slpl.web.dao;
+package com.slpl.web.dao.test;
 
 import java.util.List;
 
-import com.slpl.web.entity.FormLevel;
+import com.slpl.web.entity.test.FormLevel;
 
 public interface FormLevelDao {
 	

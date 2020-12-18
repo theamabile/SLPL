@@ -1,8 +1,8 @@
-package com.slpl.web.dao;
+package com.slpl.web.dao.test;
 
 import java.util.List;
 
-import com.slpl.web.entity.Test;
+import com.slpl.web.entity.test.Test;
 
 public interface TestReportDao {
 	
