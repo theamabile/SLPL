@@ -1,0 +1,51 @@
+.d-done {
+	display: none;
+}
+
+.tools {
+	display: flex;
+	justify-content: space-between;
+	align-content: center;
+	margin-top: 2%;
+}
+
+.tools .filter input,
+.tools .filter select {
+	height: 30px;
+}
+
+.tools .button-box {
+	flex:0 0 auto;
+}
+
+.button-box button {
+	height: 30px;
+
+	cursor: pointer;
+}
+
+.button-area button{
+	margin:1% 0;
+}
+
+/*********** table ***********/
+.table {
+	width:100%;
+}
+
+.table th {
+	max-width: 100px;
+	min-width: 60px;
+}
+
+/*********** pageing ***********/
+.paging {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-top:2%;
+}
+
+.paging a {
+	flex:0 0 20px;
+}
