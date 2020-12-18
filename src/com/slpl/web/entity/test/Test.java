@@ -6,7 +6,7 @@ public class Test {
 	
 	private int id;
 	private String name;
-	private String memberId;
+	private int memberId;
 	private String coverImg;
 	private int publicState;
 	private int bestState;
@@ -14,8 +14,8 @@ public class Test {
 	private int hitCnt;
 	private int recommendCnt;
 	private int reportCnt;
-	private Timestamp regDate;
-	private int formCategory;
+	private Timestamp regdate;
+	private int formLevelId;
 	
 
 	public Test() {
@@ -24,8 +24,8 @@ public class Test {
 
 	
 	
-	public Test(int id, String name, String memberId, String coverImg, int publicState, int bestState, int shareCnt,
-			int hitCnt, int recommendCnt, int reportCnt, Timestamp regDate, int formCategory) {
+	public Test(int id, String name, int memberId, String coverImg, int publicState, int bestState, int shareCnt,
+			int hitCnt, int recommendCnt, int reportCnt, Timestamp regDate, int formLevelId) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -37,8 +37,8 @@ public class Test {
 		this.hitCnt = hitCnt;
 		this.recommendCnt = recommendCnt;
 		this.reportCnt = reportCnt;
-		this.regDate = regDate;
-		this.formCategory = formCategory;
+		this.regdate = regDate;
+		this.formLevelId = formLevelId;
 	}
 
 
@@ -63,12 +63,12 @@ public class Test {
 	}
 
 
-	public String getMemberId() {
+	public int getMemberId() {
 		return memberId;
 	}
 
 
-	public void setMemberId(String memberId) {
+	public void setMemberId(int memberId) {
 		this.memberId = memberId;
 	}
 
@@ -144,22 +144,22 @@ public class Test {
 
 
 	public Timestamp getRegDate() {
-		return regDate;
+		return regdate;
 	}
 
 
-	public void setRegDate(Timestamp regDate) {
-		this.regDate = regDate;
+	public void setRegDate(Timestamp regdate) {
+		this.regdate = regdate;
 	}
 
 
-	public int getFormCategory() {
-		return formCategory;
+	public int getFormLevelId() {
+		return formLevelId;
 	}
 
 
-	public void setFormCategory(int formCategory) {
-		this.formCategory = formCategory;
+	public void setFormLevelId(int formLevelId) {
+		this.formLevelId = formLevelId;
 	}
 
 
@@ -167,8 +167,8 @@ public class Test {
 	public String toString() {
 		return "Test [id=" + id + ", name=" + name + ", memberId=" + memberId + ", coverImg=" + coverImg
 				+ ", publicState=" + publicState + ", bestState=" + bestState + ", shareCnt=" + shareCnt + ", hitCnt="
-				+ hitCnt + ", recommendCnt=" + recommendCnt + ", reportCnt=" + reportCnt + ", regDate=" + regDate
-				+ ", formCategory=" + formCategory + "]";
+				+ hitCnt + ", recommendCnt=" + recommendCnt + ", reportCnt=" + reportCnt + ", regDate=" + regdate
+				+ ", formLevelId=" + formLevelId + "]";
 	}
 
 
