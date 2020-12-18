@@ -1,5 +1,6 @@
 package com.slpl.web.service;
 
+import java.io.Console;
 import java.util.List;
 
 import com.slpl.web.dao.jdbc.JdbcTestDao;
@@ -10,66 +11,85 @@ public class TestService {
 	
 	private TestDao testDao;
 	
-	
-	public List<Test> getList() {
-		return testDao.getList();
+	public TestService() {
+		testDao = new JdbcTestDao();
 	}
 	
+	public List<Test> getList(int page, int size) {
+		int startIndex = 1+(page-1)*size;
+		int endIndex = page*size;
+		return testDao.getList(startIndex,endIndex);
+	}
 	
+	public List<Test> getList(int page, int size, String field, String query){
+		int startIndex = 1+(page-1)*size;
+		int endIndex = page*size;
+		return testDao.getList(startIndex, endIndex, field, query);		
+	};
+	
+	public List<Test> getList(int page, int size, String field, String query,String align){
+		int startIndex = 1+(page-1)*size;
+		int endIndex = page*size;
+		return testDao.getList(startIndex, endIndex, field, query, align);		
+	};
+	
+	
+	 public int regBest(int id) {
+		 
+	      Test test  = testDao.get(id); 
+	      test.setBestState(1);
 
-//
-//	public List<Test> idSearch(String keyword) {
-//		
-//		int result =0;
-//
-//		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
-//		String sql = "SELECT *FROM POPULTEST WHERE ID='"+keyword+"'";
-//		
-//		List<Test> list =new ArrayList<>();
-//		
-//		try {
-//			Class.forName("oracle.jdbc.driver.OracleDriver");
-//			Connection con = DriverManager.getConnection(url,"mbti","1111");
-//			Statement st = con.createStatement();
-//			ResultSet rs = st.executeQuery(sql);
-//			while (rs.next()) {
-//					
-//					int testNo = rs.getInt("TEST_NO");
-//					String title = rs.getString("TITLE");
-//					String id = rs.getString("ID");
-//					int recommendNum = rs.getInt("RECOMMEMD_NUM");
-//					int lookUpNum = rs.getInt("LOOKUP_NUM");
-//					int shareNum = rs.getInt("SHARE_NUM");
-//					String bestState = rs.getString("BEST_STATE");
-//					String publicState = rs.getString("PUBLIC_STATE");;
-//					
-//	
-//					Test t = new Test(
-//							testNo,
-//							title,
-//							id,
-//							recommendNum,
-//							lookUpNum,
-//							shareNum,
-//							bestState,
-//							publicState
-//							);
-//					list.add(t);
-//			}
-//
-//			st.close();
-//			con.close();
-//			
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (ClassNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		return list;
-//	}
+	      return  testDao.update(test,"BEST_STATE", test.getBestState());
+	   }
+
+	 public List<Test> getList(int page, int size, String align) {
+		 int startIndex = 1+(page-1)*size;
+		 int endIndex = page*size;
+		 return testDao.getList(startIndex, endIndex, align);	
+	 }
+	 public List<Test> getList(int page, int size, String field, String query, String field2, String query2){
+		 int startIndex = 1+(page-1)*size;
+		 int endIndex = page*size;
+		 return testDao.getList(startIndex, endIndex, field, query, field2,query2);
+		 
+	 };
+	public List<Test> getList(int page, int size, String field1, String query1, String field2, String query2,String align) {
+		int startIndex = 1+(page-1)*size;
+		int endIndex = page*size;
+		return testDao.getList(startIndex, endIndex, field1, query1,field2, query2, align);	
+	}
+
+	public int updateAll(int[] ids, String coulumn, int value) {
+		
+		int result = 0;
+	      for(int i=0; i<ids.length; i++) {
+	         int id = ids[i];
+	         result += testDao.update(id,coulumn,value);
+	         System.out.printf("%s  : %d",coulumn,value);
+	      }
+	      
+	      return result;
+		
+	}
+
+	public int update(int id, String coulumn, int value) {
+		
+	      return testDao.update(id,coulumn,value);
+	}
+
+	public Test get(int id) {
+		// TODO Auto-generated method stub
+		return testDao.get(id);
+	}
+
+	public int insert(Test t) {
+		testDao.insert(t);
+		return 0;
+	}
+
+
+
+
 	
 	
 	

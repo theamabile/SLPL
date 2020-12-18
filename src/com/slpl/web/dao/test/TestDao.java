@@ -7,18 +7,23 @@ import com.slpl.web.entity.test.Test;
 public interface TestDao {
 	
 	int insert(Test test);
-	int update(Test test);
+	int update(Test test,String coulumn,int value);
+	int update(int id,String coulumn,int value);
 	int delete(int id);
 	Test get(int id);
 	List<Test> getList();
 	
 	
+	List<Test> getList(int startIndex, int endIndex);
+
+	List<Test> getList(int startIndex, int endIndex, String align);
+	List<Test> getList(int startIndex, int endIndex, String field, String query);
+	List<Test> getList(int startIndex, int endIndex, String field, String query,String align);
 	
-	List<Test> getList(int page);
-	//sortType > 조회수=1 추천수=2 공유수=3
-	List<Test> getList(int page ,int memberId,int sortType,int bestState);
-	
-	int updateAll(int[] ids);
+	List<Test> getList(int startIndex, int endIndex, String field1, String query1, String field2, String query2);
+	List<Test> getList(int startIndex, int endIndex, String field1, String query1, String field2, String query2,String align);
+	List<Test> getList(int startIndex, int endIndex, String field1, String query1, String field2, String query2,String align,String order);
+
 
 
 
