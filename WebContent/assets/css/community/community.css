@@ -1,0 +1,369 @@
+.hidden {
+	display: none;
+}
+/* ---------------------------------------detail------------------ */
+
+.detail .breadcrumbs {
+	justify-content: space-between;
+	display: flex;
+	padding-bottom: 10px;
+}
+
+.detail .breadcrumbs h4 {
+	color: #6455af;
+	font-family: bold;
+	font-weight: 700;
+	font-size: 20px;
+}
+
+.detail .breadcrumbs ul {
+	display: flex;
+	font-size: 13px;
+	color: gray;
+	width: 80px;
+}
+
+.detail .breadcrumbs ul li {
+	padding-right: 2%;
+}
+
+
+.detail .content-box-top{
+	padding:0;
+	margin-bottom:10px;
+	border-bottom: 1px solid #d5cee1; 
+	
+}
+
+.detail .detail-list{
+	display: inline-block;
+	padding-right: 400px;
+}
+
+.detail .detail-update{
+	display: inline-block;
+}
+
+.detail .detail-title{
+	color: #6455af;
+	font-size: 30px;
+}
+
+.detail .cover-info{
+	color: gray;
+	font-size: 13px;
+	
+}
+
+.detail .board-post{
+	padding: 25px 0px 10px 0px; 
+	min-height: 300px;
+}
+
+.detail .reply-post{
+	min-height: 50px;
+}
+.detail .reply-view{
+	min-height: 150px;
+	background-color: #d6cee6;
+}
+/* .detail .content table {
+	--width: 850px;
+	--width: 100%;
+}
+
+.detail .content table thead {
+	background: #bbbbdd;
+}
+
+.detail .content table thead th {
+	font-size: 15px;
+	text-align: center;
+	height: 40px;
+}
+
+.detail .content table tbody {
+	font-size: 14px;
+	--width: 850px;
+	--width: 100%;
+}
+
+.detail .content table tbody tr {
+	height: 40px;
+}
+
+.detail .content table tbody tr td {
+	border-bottom: dotted 2px #dfdcef;
+} */
+.detail .content .reply-cnt{
+	display:inline-block;
+	margin-left:5px;
+	border: 1px gray solid;
+	border-radius:20px;
+	font-size: 11px;
+	color: purple;
+	text-align: center;
+    width: 15px;
+    height: 15px;
+	padding: 1px;
+}
+.detail .recommend-box{
+	display: inline-block;
+	 text-align: center;
+	height: 100px;
+	width: 100%;
+	z-index: 9999;
+}
+
+.detail .recommend-button{
+	display:inline-block;
+	background-color:  #6455af;
+	width: 100px;
+    height: 100px;
+    font-size: 20px;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    
+}
+
+.recommend-button .hand{
+	
+	display:inline-block;
+	width: 30px;
+	 margin: 8px 35px 0px 0px;
+    float: right;
+	
+}
+.recommend-button .box {
+	--display: hidden;
+	 /*  width: 35px;
+	height: 32px;  */ 
+	background: #6455af;
+	 margin: 15px -35px 0px 0px;
+    float: right;
+    padding: 0;
+}
+.recommend-button .heart{
+	display:inline-block;
+	visibility:hidden;
+	width: 30px;
+	margin: 15px 35px 0px 0px;
+    float: right;
+	/* 
+    margin: 15px 35px 0px 0px;
+    float: right; */
+   
+	
+}
+
+.recommend-button .recommen-cnt{
+	display:inline-block;
+	font-size: 16px;
+    margin: 5px 40px 10px 0px;
+    float: right;
+    
+}
+
+/* -------------------------list-------------------------------- */
+
+.list .breadcrumbs {
+	justify-content: space-between;
+	display: flex;
+	padding-bottom: 10px;
+}
+
+.list .breadcrumbs h4 {
+	color: #6455af;
+	font-family: bold;
+	font-weight: 700;
+	font-size: 20px;
+}
+
+.list .breadcrumbs ul {
+	display: flex;
+	font-size: 13px;
+	color: gray;
+	width: 80px;
+}
+
+.list .breadcrumbs ul li {
+	padding-right: 2%;
+}
+
+.list .content {
+	flex: 0 1 auto;
+	padding-top: 10%;
+	padding-left: 5%;
+	
+}
+
+.list-table {
+	width: 850px;
+	--width: 100%;
+}
+
+ .list-table thead {
+	background: #bbbbdd;
+}
+
+  .list-table thead th {
+	font-size: 15px;
+	text-align: center;
+	height: 40px;
+}
+
+  .list-table tbody {
+	font-size: 14px;
+	--width: 850px;
+	--width: 100%;
+}
+
+ .list-table tbody tr {
+	height: 40px;
+}
+
+  .list-table tbody tr td {
+	border-bottom: dotted 2px #dfdcef;
+}
+ .list-table .reply-cnt{
+	display:inline-block;
+	margin-left:5px;
+	border: 1px gray solid;
+	border-radius:20px;
+	font-size: 11px;
+	color: purple;
+	text-align: center;
+    width: 15px;
+    height: 15px;
+	padding: 1px;
+}
+
+
+
+/* ----------------------------------write----------------------- */
+
+
+.write .breadcrumbs {
+	justify-content: space-between;
+	display: flex;
+	padding-bottom: 10px;
+}
+
+.write .breadcrumbs h4 {
+	color: #6455af;
+	font-family: bold;
+	font-weight: 700;
+	font-size: 20px;
+}
+
+.write .breadcrumbs ul {
+	display: inherit;
+    padding-left: 90%;
+	padding-top: 15px;
+	font-size: 13px;
+	color: gray;
+	width: 80px;
+}
+
+.write .breadcrumbs ul li {
+	display:inline-block;
+	
+}
+
+.write .content {
+	flex: 0 1 auto;
+	padding-top: 10%;
+	padding-left: 5%;
+	
+}
+.write .content-box {
+	border: 1px solid #d5cee1; 
+	padding: 0 5% 0 5%;
+	min-height: 600px;
+	width: 750px;
+	
+}
+
+.write .input-title {
+	width: 700px;
+	height: 30px;
+	margin: 2%;
+}
+
+.write .input-content {
+	width: 700px;
+	height: 350px;
+	margin-left: 2%;
+}
+
+.write .content-box-top{
+	padding:0;
+	margin-bottom:10px;
+	border-bottom: 1px solid #d5cee1; 
+}
+
+.write .detail-title{
+	color: #6455af;
+	font-size: 30px;
+}
+
+/* .write .cover-info{
+	color: gray;
+	font-size: 13px;
+	
+}
+
+.write .board-post{
+	padding: 25px 0px 10px 0px; 
+	min-height: 300px;
+}
+
+.write .reply-post{
+	min-height: 50px;
+}
+.write .reply-view{
+	min-height: 150px;
+	background-color: #d6cee6;
+}
+.write .content table {
+	width: 850px;
+	--width: 100%;
+}
+
+.write .content table thead {
+	background: #bbbbdd;
+}
+
+.write .content table thead th {
+	font-size: 15px;
+	text-align: center;
+	height: 40px;
+}
+
+.write .content table tbody {
+	font-size: 14px;
+	width: 850px;
+	--width: 100%;
+}
+
+.write .content table tbody tr {
+	height: 40px;
+}
+
+.write .content table tbody tr td {
+	border-bottom: dotted 2px #dfdcef;
+} */
+.write .content .reply-cnt{
+	display:inline-block;
+	margin-left:5px;
+	border: 1px gray solid;
+	border-radius:20px;
+	font-size: 11px;
+	color: purple;
+	text-align: center;
+    width: 15px;
+    height: 15px;
+	padding: 1px;
+}
+
