@@ -1,8 +1,8 @@
 package com.slpl.web.dao.jdbc;
 
-import com.slpl.web.dao.PlayList;
-import com.slpl.web.dao.TestRecommendDao;
-import com.slpl.web.dao.TestReportDao;
+import com.slpl.web.dao.test.PlayList;
+import com.slpl.web.dao.test.TestRecommendDao;
+import com.slpl.web.dao.test.TestReportDao;
 
 public class JdbcPlayListDao implements PlayList {
 

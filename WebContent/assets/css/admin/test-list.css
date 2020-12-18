@@ -1,0 +1,66 @@
+a {
+	text-decoration: none;
+}
+
+form * {
+    margin: 5px 0px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+
+label{
+    width: 100%;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.radio-group *{
+    margin-left: 30px;
+}
+
+    .radio-group *:first-child {
+        margin-left: 0px;
+    }
+    
+table {
+    width: 100%;
+}
+
+.member-container {
+   min-width: 700px; 
+}
+
+.tools .filter{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.page {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+    .page>.link{
+        width: 200px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .page>.link>a{
+        font-weight: bolder;
+    }
+
+    .page>.link>.prev,
+    .page>.link>.next,
+    .page>.link>.page-num:hover{
+        color: #6455af;
+    }
+
+table tr:hover{
+    background: #aba2dd;
+}
+

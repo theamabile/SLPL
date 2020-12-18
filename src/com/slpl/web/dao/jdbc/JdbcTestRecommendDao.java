@@ -1,6 +1,6 @@
 package com.slpl.web.dao.jdbc;
 
-import com.slpl.web.dao.TestRecommendDao;
+import com.slpl.web.dao.test.TestRecommendDao;
 
 public class JdbcTestRecommendDao implements TestRecommendDao {
 
