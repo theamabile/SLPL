@@ -44,7 +44,7 @@
                                     <option value="login_id" <c:if test="${field eq 'login_id'}">selected</c:if>>아이디</option>
                                 </select>
                                 <input type="text" name="query" class="query" placeholder="검색어 입력" autocomplete="off"
-                                	<c:if test="${searchResult == true}">value="${query}"</c:if> >
+                                	<c:if test="${query != null}">value="${query}"</c:if> >
                                 <input type="button" class="gray-button-m searchButton" value="검색"> 
 	                        </section>   
 	                        <section class="tools-box">
@@ -92,10 +92,10 @@
 	                            </tbody>
 	                        </table>
 	                        
-	                        <div>
-	                        	<input type="button" value="◀◀" class="prevScopeBtn"/>
-	                        	<input type="button" value="◀"  class="prevBtn"/>
-		                        <ul>
+	                        <div class="pager">
+	                        	<input type="button" value="이전" class="prevScopeBtn"/>
+
+		                        <ul class="pageList">
 		                        	<c:forEach varStatus="i" begin="${startPage}" end="${endPage}">
 		                        		  <c:choose>
 									         <c:when test="${field != null && query != null}">
@@ -109,14 +109,9 @@
 									      </c:choose>
 		                        	</c:forEach>
 		                        </ul>
-		                        <input type="button" value="▶"  class="nextBtn" />
-		                        <input type="button" value="▶▶" class="nextScopeBtn" />
 		                        
+		                        <input type="button" value="다음" class="nextScopeBtn" />
 		                        
-		                        <input type="hidden" name="startPage" value="${startPage}" class="startPage">   
-		                        <input type="hidden" name="endPage" value="${endPage}" class="endPage">   
-		                        <input type="hidden" name="currentPage" value="${currentPage}" class="currentPage">    <!-- next나 pre 버튼을 누를 때 현재 페이지 정보가 필요함 -->
-		                        <input type="hidden" name="allPageCount" value="${allPageCount}" class="allPageCount">    <!-- next나 pre 버튼을 누를 때 현재 페이지 정보가 필요함 --> 
                         	</div>
                         	
 	                    </section>

@@ -138,7 +138,6 @@ public class JdbcMemberDao implements MemberDao {
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
 			
-
 			if(rs.next()) {
 				String loginId = rs.getString("login_id");
 				String name = rs.getString("name");
@@ -170,13 +169,73 @@ public class JdbcMemberDao implements MemberDao {
 		
 		return m;
 	}
+
+	@Override
+	public Member get(String loginId, String pw) {
+		Member m = null;	
+		
+		String url = DBContext.URL;
+		String sql = "select * from member where loginId=? and pw=?";
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);		
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setString(1, loginId);
+			pst.setString(2, pw);
+			
+			ResultSet rs = pst.executeQuery();
+			
+			if(rs.next()) {
+				int id = rs.getInt("id");
+				String name = rs.getString("name");
+				String nickname = rs.getString("nickname");
+				String gender = rs.getString("gender");
+				Date birthday = rs.getDate("birthday");
+				String phoneNumber = rs.getString("phone_number");
+				String email = rs.getString("email");
+				Timestamp regdate = rs.getTimestamp("regdate");
+				String profileImg = rs.getString("profile_img");
+				int categoryId = rs.getInt("category_id");
+				
+				m = new Member(id, loginId, pw, name, nickname, gender,
+						birthday, phoneNumber, email, regdate, profileImg, categoryId);
+			}
+			
+			rs.close();
+			pst.close();
+			con.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return m;
+	}
 	
 	@Override
 	public List<Member> getList() {
+		return getList(null, null);
+	}
+
+	@Override
+	public List<Member> getList(String field, String query) {
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("select * from member ");
+		if(field != null && query != null) {
+			sb.append(" where "+field+" = '"+query+"' ");
+		}
+		sb.append(" order by regdate desc ");
+
 		List<Member> list = new ArrayList<>();
 		
 		String url = DBContext.URL;
-		String sql = "select * from member order by regdate desc ";
+		String sql = sb.toString();
+		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);		
@@ -217,6 +276,7 @@ public class JdbcMemberDao implements MemberDao {
 		
 		return list;
 	}
+
 	
 	// ========================================= View ==============================================
 
@@ -434,5 +494,5 @@ public class JdbcMemberDao implements MemberDao {
 		
 		return m;
 	}
-
+	
 }

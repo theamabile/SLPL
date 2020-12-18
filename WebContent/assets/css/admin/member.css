@@ -89,6 +89,29 @@ label{
 		flex-shrink: 1; 
 	}
 
+.nickname-box,
+.id-box {
+	display: flex;
+	flex-direction: column;
+}
+	.nickname-box *,
+	.id-box * {
+		margin-top: 0px;
+	}
+
+
+.infotext-none {
+	width: 100%;
+	font-size: 10px;
+	color: green;	
+}
+
+.infotext-warning {
+	width: 100%;
+	font-size: 10px;
+	color: red;	
+}
+
 /* =================================== list =================================== */
 
     

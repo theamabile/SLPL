@@ -54,47 +54,154 @@ window.addEventListener("load", function() {
 	});
 });
 	
+
+
+// 아이디 중복확인
+window.addEventListener("load", function() {
+	var container = document.querySelector(".container-item");
 	
+	var loginIdBox = container.querySelector(".id-box");
+	var loginIdInput = loginIdBox.querySelector(".loginId");
+	var loginIdBtn = loginIdBox.querySelector(".loginIdBtn");
+	var infoText = loginIdBox.querySelector(".infoText");
+	var isLoginIdConfirm = loginIdBox.querySelector(".loginIdConfirm");
+		
+	loginIdBtn.addEventListener("click", function() {
+		var request = new XMLHttpRequest();
+        request.onreadystatechange = function() {
+            if(request.readyState == 4) {
+				var result = JSON.parse(request.responseText);
+				var count = result[0].count;
+				if(count > 0) {   // 조회 결과 같은 항목 갯수가 0이 아니면
+					infoText.classList.remove("infotext-none");
+					infoText.classList.add("infotext-warning");
+					infoText.innerText = "중복된 아이디입니다.";		
+					isLoginIdConfirm.value = "";			
+				} else {
+					infoText.classList.remove("infotext-warning");
+					infoText.classList.add("infotext-none");
+					infoText.innerText = "사용 가능한 아이디입니다.";	
+					isLoginIdConfirm.value ="y";	
+				}
+            }
+        }
+
+        var url = "/api/admin/member/add?field=login_id&query="+loginIdInput.value;
+        request.open("GET", url, true);   // 서버 데이터로 받기 프로젝트 이름 넣어줘야함^_^
+        request.send();
+	});
+	
+	loginIdInput.addEventListener("focusout", function() {
+		var value = loginIdInput.value;
+		if(value == "") {
+			infoText.classList.remove("infotext-none");
+			infoText.classList.add("infotext-warning");
+			infoText.innerText = "아이디를 입력해주세요";		
+			isLoginIdConfirm.value = "";
+		} else {
+			var request = new XMLHttpRequest();
+	        request.onreadystatechange = function() {
+	            if(request.readyState == 4) {
+					var result = JSON.parse(request.responseText);
+					var count = result[0].count;
+					if(count > 0) {   // 조회 결과 같은 항목 갯수가 0이 아니면
+						infoText.classList.remove("infotext-none");
+						infoText.classList.add("infotext-warning");
+						infoText.innerText = "이미 사용중인 아이디입니다.";		
+						isLoginIdConfirm.value = "";			
+					} else {
+						infoText.classList.remove("infotext-warning");
+						infoText.classList.add("infotext-none");
+						infoText.innerText = "사용 가능한 아이디입니다.";	
+						isLoginIdConfirm.value ="y";	
+					}
+	            }
+	        }
+	
+	        var url = "/api/admin/member/add?field=login_id&query="+value;
+	        request.open("GET", url, true);   // 서버 데이터로 받기 프로젝트 이름 넣어줘야함^_^
+	        request.send();
+		}
+	});
+		
+	var submitBtn = container.querySelector(".submit-button");
+	submitBtn.addEventListener("click", function(e) {
+		e.preventDefault();
+		if(isLoginIdConfirm.value == "n") {
+			alert('아이디 중복체크 해주세요.');
+			return false;    // submit 버튼의 경우 리턴타입이 true 일 때만 제출함
+		}
+	});
+});
+
 // 닉네임 중복확인
 window.addEventListener("load", function() {
 	var container = document.querySelector(".container-item");
 	
-	var nicknameInput = container.querySelector(".nickname");
-	var nicknameBtn = container.querySelector(".nicknameBtn");
-	//loginId
-	
+	var nicknameBox = container.querySelector(".nickname-box");
+	var nicknameInput = nicknameBox.querySelector(".nickname");
+	var nicknameBtn = nicknameBox.querySelector(".nicknameBtn");
+	var infoText = nicknameBox.querySelector(".infoText");
+	var isNicknameConfirm = nicknameBox.querySelector(".nicknameConfirm");
+		
 	nicknameBtn.addEventListener("click", function() {
-		var win = open("confirm_nickname.jsp", "_blank", "width=300px, height=400px");
-		win.addEventListener("load", function(){
-			var nicknameInput = win.opener.document.querySelector(".nickname"); //.getElementsByClassName("nickname");
-			console.log("ddfdfs : "+nicknameInput.value);
-			
-			if( nicknameInput.value != "") {
-				var textInput = win.document.querySelector(".textInput");
-				textInput.value = nicknameInput.value;
-			}
-		});
-		win.addEventListener("beforeunload ", function(){
-			console.log("종료!");
-		});
+		var request = new XMLHttpRequest();
+        request.onreadystatechange = function() {
+            if(request.readyState == 4) {
+				var result = JSON.parse(request.responseText);
+				var count = result[0].count;
+				if(count > 0) {   // 조회 결과 같은 항목 갯수가 0이 아니면
+					infoText.classList.remove("infotext-none");
+					infoText.classList.add("infotext-warning");
+					infoText.innerText = "중복된 닉네임입니다.";		
+					isNicknameConfirm.value = "";			
+				} else {
+					infoText.classList.remove("infotext-warning");
+					infoText.classList.add("infotext-none");
+					infoText.innerText = "사용 가능한 닉네임입니다.";	
+					nicknameConfirm.value ="y";	
+				}
+            }
+        }
+
+        var url = "/api/admin/member/add?field=nickname&query="+nicknameInput.value;
+        request.open("GET", url, true);   // 서버 데이터로 받기 프로젝트 이름 넣어줘야함^_^
+        request.send();
 	});
+	
+	
+	nicknameInput.addEventListener("focusout", function() {
+		var value = nicknameInput.value;
+		if(value == "") {
+			infoText.classList.remove("infotext-none");
+			infoText.classList.add("infotext-warning");
+			infoText.innerText = "아이디를 입력해주세요";		
+			nicknameConfirm.value = "";
+		} else {
+			var request = new XMLHttpRequest();
+	        request.onreadystatechange = function() {
+	            if(request.readyState == 4) {
+					var result = JSON.parse(request.responseText);
+					var count = result[0].count;
+					if(count > 0) {   // 조회 결과 같은 항목 갯수가 0이 아니면
+						infoText.classList.remove("infotext-none");
+						infoText.classList.add("infotext-warning");
+						infoText.innerText = "이미 사용중인 아이디입니다.";		
+						nicknameConfirm.value = "";			
+					} else {
+						infoText.classList.remove("infotext-warning");
+						infoText.classList.add("infotext-none");
+						infoText.innerText = "사용 가능한 아이디입니다.";	
+						nicknameConfirm.value ="y";	
+					}
+	            }
+	        }
+	
+	        var url = "/api/admin/member/add?field=nickname&query="+value;
+	        request.open("GET", url, true);   // 서버 데이터로 받기 프로젝트 이름 넣어줘야함^_^
+	        request.send();
+		}
+	});
+	
 });
 		
-		
-		
-/*window.addEventListener("load", function() {
-
-    var section = document.getElementById("s3");
-    var searchButton = section.getElementsByClassName("search-button")[0];
-    
-    var win;
-    searchButton.onclick = function() {
-        win = open("ex1-zipcode.html", "_blank", "width=300px, height=400px");
-        win.addEventListener("load", function() {            
-            var addBtn = win.document.getElementsByTagName("input")[0];
-            addBtn.value = "희희";
-        });
-    };
-
-});     
-*/

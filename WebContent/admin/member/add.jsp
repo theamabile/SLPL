@@ -33,10 +33,14 @@
                         <form action="/admin/member/add" name="member" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 
-                                <label>아이디</label>
-                                <div class="input-btn-box">
-                                    <input type="text" name="loginId" class="input-wf loginIdBtn" placeholder="아이디" required>
-                                    <input type="button" name="nickname_confirm" class="gray-button-m" value="중복확인"> <p>
+                                <div class="id-box">
+	                                <label>아이디</label>
+	                                <div class="input-btn-box">
+	                                    <input type="text" name="loginId" class="input-wf loginId" placeholder="아이디" required>
+	                                    <input type="button" class="gray-button-m loginIdBtn" value="중복확인"> <p>
+	                                </div>
+	                                <span class="infoText"></span>
+                               		<input type="hidden" class="loginIdConfirm" value="n">
                                 </div>
                                 
 								<label>비밀번호</label>
@@ -44,11 +48,15 @@
                                 
 								<label>이름</label>
                                 <input type="text" name="name" class="input-wf" placeholder="이름" autofocus required>
-                
-                                <label>닉네임</label>     
-                                <div class="input-btn-box">
-                                    <input type="text" name="nickname" class="input-wf nickname" placeholder="닉네임" required>
-                                    <input type="button" name="nickname_confirm" class="gray-button-m nicknameBtn" value="중복확인"> <p>
+                 
+                                <div class="nickname-box">
+                                	<label>닉네임</label>    
+                                	<div class="input-btn-box">
+                                    	<input type="text" name="nickname" class="input-wf nickname" placeholder="닉네임" required>
+                                    	<input type="button" class="gray-button-m nicknameBtn" value="중복확인"> <p>
+                               		</div>
+                               		<span class="infoText"></span>
+                               		<input type="hidden" class="nicknameConfirm" value="n">
                                 </div>
                                 
                             </div>

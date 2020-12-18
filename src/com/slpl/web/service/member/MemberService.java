@@ -43,6 +43,16 @@ public class MemberService {
 	public Member get(int id) {
 		return memberDao.get(id);
 	}
+
+	public Member get(String loginId, String pw) {
+		// TODO Auto-generated method stub
+		return memberDao.get(loginId, pw);
+	}
+	
+	public List<Member> getList(String field, String query) {
+		// TODO Auto-generated method stub
+		return memberDao.getList(field, query);
+	}	
 	
 	public List<Member> getList() {
 		return memberDao.getList();
@@ -118,5 +128,4 @@ public class MemberService {
 		// get -> set -> update
 		return m.getId();
 	}
-	
 }

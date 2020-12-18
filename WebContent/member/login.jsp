@@ -33,49 +33,9 @@
    <section id="body" class="body">
       <div class="container">
          <main id="main" class="main">
-            <nav class="body-nav">
-               <div class="my-info">
-                  <div class="my-info-container">
-                     <h5>내 정보</h5>
-                     <h3>심심풀이</h3>
-                     <div>
-                        <img class="my-info-img" src="/assets/images/community/dog.jpg">
-                        <span>닉네임</span> <span>소속정보</span>
-
-                     </div>
-                     <div class="my-info-link">
-                        <a href="#">내가쓴글</a> <a href="#">쪽지</a>
-                     </div>
-
-                     <div>
-                        <a href="write.jsp" class="write-button">글쓰기</a>
-                     </div>
-                  </div>
-               </div>
-               <div>
-                  <ul class="body-menu">
-                     <li><a href="#">MAKE</a></li>
-                     <li><a href="#">TEST</a></li>
-                     <li><a href="#">COMMUNITY</a>
-                        <ul class="body-detail-menu">
-                           <li><a href="">전체게시판 </a></li>
-                           <li><a href="">민팥부 </a></li>
-                           <li><a href="">민팥찍 </a></li>
-                           <li><a href="">민슈부 </a></li>
-                           <li><a href="">민슈찍 </a></li>
-                           <li><a href="">반민팥부 </a></li>
-                           <li><a href="">반민팥찍 </a></li>
-                           <li><a href="">반민슈부 </a></li>
-                           <li><a href="">반민슈찍 </a></li>
-                        </ul></li>
-
-                  </ul>
-               </div>
-            </nav>
-
-            <section class="content">
+              <section class="content login-content">
               	<div class="login-container">
-              			<h4>로그인</h4>
+              		<h1 class="d-none">로그인</h1>
                     <div class="login-img">
                         <img src="../assets/images/member/login_icon.png" alt="LOGIN">
                     </div>

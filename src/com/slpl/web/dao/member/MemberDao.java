@@ -13,7 +13,9 @@ public interface MemberDao {
 	int delete(int id);
 
 	Member get(int id);
+	Member get(String loginId, String pw);
 	List<Member> getList();
+	List<Member> getList(String field, String query);
 	
 	// ======================================= View ==========================================
 

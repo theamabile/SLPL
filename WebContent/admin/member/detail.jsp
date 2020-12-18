@@ -47,7 +47,7 @@
                                 <input type="text" name="name" class="input-wf name-input" value="${member.name}" placeholder="이름" autofocus required>
                                 
                                 <label>닉네임</label>     
-                                <div class="input-btn-box">
+                                <div class="input-btn-box nicknameBox">
                                     <input type="text" name="nickname" class="nickname" value="${member.nickname}"  placeholder="닉네임" required>
                                     <input type="button" name="nickname_confirm" class="gray-button-m nicknameBtn" value="중복확인"> <p>
                                 </div>
