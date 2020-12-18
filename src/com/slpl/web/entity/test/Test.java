@@ -25,7 +25,7 @@ public class Test {
 	
 	
 	public Test(int id, String name, int memberId, String coverImg, int publicState, int bestState, int shareCnt,
-			int hitCnt, int recommendCnt, int reportCnt, Timestamp regDate, int formLevelId) {
+			int hitCnt, int recommendCnt, int reportCnt, Timestamp regdate, int formLevelId) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -37,7 +37,7 @@ public class Test {
 		this.hitCnt = hitCnt;
 		this.recommendCnt = recommendCnt;
 		this.reportCnt = reportCnt;
-		this.regdate = regDate;
+		this.regdate = regdate;
 		this.formLevelId = formLevelId;
 	}
 
@@ -143,12 +143,12 @@ public class Test {
 	}
 
 
-	public Timestamp getRegDate() {
+	public Timestamp getRegdate() {
 		return regdate;
 	}
 
 
-	public void setRegDate(Timestamp regdate) {
+	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
 	}
 
@@ -167,7 +167,7 @@ public class Test {
 	public String toString() {
 		return "Test [id=" + id + ", name=" + name + ", memberId=" + memberId + ", coverImg=" + coverImg
 				+ ", publicState=" + publicState + ", bestState=" + bestState + ", shareCnt=" + shareCnt + ", hitCnt="
-				+ hitCnt + ", recommendCnt=" + recommendCnt + ", reportCnt=" + reportCnt + ", regDate=" + regdate
+				+ hitCnt + ", recommendCnt=" + recommendCnt + ", reportCnt=" + reportCnt + ", regdate=" + regdate
 				+ ", formLevelId=" + formLevelId + "]";
 	}
 

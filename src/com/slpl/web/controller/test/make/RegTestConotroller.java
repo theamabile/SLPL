@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.slpl.web.entity.test.Test;
-import com.slpl.web.service.TestService;
+import com.slpl.web.service.test.TestService;
 
 @WebServlet("/test/make/reg-test")
 public class RegTestConotroller extends HttpServlet {

@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.slpl.web.entity.test.MemberTestAvgView;
 import com.slpl.web.entity.test.Test;
-import com.slpl.web.service.TestAvgService;
-import com.slpl.web.service.TestService;
+import com.slpl.web.service.test.TestAvgService;
+import com.slpl.web.service.test.TestService;
 
 @WebServlet("/admin/test/best/detail")
 public class DetailController extends HttpServlet {
