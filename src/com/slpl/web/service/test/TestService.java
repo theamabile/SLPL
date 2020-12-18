@@ -1,4 +1,4 @@
-package com.slpl.web.service;
+package com.slpl.web.service.test;
 
 import java.io.Console;
 import java.util.List;

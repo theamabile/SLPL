@@ -1,4 +1,4 @@
-package com.slpl.web.service;
+package com.slpl.web.service.test;
 
 import com.slpl.web.dao.jdbc.JdbcMemberTestAvgViewDao;
 import com.slpl.web.dao.test.MemberTestAvgViewDao;
