@@ -8,9 +8,9 @@
 	</c:if>
 	<div>
 		<ul class="body-menu">
-			<li><a href="#">MAKE</a></li>
-			<li><a href="#">TEST</a></li>
-			<li><a href="#">COMMUNITY</a>
+			<li><a href="/test/make/formSelect.jsp">MAKE</a></li>
+			<li><a href="/test/list/test_list">TEST</a></li>
+			<li><a href="/community/all/list?c=전체게시판">COMMUNITY</a>
 				<ul class="body-detail-menu">
 					<li><a href="/community/all/list?c=전체게시판">전체게시판</a></li>
 					<li><a href="/community/all/list?c=민팥부">민팥부 </a></li>
