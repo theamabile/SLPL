@@ -40,12 +40,10 @@ public class CoverImgController extends HttpServlet{
 	         id = Integer.parseInt(idParam);
 	         t = service.get(id);
 	         r = service2.get(id);
-	         if(type == "c") {
+	         if( type == null )
+	        	 imgName = r.getcImg();	        	 	        	 
+	         else if( type.equals("c") )
 	        	 imgName = t.gettCoverImg();	        	 
-	         }
-	         else {
-	        	 imgName = r.getcImg();	        	 
-	         }
 	      } else {
 	         return;
 	      }
@@ -55,6 +53,7 @@ public class CoverImgController extends HttpServlet{
 	      
 	      // 디렉토리 찾기
 	      File path = new File(pathTemp);
+	      System.out.println(imgName);
 	      if(path.exists()) {   // 이미지 폴더가 있으면
 	         // 파일 저장은 톰캣 디렉토리에 됨.(동적으로 만들어진건 다 저기에 되는듯)
 	         String filePath = pathTemp + File.separator + imgName;
