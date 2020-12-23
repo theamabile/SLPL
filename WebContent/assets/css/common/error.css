@@ -1,0 +1,18 @@
+@font-face{
+	src: url("../../font/IBMPlexSansKR-Regular.ttf");
+	font-family: "IBM Plex Sans KR";
+}
+
+* {
+  font-family: "IBM Plex Sans KR";
+}
+
+body {
+	background: url("../../images/common/bg.svg") no-repeat;
+	background-size: cover;
+	  background-color: #6455af;
+}
+
+h1 {
+	font-size: 50px;
+}
