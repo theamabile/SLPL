@@ -7,6 +7,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<script type="text/javascript">
+window.addEventListener("load", function() {
+	var loginDiv = document.querySelector(".login");
+	var logoutDiv = document.querySelector(".logout");
+
+	if(loginDiv != null) {
+		loginDiv.addEventListener("click", function(e){
+			location.href="/admin/common/login";
+	    });
+	}
+	
+	if(logoutDiv != null) {
+		logoutDiv.addEventListener("click", function(e){
+			location.href="/admin/common/logout";
+	    });
+	}
+});
+</script>	
+
 </head>
 <body>
 <header class="header">
@@ -27,7 +47,7 @@
        	<form action="login" method="get" class="login-menu">
        		<c:choose>
        			<c:when test="${login == null}">
-       				<input type="submit" value="LOGIN" class="white-button-s"/>
+       				<input type="submit" value="LOGIN" class="white-button-s login"/>
        			</c:when>
        			<c:otherwise>
 					<div class="profile-img" style="background: center / cover no-repeat url('/admin/common/profile?id=${login.id}');"></div>   <!-- 물리주소 안됨 프로젝트로부터 갖고와야됨 -->
@@ -35,7 +55,7 @@
 	       				<span class="loginName">${login.name}</span>
 	       				<span>님 반가워요!</span>
        				</div>
-       				<input type="button" value="LOGOUT" class="white-button-s" />  <!--  onclick="location.href='logout';" -->
+       				<input type="button" value="LOGOUT" class="white-button-s logout" />  <!--  onclick="location.href='logout';" -->
        			</c:otherwise>
        		</c:choose>
        	</form>
