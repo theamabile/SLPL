@@ -49,7 +49,7 @@
 							<span>${s.tName}</span>
 						</div>
 						<div class="cover-image">
-							<img src="/test/coverImg?id=${s.tId}" alt="표지">
+							<img src="/test/coverImg?id=${s.tId}&type=c" alt="표지">
 						</div>
 						<a href="action?id=${s.tId}&qId=${s.qNum}" class="page-next-button move-button-m">테스트 참여하기</a>
 					</c:forEach>

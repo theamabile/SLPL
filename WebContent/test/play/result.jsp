@@ -105,7 +105,7 @@ var url_combine_naver = url_default_naver + encodeURI(url_this_page)
 					<div class="result">
 						<span class="title">${r.cName}</span>
 						<div class="img">
-							<img src="/test/coverImg?id=${s.tId}" alt="테스트 결과 이미지">
+							<img src="/test/coverImg?id=${r.tId}" alt="테스트 결과 이미지">
 						</div>
 						<span class="result-content">${r.cContent}</span>
 					</div>
