@@ -49,7 +49,7 @@
 							<span>${s.tName}</span>
 						</div>
 						<div class="cover-image">
-							<img src="/test/coverImg?id=${s.tId}" alt="표지">
+							<img src="/test/coverImg?id=${s.tId}&type=c" alt="표지">
 						</div>
 						<a href="action?id=${s.tId}&qId=${s.qNum}" class="page-next-button move-button-m">테스트 참여하기</a>
 					</c:forEach>
@@ -65,17 +65,17 @@
 						<article class="qna">
 							<article class="content-container">
 
-								<c:forEach var="i" begin="1" end="3">
+								<c:forEach var="i" begin="1" end="1">
 									<input type="hidden" name="result1" class="result1 answer-button">
 								</c:forEach>
 								<button type="button" class="result1 result1-button move-button-m answer-button"></button>
 
-								<c:forEach var="i" begin="1" end="3">
+								<c:forEach var="i" begin="1" end="1">
 									<input type="hidden" name="result2" class="result2 answer-button">
 								</c:forEach>
 								<button type="button" class="result2 result2-button move-button-m answer-button"></button>
 
-								<c:forEach var="i" begin="1" end="3">
+								<%-- <c:forEach var="i" begin="1" end="3">
 									<input type="hidden" name="result3" class="result3 answer-button">
 								</c:forEach>
 								<button type="button" class="result3 result3-button move-button-m answer-button"></button>
@@ -83,7 +83,8 @@
 								<c:forEach var="i" begin="1" end="3">
 									<input type="hidden" name="result4" class="result4 answer-button">
 								</c:forEach>
-								<button type="button" class="result4 result4-button move-button-m answer-button"></button>
+								<button type="button" class="result4 result4-button move-button-m answer-button"></button> --%>
+								
 							</article>
 						</article>
 					</section>
