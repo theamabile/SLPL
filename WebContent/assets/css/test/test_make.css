@@ -1,20 +1,14 @@
-@font-face {
-  font-family: 'IBMPlexSansKR-Text';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Text.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-* {
-  font-family: 'IBMPlexSansKR-Text';
-}
-
 .d-none {
   display: none;
 }
 
 a , a:hover{
   text-decoration:none;
+ }
+ 
+ .file-input{
+     padding-left: 75px;
+     width: 200px;
  }
 
 /* --------버튼------------- */
@@ -105,6 +99,7 @@ a , a:hover{
 /* ------------------------------- */
 .form-select-container{
   text-align: center;
+  padding-top: 100px;
  }
 
 .form-select-container > div{
@@ -235,12 +230,9 @@ width: 120%;
 }
 /* ------------------------------------- */
 
-
-
-
-
 .level-select-container {
   text-align: center;
+  padding-top: 50px;
 }
  .title {
     display: inline-block;
@@ -412,14 +404,14 @@ span {
 }
 
 .title-h1{
-  font-size: 30px;
+  font-size: 20px;
   font-weight: bold;
-  display: inline-block;
+  margin-bottom: 20px;
 }
 /*-----step1----- */
 
 .low-step1 input,
-.low-step2 input,
+.low-step2 .answer-box input,
 .low-step3 input {
   height: 35px;
   width: 58px;
@@ -496,16 +488,18 @@ span {
   }
 
   .low-step2  .question input {
+  height: 35px;
     margin-left: 20px;
     width: 490px;
   }
   .low-step2 .question-img-box {
-    margin:0 auto;
-    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-flow: column;
     padding-top: 60px;
   }
   .low-step2 .question-img {
-    border: 3px solid steelblue;
+   background: #e6e6f9;
     width: 420px;
     height: 350px;
     display: inline-block;
@@ -515,7 +509,7 @@ span {
   padding: 50px;
 }
 .low-step2 .answer-box input:first-child{
-  margin-left: 465px;
+ margin-left: 475px;
 }
 
 .low-step2 .answer-set span {
@@ -565,6 +559,14 @@ span {
 
 /* ---------------step4---------------- */
 
+.gray-text{
+	color: darkgray;
+    font-weight: bold;
+}
+.blue-text{
+	color: #4682b4;
+    font-weight: bold;
+}
 
 .low-step4 .result-detail-container {
   display: flex;
@@ -598,7 +600,7 @@ span {
   padding: 105px 0px 0px 20px;
   }
   .low-step4 .img {
-    padding-left: 20px;
+    margin-left: 20px;
     width: 250px;
     height: 300px;
     background:steelblue;
@@ -608,13 +610,13 @@ span {
   align-items: center;
   flex-flow: column;
   display: flex;
-  padding: 50px 0px;
+  padding-bottom: 50px;
 }
 
 .mainCover-img {
   width: 540px;
   height: 450px;
-  background: cornflowerblue;
+  background: #e6e6f9;
 
 }
 
@@ -633,6 +635,7 @@ span {
   }
     .low-step6 .result-preview .result{
       border: 1px solid #4e4e4e;
+      overflow: hidden;
     }
     .low-step6 .result-preview .result-img{
       background: steelblue;
@@ -684,12 +687,17 @@ span {
   align-items: center;
   flex-flow: column;
   display: flex;
-  padding: 50px 0px;
+  padding: 60px 0px;
 }
-.create-end-container .cover-img {
+.create-end-container .cover-img-box {
   width: 480px;
   height: 400px;
-  background: turquoise;
+  background: #e6e6f9;
+}
+.create-end-container .cover-img {
+    width: inherit;
+    background: center / cover no-repeat url(/test/make/cover-img);
+    height: inherit;
 }
 .create-end-container .end-comment {
   padding: 20px;
@@ -702,6 +710,6 @@ span {
 }
 .create-end-container .nav-button {
   margin: 40px 10px 20px 10px;
-  width: 180px;
+  width: 195px;
   font-size: 15px;
 }

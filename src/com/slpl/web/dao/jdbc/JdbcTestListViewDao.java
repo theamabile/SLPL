@@ -18,25 +18,17 @@ public class JdbcTestListViewDao implements TestListViewDao {
 	@Override
 	public List<TestListView> getList(int startIndex, int endIndex, String field, String query, String align,
 			String order) {
-		System.out.println(startIndex);
-		System.out.println(endIndex);
-		System.out.println(field);
-		System.out.println(query);
-		System.out.println(align);
-		System.out.println(order);
 
 		List<TestListView> list = new ArrayList<>();
 
 		String url = DBContext.URL;
-		String sql;
-
-		if (query == null || query.equals("")) {
-			sql = "SELECT * FROM (SELECT ROWNUM NUM, T.* FROM (SELECT * FROM TEST_LIST_VIEW ORDER BY " + align + " "
-					+ order + ") T ) WHERE NUM BETWEEN ? AND ?";
-		} else {
-			sql = "SELECT * FROM (SELECT ROWNUM NUM, T.* FROM (SELECT * FROM TEST_LIST_VIEW WHERE " + field
-					+ " LIKE ? ORDER BY " + align + " " + order + ") T) WHERE NUM BETWEEN ? AND ?";
+		String search = "";
+		
+		if (query != null && !query.equals("")) {
+			search = "WHERE " + field+ " LIKE ?";
 		}
+		String sql = "SELECT * FROM (SELECT ROWNUM NUM, T.* FROM (SELECT * FROM TEST_LIST_VIEW "+search+" ORDER BY " + align + " " + order + ") T) WHERE NUM BETWEEN ? AND ?";
+		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);
@@ -51,7 +43,123 @@ public class JdbcTestListViewDao implements TestListViewDao {
 				st.setInt(3, endIndex);
 			}
 
-			System.out.println(sql);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+
+				int id = rs.getInt("ID");
+				String name = rs.getString("NAME");
+				int memberId = rs.getInt("MEMBER_ID");
+				String coverImg = rs.getString("COVER_IMG");
+				int publicState = rs.getInt("PUBLIC_STATE");
+				int bestState = rs.getInt("BEST_STATE");
+				int shareCnt = rs.getInt("SHARE_CNT");
+				int hitCnt = rs.getInt("HIT_CNT");
+				int recommendCnt = rs.getInt("RECOMMEND_CNT");
+				int reportCnt = rs.getInt("REPORT_CNT");
+				Timestamp regdate = rs.getTimestamp("REGDATE");
+				int formLevelId = rs.getInt("FORM_LEVEL_ID");
+				String nickname = rs.getNString("NICKNAME");
+				String levName = rs.getNString("LEV_NAME");
+				String cateName = rs.getNString("CATE_NAME");
+
+				TestListView t = new TestListView(id, name, memberId, coverImg, publicState, bestState, shareCnt,
+						hitCnt, recommendCnt, reportCnt, regdate, formLevelId, nickname, levName, cateName);
+
+				list.add(t);
+			}
+
+			rs.close();
+			st.close();
+			con.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public List<TestListView> bestList() {
+		List<TestListView> list = new ArrayList<>();
+
+		String url = DBContext.URL;
+		
+		String sql = "SELECT * FROM TEST_LIST_VIEW WHERE BEST_STATE = 1";
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);
+			PreparedStatement st = con.prepareStatement(sql);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+
+				int id = rs.getInt("ID");
+				String name = rs.getString("NAME");
+				int memberId = rs.getInt("MEMBER_ID");
+				String coverImg = rs.getString("COVER_IMG");
+				int publicState = rs.getInt("PUBLIC_STATE");
+				int bestState = rs.getInt("BEST_STATE");
+				int shareCnt = rs.getInt("SHARE_CNT");
+				int hitCnt = rs.getInt("HIT_CNT");
+				int recommendCnt = rs.getInt("RECOMMEND_CNT");
+				int reportCnt = rs.getInt("REPORT_CNT");
+				Timestamp regdate = rs.getTimestamp("REGDATE");
+				int formLevelId = rs.getInt("FORM_LEVEL_ID");
+				String nickname = rs.getNString("NICKNAME");
+				String levName = rs.getNString("LEV_NAME");
+				String cateName = rs.getNString("CATE_NAME");
+
+				TestListView t = new TestListView(id, name, memberId, coverImg, publicState, bestState, shareCnt,
+						hitCnt, recommendCnt, reportCnt, regdate, formLevelId, nickname, levName, cateName);
+
+				list.add(t);
+			}
+
+			rs.close();
+			st.close();
+			con.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public List<TestListView> myList(int startIndex, int endIndex, String field, String query, String align, int writerId) {
+		List<TestListView> list = new ArrayList<>();
+
+		String url = DBContext.URL;
+		String search = "";
+		
+		if (query != null && !query.equals("")) {
+			search = "AND " + field+ " LIKE ?";
+		}
+		String sql = "SELECT * FROM (SELECT ROWNUM NUM, T.* FROM (SELECT * FROM TEST_LIST_VIEW WHERE MEMBER_ID = ? "+search+" ORDER BY " + align + " DESC ) T) WHERE NUM BETWEEN ? AND ?";
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);
+			PreparedStatement st = con.prepareStatement(sql);
+
+			if (query == null || query.equals("")) {
+				st.setInt(1, writerId);
+				st.setInt(2, startIndex);
+				st.setInt(3, endIndex);
+			} else {
+				st.setInt(1, writerId);
+				st.setString(2, query);
+				st.setInt(3, startIndex);
+				st.setInt(4, endIndex);
+			}
+
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
 

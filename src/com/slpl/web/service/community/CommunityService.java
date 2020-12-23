@@ -2,8 +2,11 @@ package com.slpl.web.service.community;
 
 import java.util.List;
 
+import com.slpl.web.dao.community.CommentRegDao;
 import com.slpl.web.dao.community.CommunityDao;
+import com.slpl.web.dao.jdbc.JdbcCommentDao;
 import com.slpl.web.dao.jdbc.JdbcCommunityDao;
+import com.slpl.web.entity.community.CommentView;
 import com.slpl.web.entity.community.Community;
 import com.slpl.web.entity.community.CommunityView;
 
@@ -14,6 +17,7 @@ public class CommunityService {
 	
 	public CommunityService() {
 		communityDao = new JdbcCommunityDao();
+		
 	}
 	
 	public List<Community> getList() {
@@ -44,23 +48,35 @@ public class CommunityService {
 		String field = "title";
 		String query = "";
 		int page = 1;
-		return communityDao.getViewList(field, query,page);
+		String category = "전체게시판";
+		return communityDao.getViewList(field, query,page,category);
 	}
 	
 	public List<CommunityView> getViewList(int page){
 		String field = "title";
 		String query = "";
-		return communityDao.getViewList(field, query,page);
+		String category = "전체게시판";
+		return communityDao.getViewList(field, query,page,category);
 	}
 
 	public List<CommunityView> getViewList(String field, String query, int page) {
-		// TODO Auto-generated method stub
-		return communityDao.getViewList(field, query,page);
+		String category = "전체게시판";
+		return communityDao.getViewList(field, query,page,category);
 	}
 	
-	public int getCommunityCount(String field, String query) {
-		return communityDao.getCommunityCount(field, query);
+	public int getCommunityCount(String field, String query, String category) {
+		return communityDao.getCommunityCount(field, query,category);
 	}
+
+	public List<CommunityView> getViewList(String field, String query, int page, String category) {
+		return communityDao.getViewList(field, query,page,category);
+	}
+
+	public int updateCnt(int community_id, int addCnt) {
+		return communityDao.updateCnt(community_id,addCnt);
+	}
+
+
 	
 
 //	public int getLastId() {

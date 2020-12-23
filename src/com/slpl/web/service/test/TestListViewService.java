@@ -21,5 +21,17 @@ public class TestListViewService {
 
 		return testListViewDao.getList(startIndex, endIndex, field, query, align, order);
 	}
+	
+	public List<TestListView> bestList() {
 
+		return testListViewDao.bestList();
+	}
+
+	public List<TestListView> myList(int page, int pageLength, String field, String query, String align, int writerId) {
+
+		int startIndex = 1 + (page - 1) * pageLength;
+		int endIndex = page * pageLength;
+
+		return testListViewDao.myList(startIndex, endIndex, field, query, align, writerId);
+	}
 }

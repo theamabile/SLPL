@@ -19,34 +19,60 @@ public class ListController extends HttpServlet{
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		CommunityNoticeService service = new CommunityNoticeService();
-		//String[] checkCategory = request.getParameterValues("checkCategory");  
+		String[] checkCategory = request.getParameterValues("checkCategory");
 		String page_ = request.getParameter("p");
-		System.out.println("페이지"+page_);
 		
-		//System.out.println(checkCategory);
+		
+		int[] ids = null;
+		if(checkCategory == null) {
+			ids = null;
+			
+		}
+		
+		System.out.println(checkCategory[1]);
 		
 		int page = 1;
 		if(page_ != null && !page_.equals("")) {
 			page = Integer.parseInt(page_) ;
 		}
-//		int[] ids = null;
-//		  if(checkCategory != null) {
-//			  ids = new int[checkCategory.length];
-//		         for(int i=0 ; i<ids.length ; i++) {
-//		            ids[i] = Integer.parseInt(checkCategory[i]);
-//		         }
-		         
-		         //service.deleteAll(ids);
-		         
-		     // }  
+		
+		
+		  if(checkCategory != null) {
+			  ids = new int[checkCategory.length];
+		         for(int i=0 ; i<ids.length ; i++) {
+		            ids[i] = Integer.parseInt(checkCategory[i]);
+		            
+		            System.out.println(ids[i]);
+		         }
+		        
+		      }  
+		  	 List<CommunityNoticeView> list= service.getViewList(page,ids);
+	         request.setAttribute("list", list);
+		  
+				/*
+				 * if(checkIds != null) { int[] ids = new int[checkIds.length]; for(int i=0 ;
+				 * i<ids.length ; i++) { ids[i] = Integer.parseInt(checkIds[i]); }
+				 * 
+				 * service.insertAll(title, content, ids); }
+				 */
+		  
+		  
+		  
+//		  String[] checkIds = request.getParameterValues("checkMember");      
+//
+//	      if(checkIds != null) {
+//	         int[] ids = new int[checkIds.length];
+//	         for(int i=0 ; i<ids.length ; i++) {
+//	            ids[i] = Integer.parseInt(checkIds[i]);
+//	         }
 
 		int count = service.getNoticeCount();
-		List<CommunityNoticeView> list= service.getViewList(page); 
+		//List<CommunityNoticeView> list= service.getViewList(page); 
 		
-		//List<CommunityNoticeView> list= service.getViewList(page,checkCategory);    
+		//List<CommunityNoticeView> list= service.getViewList(page,ids);    
 		//List<CommunityNoticeView> list= service.getViewList(ids,);
 //		List<CommunityNoticeView> list= service.getViewList(category, startindx, endindx);
-		request.setAttribute("list", list);
+		
 		request.setAttribute("count", count);
 		request.getRequestDispatcher("/admin/community/notice/list.jsp").forward(request, response);
 	}

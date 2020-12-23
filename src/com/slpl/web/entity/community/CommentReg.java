@@ -1,18 +1,37 @@
 package com.slpl.web.entity.community;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.Date;
 
 public class CommentReg {
 	private int id;
 	private int memberId;
 	private int communityId;
 	private String content;
-	private Date regdate;
+	private Timestamp regdate;
 	
 	
 	
 	
-	public CommentReg(int id, int memberId, int communityId, String content, Date regdate) {
+//	public CommentReg(int id, int memberId, int communityId, String content, Date regdate) {
+//		this.id = id;
+//		this.memberId = memberId;
+//		this.communityId = communityId;
+//		this.content = content;
+//		this.regdate = regdate;
+//	}
+//
+//	
+
+
+//	public CommentReg(int id2, int memberId2, int communityId2, String content2, java.util.Date regdate2) {
+//		// TODO Auto-generated constructor stub
+//	}
+
+
+
+
+	public CommentReg(int id, int memberId, int communityId, String content, Timestamp regdate) {
 		super();
 		this.id = id;
 		this.memberId = memberId;
@@ -20,6 +39,22 @@ public class CommentReg {
 		this.content = content;
 		this.regdate = regdate;
 	}
+
+
+
+//	public CommentReg(String comment) {
+//		this.content = comment;
+//	}
+
+
+
+	public CommentReg(String comment, int community_id) {
+		super();
+		this.content = comment;
+		this.communityId = community_id;
+	}
+
+
 
 	public int getId() {
 		return id;
@@ -57,7 +92,7 @@ public class CommentReg {
 		return regdate;
 	}
 	
-	public void setRegdate(Date regdate) {
+	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
 	}
 	

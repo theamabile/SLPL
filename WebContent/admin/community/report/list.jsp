@@ -37,12 +37,12 @@
 </head>
 <body>
 	<!------------------------------------------- 헤더 -------------------------------------------------->
-    <jsp:include page="../../common/header.jsp"></jsp:include> 
-	
-    <div id="body" class="body" >  
-        
-        <!------------------------------------------- 메뉴  -------------------------------------------------->
-        <jsp:include page="../../common/menu.jsp"></jsp:include>
+	<jsp:include page="../../common/header.jsp"></jsp:include>
+
+	<div id="body" class="body">
+
+		<!------------------------------------------- 메뉴  -------------------------------------------------->
+		<jsp:include page="../../common/menu.jsp"></jsp:include>
 
 		<main class="main">
 			<section class="container">
@@ -109,9 +109,11 @@
 								value="${fn:substringBefore(Math.ceil(count/5),'.') }"></c:set>
 
 
-							<div>
+							<div class="pager">
 								<c:if test="${startNum > 1}">
-									<a href="?p=${startNum-1}&f=${param.f}&q=${param.q}" class="">이전</a>
+									<a
+										href="?c=${param.c}&p=${startNum-1}&f=${param.f}&q=${param.q}"
+										class="">이전</a>
 								</c:if>
 								<c:if test="${startNum <= 1}">
 									<span onclick="alert('이전 페이지가 없습니다.');">이전</span>
@@ -119,19 +121,21 @@
 								</c:if>
 
 
-								<ul>
+								<ul class="ul-pager">
 									<c:forEach var="i" begin="0" end="4">
 										<c:if test="${(startNum+i) <= lastNum}">
-											<li><a
+											<li class="li-pager"><a
 												class="text- ${(page ==(startNum+i))?'purple': ''} bold"
-												href="?p=${startNum+i}&f=${param.f}&q=${param.q}">${startNum+i}
+												href="?c=${param.c}&p=${startNum+i}&f=${param.f}&q=${param.q}">${startNum+i}
 											</a>
 										</c:if>
 									</c:forEach>
 								</ul>
 
 								<c:if test="${startNum+4 < lastNum}">
-									<a href="?p=${startNum+5}&f=${param.f}&q=${param.q}" class="">다음</a>
+									<a
+										href="?c=${param.c}&p=${startNum+5}&f=${param.f}&q=${param.q}"
+										class="">다음</a>
 
 								</c:if>
 
@@ -147,9 +151,9 @@
 				</form>
 			</section>
 
-				<!------------------------------------------- 풋터  -------------------------------------------------->
-            
-            <jsp:include page="../../common/footer.jsp"></jsp:include> 
+			<!------------------------------------------- 풋터  -------------------------------------------------->
+
+			<jsp:include page="../../common/footer.jsp"></jsp:include>
 
 		</main>
 

@@ -12,10 +12,19 @@ public class Community {
 		private int hitCnt;    	
 		private String imgs;		   
 		private Date regDate;
+		private String category;
 		
 		
 		
 		
+		
+		
+		public String getCategory() {
+			return category;
+		}
+		public void setCategory(String category) {
+			this.category = category;
+		}
 		public Community(int id, int memberId, int categoryId, String title, String content, int recommendCnt,
 				int hitCnt, String imgs, Date regDate) {
 			super();
@@ -28,6 +37,7 @@ public class Community {
 			this.hitCnt = hitCnt;
 			this.imgs = imgs;
 			this.regDate = regDate;
+			this.category = category;
 		}
 		public Community(String title, String content) {
 			this.title = title;
@@ -46,6 +56,45 @@ public class Community {
 			this.recommendCnt = recommendCnt;
 			this.hitCnt = hitCnt;
 			this.regDate = regDate;
+			this.categoryId = categoryId;
+		}
+		public Community(int id, int categoryId, String title, int recommendCnt, int hitCnt, Date regDate) {
+			this.id = id;
+			this.title = title;
+			this.recommendCnt = recommendCnt;
+			this.hitCnt = hitCnt;
+			this.regDate = regDate;
+			this.categoryId = categoryId;
+		}
+		public Community(int id, int memberId, int categoryId, String title, String content, int recommendCnt,
+				int hitCnt, String imgs, Date regDate, String memberNick, int commentCnt) {
+			this.id = id;
+			this.title = title;
+			this.recommendCnt = recommendCnt;
+			this.hitCnt = hitCnt;
+			this.regDate = regDate;
+			this.categoryId = categoryId;
+		}
+		public Community(int id, int categoryId, String title, int recommendCnt, int hitCnt, Date regDate,
+				String content) {
+			this.id = id;
+			this.title = title;
+			this.recommendCnt = recommendCnt;
+			this.hitCnt = hitCnt;
+			this.regDate = regDate;
+			this.categoryId = categoryId;
+			this.content = content;
+		}
+		public Community(String title, String content, String category) {
+			this.title = title;
+			this.content = content;
+			this.category = category;
+			this.categoryId = categoryId;
+		}
+		public Community(String title, String content, String category, int categoryId) {
+			this.title = title;
+			this.content = content;
+			this.category = category;
 			this.categoryId = categoryId;
 		}
 		public int getId() {

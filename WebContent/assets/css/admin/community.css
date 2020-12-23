@@ -51,9 +51,22 @@
 	padding-top: 5px;
 }
 
+.a-input-black-big {
+	display: inline-block;
+	width: 80px;
+	height: 42px;
+	background-color: #504f5e;
+	color: white;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 15px;
+	margin: 14px 3px 7px 0;
+	padding-top: 9px;
+}
+
 .a-puple-button-m {
-	display: inline-block; 
-	width : 100px;
+	display: inline-block;
+	width: 100px;
 	height: 40px;
 	border-radius: 8px;
 	font-size: 14px;
@@ -75,13 +88,36 @@
 	margin: 10px 10px 10px 90px;
 }
 
- .input-content {
+.input-content {
 	width: 970px;
 	min-height: 400px;
 	margin: 10px 10px 10px 90px;
 }
+
 .center {
-    text-align: center;
+	text-align: center;
+}
+
+.pager {
+	margin-top: 20px; -
+	-text-align: center;
+	display: flex;
+	font-size: 14px;
+	justify-content: center; -
+	-padding: 10px;
+	color: gray;
+}
+
+.pager .ul-pager {
+	display: flex;
+}
+
+.pager .li-pager {
+	padding: 0 5px 0 5px;
+}
+
+.pager span {
+	padding: 0 10px 0 10px;
 }
 /* =================================== list =================================== */
 table {
@@ -158,32 +194,26 @@ table {
 
 /*-----------------//community_add-------------------- */
 /*-----------------notice, notice_reg-------------------- */
-
-
-
-.notice-select{
+.notice-select {
 	border: 1px solid #c0c0c0;
 	padding: 10px 10px 10px 10px;
 	margin: 5px;
 	border-radius: 10px;
 	font-size: 12px;
-	
-	
 }
 
-.noticereg-select{
-	--border: 1px solid #c0c0c0;
+.noticereg-select { -
+	-border: 1px solid #c0c0c0;
 	padding: 20px 10px 0px 70px;
 	margin: 5px;
 	border-radius: 10px;
 	font-size: 12px;
-	
-	
 }
-.select-checkbox{
+
+.select-checkbox {
 	margin-left: 10px;
-	margin-right: 3px;
-	--font-size: 10px;
+	margin-right: 3px; -
+	-font-size: 10px;
 	align-self: center;
 }
 
@@ -191,24 +221,73 @@ table {
 	display: flex;
 }
 */
-.tools .filter{
-    flex: 1 0 300px;
-    display: flex;
+.tools .filter {
+	flex: 1 0 300px;
+	display: flex;
 }
 
- .tools .delete-box{
+.tools .delete-box {
 	margin-top: 10px;
-} 
+}
 
-
-.notice-reg-box{
-	padding:10px;
+.notice-reg-box {
+	padding: 10px;
 	margin-left: 500px;
 }
 
- .category-search{
+.category-search {
 	display: inline-block;
 	margin-left: 20px;
-} 
+}
 
 /*-----------------//notice, notice_reg-------------------- */
+/*-----------------report-------------------- */
+.report-section {
+	margin: 20px;
+}
+
+.title-name {
+	font-size: 22px;
+	font-weight: 600;
+	color: #6455af;
+}
+
+.title2-name {
+	font-size: 15px;
+	margin: 15px 10px 5px 10px;
+	color: #9a9a9a;
+}
+
+.report-form {
+	margin: 12px;
+	height: 300px;
+}
+
+.report-form .report-list {
+	margin: 15px 10px 10px 10px;
+}
+
+.report-cancle-button {
+	width: 140px;
+	height: 42px;
+	background-color: #504f5e;
+	color: white;
+	border-radius: 5px;
+	border: none;
+	text-align: center;
+	font-size: 15px;
+	margin: 40px 10px 10px 10px;
+}
+
+.report-reg-button {
+	width: 140px;
+	height: 42px;
+	background-color: #6455af;
+	color: white;
+	border-radius: 5px;
+	border: none;
+	text-align: center;
+	font-size: 15px;
+}
+
+/*-----------------//report-------------------- */

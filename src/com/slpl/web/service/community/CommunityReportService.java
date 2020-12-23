@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.slpl.web.dao.community.CommunityReportDao;
 import com.slpl.web.dao.jdbc.JdbcCommunityReportDao;
+import com.slpl.web.entity.community.CommunityReport;
 import com.slpl.web.entity.community.CommunityReportView;
 
 public class CommunityReportService {
@@ -43,5 +44,7 @@ public class CommunityReportService {
 		return communityReportDao.getReportCount();
 	}
 
-
+	public int insert(CommunityReport communityReport) {
+		return communityReportDao.insert(communityReport);
+	}
 }

@@ -79,7 +79,11 @@ public class JdbcCommunityCategoryDao implements CommunityCategoryDao {
 		List<CommunityCategory> list = new ArrayList<>();
 
 		String url = DBContext.URL;
-		String sql = "select * from community_category order by rownum";
+		String sql = "select c.id, c.name, count(m.category_id) member_cnt "
+				+ "from community_category c "
+				+ "left join member m on m.category_id = c.id "
+				+ "group by c.id, c.name "
+				+ "order by c.id";
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");

@@ -144,17 +144,17 @@
 								</a>
 							</c:if>
 
-							<c:forEach var="i" begin="0" end="2">
+							<c:forEach var="i" begin="0" end="4">
 								<a href="?page=${startNum+i}&key=&keyword=">${startNum+i}</a>
 							</c:forEach>
 
-							<c:if test="${startNum+3<lastNum}">
-								<a href="?page=${startNum+3}&key=&keyword=">
+							<c:if test="${startNum+5<lastNum}">
+								<a href="?page=${startNum+5}&key=&keyword=">
 									<i class="fas fa-angle-right"></i>
 								</a>
 							</c:if>
-							<c:if test="${startNum+3>=lastNum}">
-								<a href="?page=${startNum+3}&key=&keyword=" class="paging-over-next-button">
+							<c:if test="${startNum+5>=lastNum}">
+								<a href="?page=${startNum+5}&key=&keyword=" class="paging-over-next-button">
 									<i class="fas fa-angle-right"></i>
 								</a>
 							</c:if>

@@ -24,6 +24,9 @@ public class ListController extends HttpServlet{
 		String query_ = request.getParameter("q");
 		String field_ = request.getParameter("f");
 		String page_ = request.getParameter("p");
+		String category_ = request.getParameter("c");
+		
+		System.out.println(category_);
 		
 		String field = "title";
 		if(field_ != null && !field_.equals(""))
@@ -36,12 +39,16 @@ public class ListController extends HttpServlet{
 		if(page_ != null && !page_.equals(""))
 			page = Integer.parseInt(page_);
 		
-		int categoryId = Integer.parseInt(request.getParameter("categoryId"));
+		
+		String category = "전체게시판";
+		if(category_ != null && !category_.equals(""))
+			category = category_;
 		
 		
-		List<CommunityView> list= service.getViewList(field,query,page);
-		List<CommunityNoticeView> notice = noticeService.getViewList(categoryId);
-		int count = service.getCommunityCount(field, query);
+		
+		List<CommunityView> list= service.getViewList(field,query,page,category);
+		List<CommunityNoticeView> notice = noticeService.getViewList();
+		int count = service.getCommunityCount(field, query,category);
 		System.out.println(list);
 		
 		request.setAttribute("notice", notice);

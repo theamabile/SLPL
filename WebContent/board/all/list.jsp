@@ -1,3 +1,10 @@
+<%@page import="java.util.List"%>
+<%@page import="com.slpl.web.board.all.ListService"%>
+<%@page import="com.slpl.web.board.all.Board"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,13 +45,19 @@
 					<ul>
 						<li><a href="#">MAKE</a></li>
 						<li><a href="#">TEST</a></li>
-						<li><a href="#">COMMUNITY</a> <!-- <ul class="body-detail-menu">
-	                              <li><a href="list.html">all</a></li>
-	                              <li><a href="../Red/list.html">red</a></li>
-	                              <li><a href="../Blue/list.html">blue</a></li>
-	                              <li><a href="../Green/list.html">green</a></li>
-	                              <li><a href="../Yellow/list.html">yellow</a></li>
-                              </ul> --></li>
+						<li><a href="#">COMMUNITY</a>
+							<ul class="body-detail-menu">
+							<li><a href="">전체게시판 </a></li>
+								<li><a href="">민팥부 </a></li>
+								<li><a href="">민팥찍 </a></li>
+								<li><a href="">민슈부 </a></li>
+								<li><a href="">민슈찍 </a></li>
+								<li><a href="">반민팥부 </a></li>
+								<li><a href="">반민팥찍  </a></li>
+								<li><a href="">반민슈부  </a></li>
+								<li><a href="">반민슈찍  </a></li>
+							</ul>
+						</li>
 
 					</ul>
 				</nav>
@@ -67,10 +80,14 @@
 									<option value="title">제목</option>
 									<option value="writerId">작성자</option>
 								</select> <label class="hidden">검색어</label> <input type="text" name="q"
-									value="" /> <input class="btn btn-search" type="submit"
+									value="" /> <input class="button" type="submit"
 									value="검색" />
+									<a href="write"><input class="button" type="button"
+									value="글쓰기" /></a>
 							</fieldset>
+							
 						</form>
+						
 					</div>
 
 
@@ -88,51 +105,29 @@
 						</thead>
 						<tbody>
 
-							<tr>
-								<td>8</td>
-								<td class="title indent text-align-left"><a
-									href="detail.html">스프링 8강까지의 예제 코드</a></td>
-								<td>newlec</td>
-								<td>2019-08-18</td>
-								<td>146</td>
-							</tr>
+							<%-- <%
+								List<Board> list = (List<Board>) request.getAttribute("n");
 
+							for (Board n : list) {
+								pageContext.setAttribute("n", n);
+							%> --%>
+							
+							<c:forEach var="n" items="${list}" >
+								
+							
 							<tr>
-								<td>7</td>
+								<td>${n.boardNo}</td>
 								<td class="title indent text-align-left"><a
-									href="detail.html">스프링 DI 예제 코드</a></td>
-								<td>newlec</td>
-								<td>2019-08-15</td>
-								<td>131</td>
+									href="detail?id=${n.boardNo}">${n.title}</a></td>
+								<td>${n.userNick}</td>
+								<td>${n.regDate}</td>
+								<td>${n.hits}</td>
 							</tr>
-
-							<tr>
-								<td>6</td>
-								<td class="title indent text-align-left"><a
-									href="detail.html">뉴렉쌤 9월 초 국기과정 모집 안내</a></td>
-								<td>newlec</td>
-								<td>2019-06-11</td>
-								<td>517</td>
-							</tr>
-
-							<tr>
-								<td>5</td>
-								<td class="title indent text-align-left"><a
-									href="detail.html">뉴렉처 강의 수강 방식 안내</a></td>
-								<td>newlec</td>
-								<td>2019-05-24</td>
-								<td>448</td>
-							</tr>
-
-							<tr>
-								<td>4</td>
-								<td class="title indent text-align-left"><a
-									href="detail.html">자바 구조적인 프로그래밍 강의 예제 파일</a></td>
-								<td>newlec</td>
-								<td>2019-04-24</td>
-								<td>520</td>
-							</tr>
-
+							</c:forEach>
+							<%-- <%
+								}
+							%>
+ --%>
 
 						</tbody>
 					</table>
@@ -191,5 +186,7 @@
 </body>
 
 </html>
+
+
 
 

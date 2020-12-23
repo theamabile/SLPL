@@ -7,6 +7,7 @@ import com.slpl.web.entity.test.Test;
 public interface TestDao {
 	
 	int insert(Test test);
+	Test update(Test t);
 	int update(Test test,String coulumn,int value);
 	int update(int id,String coulumn,int value);
 	int delete(int id);
