@@ -1,6 +1,7 @@
 package com.slpl.web.dao.test;
 
 import java.util.List;
+import com.slpl.web.entity.test.Character;
 
 public interface CharacterDao {
 	
@@ -10,5 +11,7 @@ public interface CharacterDao {
 	
 	Character get(int id);
 	List<Character> getList();
+	int update(int id, String coulumn, String content);
+	Character getChar(int testId,int no);
 	
 }

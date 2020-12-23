@@ -6,19 +6,48 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.slpl.web.dao.test.AnswerScoreDao;
 import com.slpl.web.entity.test.AnswerScore;
 
+import oracle.jdbc.OraclePreparedStatement;
+
 
 public class JdbcAnswerScoreDao implements AnswerScoreDao {
 
 	@Override
-	public int insert(AnswerScore answerScore) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int insert(AnswerScore Score) {
+		int result = 0;
+	     
+	      String url = DBContext.URL;
+	      String sql = "INSERT INTO ANSWER_SCORE(ANSWER_ID,SCORE,TYPE_ID) VALUES(?,?,?) RETURNING ID INTO ?"; 
+	      try {
+	         Class.forName("oracle.jdbc.driver.OracleDriver");
+	         Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);
+	         OraclePreparedStatement st = (OraclePreparedStatement) con.prepareStatement(sql);
+	         st.setInt(1, Score.getAnswer_id());
+	         st.setInt(2, Score.getScore());         
+	         st.setInt(3,Score.getType_id());
+//	         id값 반환
+	         st.registerReturnParameter(4,Types.INTEGER);
+	         
+	         st.execute();
+	         ResultSet rs = st.getReturnResultSet();
+	         rs.next();
+	         result = rs.getInt(1);
+	         st.close();
+	         con.close();         
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      } catch (ClassNotFoundException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }
+	      return result;
 	}
 
 	@Override
