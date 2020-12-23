@@ -644,6 +644,7 @@ span {
     }
     .low-step6 .result-preview .text{
       height: 50px;
+      padding: 10px 2px;
     }
 
     /* ---------------detail page------------ */

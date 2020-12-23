@@ -59,13 +59,13 @@ public class RegResultNameConotroller extends HttpServlet {
 //		request.setAttribute("name", resultName);
 		
 		
-		request.setAttribute("name1", resultName[0]);
-		request.setAttribute("name2", resultName[1]);
-		request.setAttribute("name3", resultName[2]);
-		request.setAttribute("name4", resultName[3]);
+//		request.setAttribute("name1", resultName[0]);
+//		request.setAttribute("name2", resultName[1]);
+//		request.setAttribute("name3", resultName[2]);
+//		request.setAttribute("name4", resultName[3]);
 		
-		
-		request.getRequestDispatcher("/test/make/test").forward(request, response);
+//		System.out.println("name1: "+request.getAttribute("name1"));
+		request.getRequestDispatcher("/test/make/test.jsp").forward(request, response);
 		
 			
 		
