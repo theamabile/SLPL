@@ -34,11 +34,11 @@ window.addEventListener("load", function() {
 		var answerValues = page2.querySelectorAll(".result1");
 		if( e.target.classList.contains("result2-button") )
 			answerValues = page2.querySelectorAll(".result2");
-		else if( e.target.classList.contains("result3-button") )
+		/*else if( e.target.classList.contains("result3-button") )
 			answerValues = page2.querySelectorAll(".result3");
 		else if( e.target.classList.contains("result4-button") )
 			answerValues = page2.querySelectorAll(".result4");
-			
+		*/	
 		for(var i=0; i<answerValues.length; i++)
 			answerValueArray[i] = answerValues[i].value;
 		qId++;		
@@ -69,7 +69,7 @@ window.addEventListener("load", function() {
 		request.onload = function() {
 			
 			var contents = JSON.parse(request.responseText);
-			var formSize = 4;
+			var formSize = 2;
 			var contentSize = contents.length/formSize;
 			
 			if(contentSize < qId ){
