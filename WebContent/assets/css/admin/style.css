@@ -25,7 +25,7 @@ h1 {
     font-weight: bold;
 }
 
-.first-menu {
+/* .first-menu {
     display: flex;
     align-items: center;
 }
@@ -38,15 +38,90 @@ h1 {
     }
         .first-menu:hover > img
         .first-menu-selected > img{      
-            /* 원하는 색으로 필터 만들어 주는 사이트 :  https://codepen.io/sosuke/pen/Pjoqqp */
+            원하는 색으로 필터 만들어 주는 사이트 :  https://codepen.io/sosuke/pen/Pjoqqp
             filter: invert(34%) sepia(8%) saturate(4739%) hue-rotate(211deg) brightness(100%) contrast(83%);
         }
 
 
     .first-menu img{
         margin-right: 10px;
-    }  
+    }   */
+
+
+
+
+.fist-menu {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+	 .first-menu img{
+        margin-right: 10px;
+    } 
     
+/* active가 됐는데 hover 되면 필터 빼야함 */
+.active.first-menu:hover{
+	filter: none;
+}
+	.active.first-menu:hover > img{
+		filter: none;
+	}
+.active.first-menu:active{
+	filter: none;
+}
+	.active.first-menu:active > img{
+		filter: none;
+	}
+
+.active {
+	font-weight: bold;
+}
+
+.first-menu:hover {
+	color: #6455af;
+  	font-weight: bold;
+}
+   	.active, .first-menu:hover > img{
+		 filter: invert(34%) sepia(8%) saturate(4739%) hue-rotate(211deg) brightness(100%) contrast(83%);
+	}  
+
+
+.first-menu:after {
+  content: '\002B';
+  color: #000;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+	.first-menu:after > img{
+	   filter: none;
+	}
+	
+
+.active:after {
+  content: "\2212";
+}
+	
+
+.second-menu {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+
+
+
+
 
 .full-button {
     width : 100%;
@@ -312,6 +387,9 @@ td {
 			color: #6455af;
 			font-weight: bold;
 		}
+
+
+
 
 
 /* ==================================================================================*/
