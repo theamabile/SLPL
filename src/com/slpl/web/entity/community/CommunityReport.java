@@ -5,18 +5,18 @@ public class CommunityReport {
 
 	private int id;	
 	private int memberId;    	
-	private int communityCategoryId;	
+	private int reportCategoryId;	
 	private int communityId;	
 	private Date regDate;
 	
 	
 	
 	
-	public CommunityReport(int id, int memberId, int communityCategoryId, int communityId, Date regDate) {
+	public CommunityReport(int id, int memberId, int reportCategoryId, int communityId, Date regDate) {
 		super();
 		this.id = id;
 		this.memberId = memberId;
-		this.communityCategoryId = communityCategoryId;
+		this.reportCategoryId = reportCategoryId;
 		this.communityId = communityId;
 		this.regDate = regDate;
 	}
@@ -25,6 +25,10 @@ public class CommunityReport {
 		this.id = id;
 		this.communityId = communityId;
 		this.regDate = regDate;
+	}
+	public CommunityReport(int id, int reason) {
+		this.reportCategoryId = reason;
+		this.communityId = id;
 	}
 	public int getId() {
 		return id;
@@ -38,11 +42,11 @@ public class CommunityReport {
 	public void setMemberId(int memberId) {
 		this.memberId = memberId;
 	}
-	public int getCommunityCategoryId() {
-		return communityCategoryId;
+	public int getreportCategoryId() {
+		return reportCategoryId;
 	}
-	public void setCommunityCategoryId(int communityCategoryId) {
-		this.communityCategoryId = communityCategoryId;
+	public void setreportCategoryId(int reportCategoryId) {
+		this.reportCategoryId = reportCategoryId;
 	}
 	public int getCommunityId() {
 		return communityId;
@@ -58,7 +62,7 @@ public class CommunityReport {
 	}
 	@Override
 	public String toString() {
-		return "CommunityReport [id=" + id + ", memberId=" + memberId + ", communityCategoryId=" + communityCategoryId
+		return "CommunityReport [id=" + id + ", memberId=" + memberId + ", reportCategoryId=" + reportCategoryId
 				+ ", communityId=" + communityId + ", regDate=" + regDate + "]";
 	}
 	

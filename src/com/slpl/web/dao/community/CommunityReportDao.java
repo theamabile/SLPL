@@ -7,6 +7,7 @@ import com.slpl.web.entity.community.CommunityReportView;
 
 public interface CommunityReportDao {
 	int delete(int id);
+	int insert(CommunityReport communityReport);
 	
 	List<CommunityReport> getList();
 	List<CommunityReport> getList(int page);

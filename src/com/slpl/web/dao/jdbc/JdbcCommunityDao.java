@@ -21,7 +21,7 @@ public class JdbcCommunityDao implements CommunityDao {
 	public int insert(Community community) {
 		int result = 0;
 		String url = DBContext.URL;
-		String sql = "INSERT INTO community(id,member_id,TITLE,CONTENT,category_id) VALUES(seq.nextval,2,?,?,2)";
+		String sql = "INSERT INTO community(id,member_id,TITLE,CONTENT,category_id) VALUES(seq.nextval,2,?,?,?)";
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -30,7 +30,9 @@ public class JdbcCommunityDao implements CommunityDao {
 
 			st.setString(1, community.getTitle());
 			st.setString(2, community.getContent());
-			
+			st.setInt(3, community.getCategoryId());
+			System.out.println("==================================="+community.getCategory());
+
 			result = st.executeUpdate();
 
 			st.close();
@@ -106,11 +108,11 @@ public class JdbcCommunityDao implements CommunityDao {
 	}
 
 	@Override
-	public Community get(int id) {
-		Community n = null;
+	public CommunityView get(int id) {
+		CommunityView n = null;
 
 		String url = DBContext.URL;
-		String sql = "select * from community where id = " + id;
+		String sql = "select * from community_view where id = " + id;
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -128,10 +130,14 @@ public class JdbcCommunityDao implements CommunityDao {
 				String content = rs.getString("content");
 				int recommendCnt = rs.getInt("recommend_cnt");
 				int hitCnt = rs.getInt("hit_cnt");
-				String imgs = rs.getString("imgs");
+				String imgs = "";
 				Date regDate = rs.getDate("regdate");
+				String memberNick = rs.getString("member_nick");
+				int commentCnt = rs.getInt("comment_cnt");
+				hitCnt++;
 
-				n = new Community(id, memberId, categoryId, title, content, recommendCnt, hitCnt, imgs, regDate);
+				n = new CommunityView(id, memberId, categoryId, title, content, recommendCnt, hitCnt, imgs, regDate,
+						memberNick, commentCnt);
 			}
 
 			rs.close();
@@ -174,10 +180,11 @@ public class JdbcCommunityDao implements CommunityDao {
 				String imgs = rs.getString("imgs");
 				Date regDate = rs.getDate("regdate");
 
-				Community n = new Community(id, memberId, categoryId, title, content, recommendCnt, hitCnt, imgs, regDate);
+				Community n = new Community(id, memberId, categoryId, title, content, recommendCnt, hitCnt, imgs,
+						regDate);
 				System.out.println(n);
 				list.add(n);
-			
+
 			}
 
 			rs.close();
@@ -194,16 +201,17 @@ public class JdbcCommunityDao implements CommunityDao {
 
 		return list;
 	}
-	
+
 	@Override
 	public List<CommunityView> getViewList() {
-	
+
 		int page = 1;
 		String field = "";
 		String query = "";
-		return getViewList(field,query,page);
-		
-		//return null;
+		String category = "전체게시판";
+		return getViewList(field, query, page, category);
+
+		// return null;
 	}
 
 	@Override
@@ -213,25 +221,25 @@ public class JdbcCommunityDao implements CommunityDao {
 	}
 
 	@Override
-	public List<CommunityView> getViewList(String field, String query, int page) {
-		List<CommunityView> list  = new ArrayList<>();
-		
+	public List<CommunityView> getViewList(String field, String query, int page, String category) {
+		List<CommunityView> list = new ArrayList<>();
+
 		String url = DBContext.URL;
-		String sql = "select * from (select rownum num,n.* \r\n" + 
-				"from (select * from community_view where "+field+" like ? order by regdate desc) n)\r\n" + 
-				"where num between ? and ?";
+		String sql = "select  * from (select rownum num,n.* \r\n" + "from (select * from community_view where " + field
+				+ " like ? and  name = ? order by regdate desc) n)\r\n" + "where num between ? and ?";
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);
 			PreparedStatement st = con.prepareStatement(sql);
-			//st.setS
-			st.setString(1, "%"+query+"%");
-			st.setInt(2, 1+(page-1)*5);
-			st.setInt(3, page*5);
+			// st.setS
+			st.setString(1, "%" + query + "%");
+			st.setString(2, category);
+			st.setInt(3, 1 + (page - 1) * 5);
+			st.setInt(4, page * 5);
 			ResultSet rs = st.executeQuery();
-
+			System.out.println(category);
 			while (rs.next()) {
-
+				int num = rs.getInt("num");
 				int id = rs.getInt("id");
 				String title = rs.getString("title");
 				int recommendCnt = rs.getInt("recommend_cnt");
@@ -240,9 +248,16 @@ public class JdbcCommunityDao implements CommunityDao {
 				int commentCnt = rs.getInt("comment_cnt");
 				String memberName = rs.getString("member_name");
 				int categoryId = rs.getInt("category_id");
-				
-				CommunityView n = new CommunityView(id, title, recommendCnt, hitCnt, regDate,commentCnt,memberName,categoryId);
-				System.out.println(n);
+				category = rs.getString("name");
+
+				String memberNick = rs.getString("member_nick");
+//				String noticeContent = rs.getString("notice_content");
+//				String noticeTitle = rs.getString("notice_title");
+//				Date noticeDate = rs.getDate("notice_regdate");
+
+				CommunityView n = new CommunityView(id, title, recommendCnt, hitCnt, regDate, commentCnt, memberName,
+						categoryId, memberNick, category,num);
+				System.out.println(category);
 				list.add(n);
 
 			}
@@ -260,30 +275,29 @@ public class JdbcCommunityDao implements CommunityDao {
 		}
 
 		return list;
-		
-	
+
 	}
-	
-	
-	public int getCommunityCount(String field, String query) {
+
+	public int getCommunityCount(String field, String query, String category) {
 
 		int count = 0;
-		
+
 		String url = DBContext.URL;
-		String sql = "select count(id) count from (select rownum num,n.* \r\n" + 
-				"from (select * from community_view where "+field+" like ? order by regdate desc) n)\r\n";
+		String sql = "select count(id) count from (select rownum num,n.* \r\n"
+				+ "from (select * from community_view where " + field
+				+ " like ? and name = ? order by regdate desc) n)\r\n";
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);
 			PreparedStatement st = con.prepareStatement(sql);
-			//st.setS
-			st.setString(1, "%"+query+"%");
+			// st.setS
+			st.setString(1, "%" + query + "%");
+			st.setString(2, category);
 			ResultSet rs = st.executeQuery();
-			
-			if(rs.next())
-			count = rs.getInt("count");
 
-		
+			if (rs.next())
+				count = rs.getInt("count");
+
 			rs.close();
 			st.close();
 			con.close();
@@ -298,28 +312,24 @@ public class JdbcCommunityDao implements CommunityDao {
 
 		return count;
 	}
-	
+
 	public Community getNextNotice(int id) {
 		Community n = null;
 
 		String url = DBContext.URL;
-		String sql = "select * from community_view\r\n" + 
-				"		where id = (\r\n" + 
-				"		select id from community\r\n" + 
-				"		where regdate > (select regdate from community where id = ?)\r\n" + 
-				"		and rownum = 1\r\n" + 
-				"		)";
-		
+		String sql = "select * from community_view\r\n" + "		where id = (\r\n"
+				+ "		select id from community\r\n"
+				+ "		where regdate > (select regdate from community where id = ?)\r\n" + "		and rownum = 1\r\n"
+				+ "		)";
+
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);
 			PreparedStatement st = con.prepareStatement(sql);
-			st.setInt(1,id);
-			
+			st.setInt(1, id);
+
 			ResultSet rs = st.executeQuery();
 
-			
-			
 			if (rs.next()) {
 
 				id = rs.getInt("id");
@@ -348,27 +358,24 @@ public class JdbcCommunityDao implements CommunityDao {
 		}
 		System.out.println(n);
 		return n;
-		
-		
+
 	}
-	
+
 	public Community getPrevNotice(int id) {
 		Community n = null;
 
 		String url = DBContext.URL;
-		
-		String sql = "select id from (select * from community_view order by regdate desc)\r\n" + 
-				"where regdate < (select regdate from community where id = ?)\r\n" + 
-				"and rownum = 1";
+
+		String sql = "select id from (select * from community_view order by regdate desc)\r\n"
+				+ "where regdate < (select regdate from community where id = ?)\r\n" + "and rownum = 1";
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);
 			PreparedStatement st = con.prepareStatement(sql);
-			st.setInt(1,id);
-			
+			st.setInt(1, id);
+
 			ResultSet rs = st.executeQuery();
 
-			
 			if (rs.next()) {
 
 				id = rs.getInt("id");
@@ -397,16 +404,17 @@ public class JdbcCommunityDao implements CommunityDao {
 		}
 		System.out.println(n);
 		return n;
-		
+
 	}
 
 	@Override
 	public List<CommunityView> getViewList(int page) {
-		
+
 		String field = "";
 		String query = "";
-		return getViewList(field,query,page);
-		//return null;
+		String category = "전체게시판";
+		return getViewList(field, query, page, category);
+		// return null;
 	}
 
 	@Override
@@ -421,6 +429,47 @@ public class JdbcCommunityDao implements CommunityDao {
 		return 0;
 	}
 
+	@Override
+	public List<CommunityView> getViewList(String field, String query, int page) {
+
+		String category = "전체게시판";
+		return getViewList(field, query, page, category);
+	}
+
+	@Override
+	public int updateCnt(int community_id, int addCnt) {
+		int result = 0;
+		String url = DBContext.URL;
+		String sql = "update community set hit_cnt = hit_cnt+" + addCnt + "  WHERE id = ?";
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);
+			PreparedStatement st = con.prepareStatement(sql);
+
+			st.setInt(1, community_id);
+
+			result = st.executeUpdate();
+
+			st.close();
+			con.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(result);
+		return result;
+	}
+
+//	@Override
+//	public int getCommunityCount(String field, String query, String category) {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
 
 //	@Override
 //	public int getLast() {

@@ -71,11 +71,7 @@ input:focus {
   border-top: #c5bcf0 solid 3px;
 }
 
-.input-reply {
-  border: 1px solid #b4b4b4;
-  width: 700px;
-  height: 70px;
-}
+
 
 
 
@@ -187,7 +183,6 @@ input:focus {
 /* --------------------------------------------------------- */
 .body {
   margin: auto;
-  --background: url("../../images/common/background.png") no-repeat;
   --background: url("../../images/common/bg.svg") no-repeat;
   --background-size:cover;
   min-height: 900px;
@@ -350,6 +345,7 @@ display:inline-block;
 }
 
 
+
 .pager {
 	width: 200px;
 	display: flex;
@@ -375,7 +371,6 @@ display:inline-block;
 		}
 
 
-/* 여기에 언니가 만든  test css넣으세용~ */
 /* ------------------------------------------- */
 .footer {
   margin-top: 50px;
@@ -392,4 +387,9 @@ display:inline-block;
   padding-top: 15px;
   color: #fff;
   font-size: 13px;
+}
+.footer address {
+	padding-top: 15px;
+	color: #fff;
+	font-size: 13px;
 }

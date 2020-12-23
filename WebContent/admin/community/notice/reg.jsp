@@ -81,7 +81,7 @@
 
 						<div class="notice-reg-box">
 							<input class="button" type="submit" value="등록">
-							 <a class="button-black" type="button"  href="list"> 취소</a>
+							 <a class="a-input-black-big" type="button"  href="list"> 취소</a>
 						</div>
 
 					</form>
