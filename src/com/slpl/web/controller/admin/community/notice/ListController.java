@@ -23,30 +23,30 @@ public class ListController extends HttpServlet{
 		String page_ = request.getParameter("p");
 		
 		
-		int[] ids = null;
-		if(checkCategory == null) {
-			ids = null;
-			
-		}
+//		int[] ids = null;
+//		if(checkCategory == null) {
+//			ids = null;
+//			
+//		}
 		
 		System.out.println(checkCategory[1]);
 		
 		int page = 1;
 		if(page_ != null && !page_.equals("")) {
-			page = Integer.parseInt(page_) ;
+			page = Integer.parseInt(page_);
 		}
 		
 		
-		  if(checkCategory != null) {
-			  ids = new int[checkCategory.length];
-		         for(int i=0 ; i<ids.length ; i++) {
-		            ids[i] = Integer.parseInt(checkCategory[i]);
-		            
-		            System.out.println(ids[i]);
-		         }
-		        
-		      }  
-		  	 List<CommunityNoticeView> list= service.getViewList(page,ids);
+//		  if(checkCategory != null) {
+//			  ids = new int[checkCategory.length];
+//		         for(int i=0 ; i<ids.length ; i++) {
+//		            ids[i] = Integer.parseInt(checkCategory[i]);
+//		            
+//		            System.out.println(ids[i]);
+//		         }
+//		        
+//		      }  
+		  	 List<CommunityNoticeView> list= service.getViewList(page);
 	         request.setAttribute("list", list);
 		  
 				/*

@@ -65,8 +65,8 @@
 </head>
 
 <body>
-	<%@include file="../../common/header.jsp"%>
-
+	
+<jsp:include page="../../common/header.jsp"/>
 
 	<section id="body" class="body">
 
@@ -74,7 +74,7 @@
 
 		<div class="container">
 			<main id="main" class="main">
-				 <%@include file="../../common/nav.jsp"%>
+			<jsp:include page="../../common/nav.jsp"/>
 			
 
 				<section class="list content">
@@ -205,4 +205,4 @@
 		</div>
 	</section>
 	<!--//content -->
-	<%@include file="../../common/footer.jsp"%>
+	<jsp:include page="../../common/footer.jsp"/>
