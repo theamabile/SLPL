@@ -8,12 +8,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.slpl.web.dao.member.MemberDao;
 import com.slpl.web.entity.member.Member;
 import com.slpl.web.entity.member.MemberView;
+
+import oracle.jdbc.OraclePreparedStatement;
 
 public class JdbcMemberDao implements MemberDao {
 
@@ -24,26 +27,36 @@ public class JdbcMemberDao implements MemberDao {
 		String sql = "insert into member(id, login_id, pw, name, nickname, gender,"
 				+ " birthday, phone_number, email, profile_img, category_id)" + 
 				"values(member_id_seq.NEXTVAL, ?, ?, ?, ?, ?,"
-				+ " ?, ?, ?, ?, ?)";
+				+ " ?, ?, ?, ?, ?) RETURNING ID INTO ?";
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);		
-			PreparedStatement pst = con.prepareStatement(sql);
+//			PreparedStatement pst = con.prepareStatement(sql);
+//			result = pst.executeUpdate();
+			OraclePreparedStatement st = (OraclePreparedStatement) con.prepareStatement(sql);
+			 
+			st.setString(1, member.getLoginId());
+			st.setString(2, member.getPw());
+			st.setString(3, member.getName());
+			st.setString(4, member.getNickname());
+			st.setString(5, member.getGender());
+			st.setDate(6,  member.getBirthday());
+			st.setString(7, member.getPhoneNumber());
+			st.setString(8, member.getEmail());
+			st.setString(9, member.getProfileImg());
+			st.setInt(10, member.getCategoryId());
+			st.registerReturnParameter(11, Types.INTEGER);
 			
-			pst.setString(1, member.getLoginId());
-			pst.setString(2, member.getPw());
-			pst.setString(3, member.getName());
-			pst.setString(4, member.getNickname());
-			pst.setString(5, member.getGender());
-			pst.setDate(6,  member.getBirthday());
-			pst.setString(7, member.getPhoneNumber());
-			pst.setString(8, member.getEmail());
-			pst.setString(9, member.getProfileImg());
-			pst.setInt(10, member.getCategoryId());
+			st.execute();  // 실행
 			
-			result = pst.executeUpdate();
-		
-			pst.close();
+	        ResultSet rs = st.getReturnResultSet(); // 결과 값 받아오긴
+	        rs.next();
+	        result = rs.getInt(1);
+	        System.out.println("result : " + result);
+
+	         
+	        rs.close();
+			st.close();
 			con.close();
 			
 		} catch (SQLException e) {

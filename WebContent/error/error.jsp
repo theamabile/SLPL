@@ -5,8 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<link rel="stylesheet" href="../assets/css/common/style.css" type="text/css">
+
 </head>
 <body>
-  ${params.errorNo} 오류가 발생하였습니다
+  <h1>${params.errorNo} 오류가 발생하였습니다</h1>
 </body>
 </html>
