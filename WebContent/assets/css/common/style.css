@@ -305,7 +305,7 @@ display:inline-block;
 }
 
 
-/* 여기에 언니가 만든  test css넣으세용~ */
+
 /* ------------------------------------------- */
 .footer {
   margin-top: 50px;
@@ -322,4 +322,9 @@ display:inline-block;
   padding-top: 15px;
   color: #fff;
   font-size: 13px;
+}
+.footer address {
+	padding-top: 15px;
+	color: #fff;
+	font-size: 13px;
 }
