@@ -29,7 +29,6 @@ public class ListController extends HttpServlet{
 //			
 //		}
 		
-		System.out.println(checkCategory[1]);
 		
 		int page = 1;
 		if(page_ != null && !page_.equals("")) {
@@ -46,8 +45,7 @@ public class ListController extends HttpServlet{
 //		         }
 //		        
 //		      }  
-		  	 List<CommunityNoticeView> list= service.getViewList(page);
-	         request.setAttribute("list", list);
+		  	 
 		  
 				/*
 				 * if(checkIds != null) { int[] ids = new int[checkIds.length]; for(int i=0 ;
@@ -72,7 +70,8 @@ public class ListController extends HttpServlet{
 		//List<CommunityNoticeView> list= service.getViewList(page,ids);    
 		//List<CommunityNoticeView> list= service.getViewList(ids,);
 //		List<CommunityNoticeView> list= service.getViewList(category, startindx, endindx);
-		
+		List<CommunityNoticeView> list= service.getViewList(page);
+        request.setAttribute("list", list);
 		request.setAttribute("count", count);
 		request.getRequestDispatcher("/admin/community/notice/list.jsp").forward(request, response);
 	}
