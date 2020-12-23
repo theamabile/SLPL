@@ -1,5 +1,5 @@
 @font-face{
-	src: url("/font/IBMPlexSansKR-Regular.ttf");
+	src: url("../../font/IBMPlexSansKR-Regular.ttf");
 	font-family: "IBM Plex Sans KR";
 }
 
@@ -9,6 +9,11 @@
 
 .hidden {
   display: none;
+}
+
+body {
+	background: url("../../images/common/bg.svg") no-repeat;
+	background-size: cover;
 }
 
 .container {
@@ -95,22 +100,50 @@ input:focus {
   flex: 0 1 auto;
   background: #fafafa;
   height: 45px;
-  display: flex;
-  justify-content: flex-end; /*    */
-  align-items: center; /*媛  대       */
 }
 
-.top_header>div {
+.top-header-container {
+	width: 1180px;
+	height: 100%;
+	margin: 0px auto;
+  	background: #fafafa;
+  	display: flex;
+  	justify-content: flex-end; /*    */
+  	align-items: center; /*媛  대       */
+}
+
+.top-header-container>span {
   padding-right: 2%;
   font-size: 11px;
 }
+
+.top-header-container>span:hover {
+  color: #6455af;
+  font-weight: bold;
+}
+	.top-header-container .profile-img {
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;    /* 동그랗게 효과 주기 */
+	}       
+		.top-header-container .loginName-box {
+        	font-size: 11px;
+        	margin-right: 10px;
+        }
+        	.top-header-container .loginName-box .loginName {
+	        	font-weight: bold;
+	        }
+	        
+
+
+
 
 /* ---------------------------------------------------- */
 .main_header {
   flex: 0 1 auto;
   background: #ffffff;
   height: 75px;
-  box-shadow: 0px 5px 10px 0px rgba(100, 100, 100, 0.75);
+  box-shadow: 0px 5px 10px 0px rgba(200, 200, 200, 0.75);
 }
 
 .main_nav>a>img {
@@ -118,6 +151,8 @@ input:focus {
 }
 
 .main_header>ul {
+  width:1180px;
+  margin: 0px auto;
   display: flex;
   flex: 0 1 auto;
   align-items: center; /*媛  대       */
@@ -153,8 +188,9 @@ input:focus {
 .body {
   margin: auto;
   --background: url("../../images/common/background.png") no-repeat;
-  background: url("../../images/common/bg.svg") no-repeat;
-  background-size:cover;
+  --background: url("../../images/common/bg.svg") no-repeat;
+  --background-size:cover;
+  min-height: 900px;
 }
 
 .main {
@@ -220,13 +256,24 @@ display:inline-block;
   
 }
 
-.body-nav .my-info .my-info-img{
-  display:inline-block;
-  width: 70px;
-  height: 70px;
-  border-radius: 40px;
-  float: left;
+.body-nav .my-info .info-profile{
+	position: relative;
+	display: flex;
+	--justify-content: space-around;
 }
+	.body-nav .my-info .info-profile .profile-img {
+		display:inline-block;
+	  	--float: left;
+	    width: 70px;
+	    height: 70px;
+	    border-radius: 50%;    /* 동그랗게 효과 주기 */
+	    margin-right: 10px;
+	}
+	.body-nav .my-info .info-profile .my-info-texts {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+	}
 
 .body-nav .body-menu>li {
   width: 200px;
@@ -242,22 +289,17 @@ display:inline-block;
   display: block;
 }
 
-.info-profile{
-	position: relative;
-}
-
-
 .body-nav .body-menu>li>a {
   text-decoration: none;
 }
 
 .body-nav .my-info-nick span {
-	margin:10px;
+	--margin:10px;
 	font-size: 17px;
 }
 
 .body-nav .my-info-part span{
-	margin:10px;
+	--margin:10px;
 	font-size: 13px;
 	color: gray;
 }
@@ -295,8 +337,8 @@ display:inline-block;
   flex: 0 1 auto;
   padding-top: 10%;
   padding-left: 50px;
-   width: 850px;
-  
+  width: 850px;
+  background: #ffffff60;
 }
 
 
@@ -306,6 +348,31 @@ display:inline-block;
   min-height: 600px;
   
 }
+
+
+.pager {
+	width: 200px;
+	display: flex;
+	flex-basis: 180px;
+	justify-content: space-around;
+	margin: 10px auto auto auto;
+}
+	.pager .pageList {
+		flex-grow: 1;
+		display: flex;
+		justify-content: space-around;
+		margin: 0px 10px 0px 10px;
+	}
+	
+	.pager > input[type="button"] {
+		background: none;
+		outline: none;
+		border: none;
+	}
+		.pager > input[type="button"]:hover {
+			color: #6455af;
+			font-weight: bold;
+		}
 
 
 /* 여기에 언니가 만든  test css넣으세용~ */

@@ -1,5 +1,4 @@
 
-
 h4 {
    color: #6455af;
    font-family: bold;
@@ -53,12 +52,34 @@ h4 {
         flex-basis: 120px;
         margin-right: 5px;
     }
-    .input-btn-box > input[type="text"] {
+    .input-btn-box > input[type="text"],
+    .input-btn-box > *  {
         flex-grow: 1;
         margin-right: 5px;
     }
 	    
-	    
+
+.nickname-box,
+.id-box {
+	display: flex;
+	flex-direction: column;
+}
+	.nickname-box *,
+	.id-box * {
+		margin-top: 0px;
+	}
+
+.infotext-none {
+	width: 100%;
+	font-size: 10px;
+	color: green;	
+}
+
+.infotext-warning {
+	width: 100%;
+	font-size: 10px;
+	color: red;	
+}	    
 
 input[type="text"],
 input[type="password"],

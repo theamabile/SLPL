@@ -13,7 +13,7 @@ public interface MemberDao {
 	int delete(int id);
 
 	Member get(int id);
-	Member get(String loginId, String pw);
+	Member get(String loginId);
 	List<Member> getList();
 	List<Member> getList(String field, String query);
 	

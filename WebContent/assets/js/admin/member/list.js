@@ -37,7 +37,7 @@ window.addEventListener("load", function() {
     messageBtn.onclick = function() {
 		//http://localhost:8080/admin/member/message?checkMember=1&checkMember=3
 		
-		var hrefURL = "messageSend?sendAllMember=n&";     	
+		var hrefURL = "message/send?sendAllMember=n&";     	
 		// get방식으로 name에 따른 값을 url로 만들것이므로, class 말고 name을 사용
 		var checks = document.getElementsByName("checkMember");
 		var checkedCount = 0;
@@ -64,7 +64,7 @@ window.addEventListener("load", function() {
 	var messageAllBtn = container.querySelector(".messageAllBtn");
 	
     messageAllBtn.onclick = function() {
-		var hrefURL = "messageSend?sendAllMember=y";     	
+		var hrefURL = "message/send?sendAllMember=y";     	
 		location.href = hrefURL;
     }
 });
@@ -91,12 +91,11 @@ window.addEventListener("load", function() {
 	
 	pageList.addEventListener("click", function(e){
 		e.preventDefault();
-		var page = parseInt(e.target.innerText);    //숫자 연산 때문에 parseInt해줘야함
-		
 		if(e.target.tagName != "A") {    // 눌린애가 a태그가 아니면 리턴
 			return;
 		}
 		
+		var page = parseInt(e.target.innerText);    //숫자 연산 때문에 parseInt해줘야함
 		var current = pager.querySelector(".current-page");	
 		var currentPage = parseInt(current.innerText);    //현재 페이지 정보를 받아옴
 		if(currentPage == page) {
@@ -113,11 +112,7 @@ window.addEventListener("load", function() {
 		if(page == undefined) {
 			page = 1;
 		}
-		console.log("prevScope - before:"+page);
 		page = page - pageScopeCount;
-		/*if(page < 0) {
-			alert('이동 할 페이지가 없습니다.');
-		}*/
 		load(page);
     }
 
@@ -129,7 +124,6 @@ window.addEventListener("load", function() {
 			page = 1;
 		}
 		page = page + pageScopeCount;
-		console.log("nextScope :"+page);
 		load(page);
     }
 	
@@ -141,9 +135,7 @@ window.addEventListener("load", function() {
 		
 		var request = new XMLHttpRequest();
         request.onload = function() {
-			//console.log(request.responseText);
 			var results = JSON.parse(request.responseText);
-			
 			var header = results.header;
 			var list = results.list;
 			var allCount = header.allCount;   		   
@@ -155,9 +147,7 @@ window.addEventListener("load", function() {
 				isSearched = true;
 				queryInput.value = query;   // 검색이면 검색어 넣어주기
 			}
-			//console.log("list.length : "+list.length);
-			//console.log("query: "+query);
-			
+
 			if(list.length <= 0) {   // nextScope 버튼 눌렀을때  예외처리
 				alert('이동 할 페이지가 없습니다.');
 				return;
@@ -167,7 +157,6 @@ window.addEventListener("load", function() {
 			tbody.innerHTML = "";
 			pageList.innerHTML = "";
 			
-			/*console.log("allCount : "+allCount);*/
 			if(allCount <= 0) {
 				var textInfo = '<td colspan="9">항목이 존재하지 않습니다.</tr>';
 				if(isSearched == true) {
@@ -179,18 +168,14 @@ window.addEventListener("load", function() {
 				pageList.insertAdjacentHTML('beforeend', pageNum);  //태그에 끼워넣기*/
 				
 			} else {
-				
 				var pageCount = 1 + Math.floor((allCount-1)/pageItemCount);             // 띄울 수 있는 전체 페이지 갯수
 				var startPage = 1 + pageScopeCount * Math.floor((page-1)/pageScopeCount);   // 페이지 범위
 				var endPage = startPage + (pageScopeCount-1);
-				
-				//console.log("pageScopeCount : "+pageScopeCount+" / Math.floor(page/pageScopeCount) : "+Math.floor(page/pageScopeCount) );
 				
 				if(endPage > pageCount) {
 					endPage = pageCount;
 				}
 			
-				/*console.log("pageCount : "+pageCount+" / startPage : "+startPage+" / endPage : "+endPage);*/
 				// 페이지 scope
 				for(var i=startPage ; i<=endPage ; i++) {
 					var pageNum = '<li><a>'+i+'</a></li>';
@@ -213,7 +198,7 @@ window.addEventListener("load", function() {
 	                            <td>'+m.categoryName+'</td>\
 	                            <td>'+m.email+'</td>\
 	                            <td>'+m.regdate+'</td>\
-	                        </tr>'
+	                        </tr>';
 					
 					tbody.insertAdjacentHTML('beforeend', tr);  //태그에 끼워넣기*/
 				}
@@ -252,86 +237,36 @@ window.addEventListener("load", function() {
 });
 
 
-// 페이지 전환
-/*window.addEventListener("load", function() {
-    var container = document.querySelector(".container-item");
-
-	var prevBtn = container.querySelector(".prevBtn");
-	var nextBtn = container.querySelector(".nextBtn");
-	var fieldInput = container.querySelector(".field");
-	var queryInput = container.querySelector(".query");
-	
-	
-	var currentPageInput = container.querySelector(".currentPage");
-	var allPageCountInput = container.querySelector(".allPageCount");
-	var currentPage = parseInt(currentPageInput.value);
-	var allPageCount = parseInt(allPageCountInput.value);
-	
-	
-	var prevScopeBtn = container.querySelector(".prevScopeBtn");
-	var nextScopeBtn = container.querySelector(".nextScopeBtn");
-	
-	var startPageInput = container.querySelector(".startPage");
-	var endPageInput = container.querySelector(".endPage");
-	var startPage = parseInt(startPageInput.value);
-	var endPage = parseInt(endPageInput.value);
-	
-	var url = "";
-	//검색어가 있으면 같이 넘겨주기
-	console.log("fieldInput.value : "+fieldInput.value);
-	if(fieldInput.value != "" && queryInput.value != "") {
-		url = "list?field="+fieldInput.value+"&query="+queryInput.value+"&page=";
-	} else {
-		url = "list?page=";
-	}
-	
-    prevBtn.onclick = function() {
-		if(currentPage > 1) {
-			var prevPage = currentPage - 1;
-			location.href = url + prevPage;
-		} else {
-			alert('이전 페이지가 없습니다');
-		}
-    }
-
-	nextBtn.onclick = function() {		
-		if(currentPage < allPageCount) {
-			var nextPage = currentPage + 1;
-			location.href = url + nextPage;
-		} else {
-			alert('다음 페이지가 없습니다');
-		}
-    }
-
- 	prevScopeBtn.onclick = function() {
-		if(startPage > 1) {
-			location.href = url + (startPage-1);
-		}  else {
-			alert('이동 할 페이지가 없습니다.');
-		}
-		
-    }
-
-	nextScopeBtn.onclick = function() {	
-		if(endPage < allPageCount) {
-			location.href = url + (endPage+1);
-		} else {
-			alert('이동 할 페이지가 없습니다.');
-		}
-		
-    }
-	
-
-});*/
-
-
-
-
-
-
-
 // 리스트 row 클릭
 function clickTableRow(url, id) {
 	location.href = url+id;
 }
 
+
+
+
+
+
+
+
+
+
+/*					var m = list[i];
+					var tr = document.createElement("tr");
+
+					tr.classList.add  = "addTableRow";   // 미리 만들어놓은 애니메이션 추가
+					
+					
+					var tds = '<td><input type="checkbox" class="checkMember" name="checkMember" value="${m.id}"></td>\
+	                            <td>'+m.id+'</td>\
+	                            <td><a href="detail?id=${m.id}">'+m.loginId+'</a></td>\
+	                            <td>'+m.name+'</td>\
+	                            <td>'+m.nickname+'</td>\
+	                            <td>'+m.authority+'</td>\
+	                            <td>'+m.categoryName+'</td>\
+	                            <td>'+m.email+'</td>\
+	                            <td>'+m.regdate+'</td>'
+					
+					tbody.append(tr);   // tr 추가
+					tr.insertAdjacentHTML('beforeend', tds);  //태그에 끼워넣기
+					*/

@@ -171,22 +171,22 @@ public class JdbcMemberDao implements MemberDao {
 	}
 
 	@Override
-	public Member get(String loginId, String pw) {
+	public Member get(String loginId) {
 		Member m = null;	
 		
 		String url = DBContext.URL;
-		String sql = "select * from member where loginId=? and pw=?";
+		String sql = "select * from member where login_id=?";
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);		
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, loginId);
-			pst.setString(2, pw);
 			
 			ResultSet rs = pst.executeQuery();
 			
 			if(rs.next()) {
 				int id = rs.getInt("id");
+				String pw = rs.getString("pw");
 				String name = rs.getString("name");
 				String nickname = rs.getString("nickname");
 				String gender = rs.getString("gender");

@@ -94,7 +94,6 @@
 	                        
 	                        <div class="pager">
 	                        	<input type="button" value="이전" class="prevScopeBtn"/>
-
 		                        <ul class="pageList">
 		                        	<c:forEach varStatus="i" begin="${startPage}" end="${endPage}">
 		                        		  <c:choose>
@@ -109,9 +108,7 @@
 									      </c:choose>
 		                        	</c:forEach>
 		                        </ul>
-		                        
 		                        <input type="button" value="다음" class="nextScopeBtn" />
-		                        
                         	</div>
                         	
 	                    </section>

@@ -23,6 +23,7 @@ import javax.servlet.http.Part;
 import com.slpl.web.entity.community.CommunityCategory;
 import com.slpl.web.entity.member.Admin;
 import com.slpl.web.entity.member.Member;
+import com.slpl.web.service.community.CommunityCategoryService;
 import com.slpl.web.service.member.AdminService;
 import com.slpl.web.service.member.MemberService;
 
@@ -35,25 +36,19 @@ public class AddController extends HttpServlet {
 
 	MemberService service;
 	AdminService adminService;
+	CommunityCategoryService categoryService;
 	
 	public AddController() {
 		service = new MemberService();
 		adminService = new AdminService();
+		categoryService = new CommunityCategoryService();
 	}
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		// 혜영이쪽 구현 다 되면 여기서 호출
-		List<CommunityCategory> categorys = new ArrayList<CommunityCategory>();
-		categorys.add(new CommunityCategory(1, "민슈찍", 6));
-		categorys.add(new CommunityCategory(2, "반민슈찍",3));
-		categorys.add(new CommunityCategory(3, "민팥찍", 1));
-		categorys.add(new CommunityCategory(4, "반민팥찍", 4));
-		categorys.add(new CommunityCategory(5, "민슈부",5));
-		categorys.add(new CommunityCategory(6, "반민슈부",1));
-		categorys.add(new CommunityCategory(7, "민팥부",4));
-		categorys.add(new CommunityCategory(8, "반민팥부",3));
+		List<CommunityCategory> categorys = categoryService.getList();
 		
 		request.setAttribute("categorys", categorys);
 		request.getRequestDispatcher("add.jsp").forward(request, response);
@@ -133,7 +128,7 @@ public class AddController extends HttpServlet {
 			fis.close();
 		}
 
-		Member member = new Member(loginId, pw, name, nickname, authority, gender,
+		Member member = new Member(loginId, pw, name, nickname, gender,
 				birthday, phoneNumber, email, profileImgName, categoryId);
 		int result = service.insert(member);
 		

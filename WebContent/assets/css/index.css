@@ -1,3 +1,11 @@
+@font-face{
+	src: url("../font/IBMPlexSansKR-Regular.ttf");
+	font-family: "IBM Plex Sans KR";
+}
+
+* {
+  font-family: "IBM Plex Sans KR";
+}
 
 html,
 body {

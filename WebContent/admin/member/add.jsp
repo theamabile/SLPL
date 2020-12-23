@@ -10,7 +10,7 @@
 <link href="../../assets/css/admin/style.css" type="text/css" rel="stylesheet">
 <link href="../../assets/css/admin/member.css" type="text/css" rel="stylesheet">
 
-<script src="../../assets/js/admin/member/detail.js"></script>
+<script src="../../assets/js/admin/member/add.js"></script>
 </head>
 <body>
 <!------------------------------------------- 헤더 -------------------------------------------------->
@@ -30,44 +30,38 @@
                 <div class="detail-container">  <!-- container-item클래스로 제작된걸 사이징만 해주기 위해 감쌌음 -->
                     <section class="container-item">     
                         <h1> 회원 추가 </h1> 
-                        <form action="/admin/member/add" name="member" method="post" enctype="multipart/form-data">
+                        <form action="/admin/member/add" method="post" class="input-form" enctype="multipart/form-data">
                             <div class="form-group">
                                 
                                 <div class="id-box">
 	                                <label>아이디</label>
-	                                <div class="input-btn-box">
-	                                    <input type="text" name="loginId" class="input-wf loginId" placeholder="아이디" required>
-	                                    <input type="button" class="gray-button-m loginIdBtn" value="중복확인"> <p>
-	                                </div>
+	                                <input type="text" name="loginId" class="input-wf loginId" placeholder="아이디" required/>
 	                                <span class="infoText"></span>
                                		<input type="hidden" class="loginIdConfirm" value="n">
                                 </div>
                                 
 								<label>비밀번호</label>
-                                <input type="password" name="pw" class="input-wf" placeholder="비밀번호" required>
+                                <input type="password" name="pw" class="input-wf" placeholder="비밀번호" required="required"/>
                                 
 								<label>이름</label>
-                                <input type="text" name="name" class="input-wf" placeholder="이름" autofocus required>
+                                <input type="text" name="name" class="input-wf" placeholder="이름" autofocus required/>
                  
                                 <div class="nickname-box">
                                 	<label>닉네임</label>    
-                                	<div class="input-btn-box">
-                                    	<input type="text" name="nickname" class="input-wf nickname" placeholder="닉네임" required>
-                                    	<input type="button" class="gray-button-m nicknameBtn" value="중복확인"> <p>
-                               		</div>
-                               		<span class="infoText"></span>
-                               		<input type="hidden" class="nicknameConfirm" value="n">
+                                    <input type="text" name="nickname" class="input-wf nickname" placeholder="닉네임" required/>
+                                    <span class="infoText"></span>
+                               		<input type="hidden" class="nicknameConfirm" value="n"/>
                                 </div>
                                 
                             </div>
                             
                             <div class="form-group">
                                 <label>휴대전화</label>
-                                <input type="number" name="phoneNumber" value="01033337777" class="input-wf" pattern="01[016789]\d{3,4}\d{4}" placeholder="01088886666" required>
+                                <input type="number" name="phoneNumber" value="01033337777" class="input-wf" pattern="01[016789]\d{3,4}\d{4}" placeholder="01088886666" required/>
                          
                                 <label>이메일</label>
                                 <div class="email-box">
-                                    <input type="text" name="emailId" value="test123334" placeholder="이메일" list="emailAddress">
+                                    <input type="text" name="emailId" value="test123334" placeholder="이메일" list="emailAddress"/>
                                     @ 
                                     <select name="emailAddress">
                                         <option value="naver.com">naver.com</option>
@@ -82,20 +76,20 @@
                                 
                                 <label>생년월일</label>
                                 <div class="birth-box">
-                                    <input type="number" name="year" list="year" placeholder="1997"> 
+                                    <input type="number" name="year" list="year" placeholder="1997"/> 
                                         <datalist id="year">
 	                                        <c:forEach var="year" begin="1900" end="2020">
 	                                        	<option value="${year}">${year}</option>
 	                                        </c:forEach>
                                         </datalist>
-                                    <input type="number" name="month" list="month" pattern="[1-12]" placeholder="6">
+                                    <input type="number" name="month" list="month" pattern="[1-12]" placeholder="6"/>
                                         <datalist id="month">
                                             <c:forEach var="month" begin="1" end="12">
 	                                        	<option value="${month}">${month}</option>
 	                                        </c:forEach>
                                         </datalist>
                     
-                                    <input type="number" name="day" list="day" placeholder="18"> 
+                                    <input type="number" name="day" list="day" placeholder="18"/> 
                                         <datalist id="day">
                                             <c:forEach var="day" begin="1" end="31">
 	                                        	<option value="${day}">${day}</option>
@@ -144,7 +138,7 @@
                             </div>
                             
                             <div class="button-area">
-                                <input type="submit" value="추가" class="puple-button-wf submit-button"> 
+                                <input type="submit" value="추가" class="puple-button-wf submit-button"/> 
                             </div>
                             
                         </form>

@@ -23,6 +23,12 @@ public class ListController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 로그인 되어 있는지 확인
+//		Member loginMember = (Member) request.getSession().getAttribute("login");
+//		if(loginMember == null) {
+//			request.getRequestDispatcher("login.jsp").forward(request, response);
+//			return;
+//		}
 		
 		MemberService service = new MemberService();
 

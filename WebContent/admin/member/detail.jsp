@@ -34,7 +34,7 @@
                 <div class="detail-container">  <!-- container-item클래스로 제작된걸 사이징만 해주기 위해 감쌌음 -->
                     <section class="container-item">     
                         <h1> 회원 정보 수정 </h1> 
-                        <form method="post" enctype="multipart/form-data">
+                        <form method="post" enctype="multipart/form-data" class="input-form">
                             <div class="form-group">
                             
                             	<label>아이디</label>
@@ -46,10 +46,11 @@
                                 <label>이름</label>
                                 <input type="text" name="name" class="input-wf name-input" value="${member.name}" placeholder="이름" autofocus required>
                                 
-                                <label>닉네임</label>     
-                                <div class="input-btn-box nicknameBox">
-                                    <input type="text" name="nickname" class="nickname" value="${member.nickname}"  placeholder="닉네임" required>
-                                    <input type="button" name="nickname_confirm" class="gray-button-m nicknameBtn" value="중복확인"> <p>
+                                <div class="nickname-box">
+                                	<label>닉네임</label>    
+                                    <input type="text" name="nickname" class="input-wf nickname" value="${member.nickname}" placeholder="닉네임" required/>
+                                    <span class="infoText"></span>
+                               		<input type="hidden" class="nicknameConfirm" value="n"/>
                                 </div>
                                 
                             </div>

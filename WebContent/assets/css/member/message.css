@@ -53,11 +53,11 @@
     .tools .filter {
         flex: 1 0 300px;
     }
-        .filter .category {
+        .filter .field {
             width: 100px;
         }
 
-        .filter .search-keyword {
+        .filter .query {
             width: 200px;
         }
        

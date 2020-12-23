@@ -28,10 +28,40 @@ public class MessageSendService {
 		return sendDao.getList();
 	}
 
+	
+	// ============================================== View ========================================================
+	
 	public MessageSendView getView(int id) {
 		// TODO Auto-generated method stub
 		return sendDao.getView(id);
 	}
+	
+	// 모든 메세지 목록  - 페이징 X | 검색 X
+	public List<MessageSendView> getViewList() {
+		return sendDao.getViewList();
+	}
+
+	// 모든 메세지 목록 - 페이징 X | 검색 O
+	public List<MessageSendView> getViewList(String field, String query) {
+		int maxSize = sendDao.getViewList().size();
+		return sendDao.getViewList(1, maxSize, field, query);	
+	}
+	
+	// 모든 메세지 목록 - 페이징 O | 검색 X 
+	public List<MessageSendView> getViewList(int page, int size) {
+		int startIndex = 1 + (page-1)*size;
+		int endIndex = page*size;
+		return sendDao.getViewList(startIndex, endIndex, null, null);
+	}
+
+	// 모든 메세지 목록 + 페이징 O | 검색 O
+	public List<MessageSendView> getViewList(int page, int size, String field, String query) {
+		int startIndex = 1 + (page-1)*size;
+		int endIndex = page*size;
+		return sendDao.getViewList(startIndex, endIndex, field, query);	
+	}
+	
+	
 	
 	// 발신자/수신자 별 목록 - 페이징 X | 검색 X
 	public List<MessageSendView> getViewList(boolean isSender, int memberId) {

@@ -5,6 +5,7 @@ import java.util.List;
 import com.slpl.web.dao.jdbc.JdbcAdminDao;
 import com.slpl.web.dao.member.AdminDao;
 import com.slpl.web.entity.member.Admin;
+import com.slpl.web.entity.member.Member;
 
 public class AdminService {
 
@@ -30,6 +31,17 @@ public class AdminService {
 	
 	public int delete(int id) {
 		return adminDao.delete(id);
+	}
+
+	public boolean isValid(int id) {
+		
+		Admin admin = adminDao.get(id);
+		
+		if(admin == null) {   // 관리자가 아닌 경우 
+			return false;
+		} 
+		
+		return true;
 	}
 
 }

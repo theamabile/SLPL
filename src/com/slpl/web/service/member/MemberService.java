@@ -44,9 +44,9 @@ public class MemberService {
 		return memberDao.get(id);
 	}
 
-	public Member get(String loginId, String pw) {
+	public Member get(String loginId) {
 		// TODO Auto-generated method stub
-		return memberDao.get(loginId, pw);
+		return memberDao.get(loginId);
 	}
 	
 	public List<Member> getList(String field, String query) {
@@ -127,5 +127,17 @@ public class MemberService {
 		// 서비스에서는 공개값 업데이트/좋아요 업데이트/조회수 업데이트
 		// get -> set -> update
 		return m.getId();
+	}
+
+	public boolean isValid(String loginId, String pw) {
+			
+		Member member = memberDao.get(loginId);
+		
+		if(member == null) {   // 회원이 아닌 경우 
+			return false;
+		} else if(!member.getPw().equals(pw)) {  // 회원이긴 한데 비번이 일치하지 않는 경우
+			return false;
+		}
+		return true;
 	}
 }
