@@ -6,18 +6,49 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.slpl.web.dao.test.QuestionDao;
 import com.slpl.web.entity.test.Question;
 
+import oracle.jdbc.OraclePreparedStatement;
+
 public class JdbcQuestionDao implements QuestionDao {
 
 	@Override
 	public int insert(Question question) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+	     
+	      String url = DBContext.URL;
+	      String sql = "INSERT INTO QUESTION(NO,TEST_ID,IMG,\"CONTENT\") VALUES(?,?,?,?) RETURNING ID INTO ?"; 
+	      try {
+	         Class.forName("oracle.jdbc.driver.OracleDriver");
+	         Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);
+	         OraclePreparedStatement st = (OraclePreparedStatement) con.prepareStatement(sql);
+	         st.setInt(1, question.getNo());
+	         st.setInt(2, question.getTestId());         
+	         st.setString(3,question.getImg());
+	         st.setString(4,question.getContent());
+//	         id값 반환
+	         st.registerReturnParameter(5,Types.INTEGER);
+	         
+	         System.out.println("테스트 아이디 update"+question.getTestId());
+	         st.execute();
+	         ResultSet rs = st.getReturnResultSet();
+	         rs.next();
+	         result = rs.getInt(1);
+	         st.close();
+	         con.close();         
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      } catch (ClassNotFoundException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }
+	      return result;
 	}
 
 	@Override
