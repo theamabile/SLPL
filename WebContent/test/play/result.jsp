@@ -40,22 +40,7 @@ var url_combine_naver = url_default_naver + encodeURI(url_this_page)
 
 <body>
 	<header id="header">
-		<div id="top_header" class="top_header">
-			<div>mypage</div>
-			<div>logout</div>
-		</div>
-		<div id="main_header" class="main_header">
-			<ul class="main_nav">
-				<a href="action">
-					<img src="../../assets/images/common/logo.png" alt="MBTI로고">
-				</a>
-
-				<!-- <div class="menu"> -->
-				<li><a href="#">MAKE</a></li>
-				<li><a href="#">TEST</a></li>
-				<li><a href="#">COMMUNITY</a></li>
-			</ul>
-		</div>
+		<jsp:include page="../../common/header.jsp"></jsp:include>
 	</header>
 
 	<!-- 텍스트에 ()는 DB에서 입력받기 위함 -->

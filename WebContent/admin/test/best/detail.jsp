@@ -40,8 +40,7 @@
 					<h1>> 세부 정보</h1>
 					<div class="detail-container">
 						<div class="test-cover-regist">
-							<div class="test-cover-img">
-								<h1>테스트 제목~</h1>
+							<div class="test-cover-img" style="background: center / cover no-repeat url('/admin/test/best/detail-cover?testId=${param.id}')">
 							</div>
 							<c:set var="t" items="${t}" />
 							<form action="detail" method="post">
