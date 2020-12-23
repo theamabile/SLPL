@@ -9,18 +9,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>관리자 - 메세지관리</title>
-<link href="../../assets/css/reset.css" type="text/css" rel="stylesheet">
-<link href="../../assets/css/admin/style.css" type="text/css" rel="stylesheet">
-<link href="../../assets/css/admin/message.css" type="text/css" rel="stylesheet">
+<link href="../../../assets/css/reset.css" type="text/css" rel="stylesheet">
+<link href="../../../assets/css/admin/style.css" type="text/css" rel="stylesheet">
+<link href="../../../assets/css/admin/message.css" type="text/css" rel="stylesheet">
+
+<script src="../../../assets/js/admin/member/message.js"></script>
 </head>
 <body>
 <!------------------------------------------- 헤더 -------------------------------------------------->
-    <jsp:include page="../common/header.jsp"></jsp:include> 
+    <jsp:include page="../../common/header.jsp"></jsp:include> 
 	
     <div id="body" class="body" >  
         
         <!------------------------------------------- 메뉴  -------------------------------------------------->
-        <jsp:include page="../common/menu.jsp"></jsp:include>
+        <jsp:include page="../../common/menu.jsp"></jsp:include>
 
 
         <!------------------------------------------- 메인  -------------------------------------------------->
@@ -40,10 +42,6 @@
                             
                            	<label>수신처</label>
                             <div class="member-box">
-	                           	<select name="sendType" disabled>
-	                            	<option value="all" selected>전체</option>
-	                            	<option value="personal">개인</option>
-	                            </select>
 	                            <input type="text" name="receiverName" value="${message.receiverName}" placeholder="수신인" readonly>
                             </div>
                             
@@ -63,7 +61,7 @@
             
         	<!------------------------------------------- 풋터  -------------------------------------------------->
             
-            <jsp:include page="../common/footer.jsp"></jsp:include> 
+            <jsp:include page="../../common/footer.jsp"></jsp:include> 
         </main>
 
     </div>

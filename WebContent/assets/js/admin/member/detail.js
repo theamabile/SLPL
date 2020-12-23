@@ -53,48 +53,68 @@ window.addEventListener("load", function() {
 		}
 	});
 });
-	
-	
+
 // 닉네임 중복확인
 window.addEventListener("load", function() {
 	var container = document.querySelector(".container-item");
 	
-	var nicknameInput = container.querySelector(".nickname");
-	var nicknameBtn = container.querySelector(".nicknameBtn");
-	//loginId
+	var nicknameBox = container.querySelector(".nickname-box");
+	var nicknameInput = nicknameBox.querySelector(".nickname");
+	var infoText = nicknameBox.querySelector(".infoText");
+	var isNicknameConfirm = nicknameBox.querySelector(".nicknameConfirm");
 	
-	nicknameBtn.addEventListener("click", function() {
-		var win = open("confirm_nickname.jsp", "_blank", "width=300px, height=400px");
-		win.addEventListener("load", function(){
-			var nicknameInput = win.opener.document.querySelector(".nickname"); //.getElementsByClassName("nickname");
-			console.log("ddfdfs : "+nicknameInput.value);
-			
-			if( nicknameInput.value != "") {
-				var textInput = win.document.querySelector(".textInput");
-				textInput.value = nicknameInput.value;
-			}
-		});
-		win.addEventListener("beforeunload ", function(){
-			console.log("종료!");
-		});
+	var originalNickname = nicknameInput.value;			// 변경 전 닉네임
+	
+	nicknameInput.addEventListener("focusout", function() {
+		var value = nicknameInput.value;
+		if(value == "") {
+			infoText.classList.remove("infotext-none");
+			infoText.classList.add("infotext-warning");
+			infoText.innerText = "닉네임을 입력해주세요";		
+			isNicknameConfirm.value = "";
+		} else if(originalNickname != value){   // 원래 닉네임과 같지 않으면
+			var request = new XMLHttpRequest();
+	        request.onload = function() {
+				var result = JSON.parse(request.responseText);
+				var count = result[0].count;
+				if(count > 0) {   // 조회 결과 같은 항목 갯수가 0이 아니면
+					infoText.classList.remove("infotext-none");
+					infoText.classList.add("infotext-warning");
+					infoText.innerText = "이미 사용중인 닉네임입니다.";		
+					isNicknameConfirm.value = "";			
+				} else {
+					infoText.classList.remove("infotext-warning");
+					infoText.classList.add("infotext-none");
+					infoText.innerText = "사용 가능한 닉네임입니다.";	
+					isNicknameConfirm.value ="y";	
+				}
+	        }
+
+	        var url = "/api/admin/member/add?field=nickname&query="+value;
+	        request.open("GET", url, true);   // 서버 데이터로 받기 프로젝트 이름 넣어줘야함^_^
+	        request.send();
+		}
 	});
+	
 });
-		
-		
-		
-/*window.addEventListener("load", function() {
-
-    var section = document.getElementById("s3");
-    var searchButton = section.getElementsByClassName("search-button")[0];
-    
-    var win;
-    searchButton.onclick = function() {
-        win = open("ex1-zipcode.html", "_blank", "width=300px, height=400px");
-        win.addEventListener("load", function() {            
-            var addBtn = win.document.getElementsByTagName("input")[0];
-            addBtn.value = "희희";
-        });
-    };
-
-});     
-*/
+	
+	
+// 중복확인 여부 체크
+window.addEventListener("load", function() {
+	var container = document.querySelector(".container-item");
+	var addForm = container.querySelector(".input-form");
+	var nicknameBox = container.querySelector(".nickname-box");
+	var nicknameInput = nicknameBox.querySelector(".nickname");
+	var isNicknameConfirm = container.querySelector(".nicknameConfirm");
+	
+	addForm.addEventListener("submit", function(e) {
+		if(originalNickname != nicknameInput.value){
+			if(isNicknameConfirm.value != "y") {
+				e.preventDefault();
+				alert('닉네임 중복체크 해주세요.');
+				return false;   
+			} 
+		}
+	});
+	
+});	

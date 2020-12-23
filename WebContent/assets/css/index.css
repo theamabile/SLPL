@@ -1,0 +1,66 @@
+@font-face{
+	src: url("../font/IBMPlexSansKR-Regular.ttf");
+	font-family: "IBM Plex Sans KR";
+}
+
+* {
+  font-family: "IBM Plex Sans KR";
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+body {
+   	background: url("../images/common/bg_index.svg") no-repeat;
+   	background-size:cover;
+   	display: flex;
+}
+
+.d-none {
+	display: none;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	margin: auto;
+}
+
+	.container > * {
+		margin: 10px auto;	
+	}
+	
+	.container h1 {
+		font-size: 30px;
+		font-weight: bold;
+	}
+
+	.container .button {
+		width: 400px;
+		height: 100px;
+		background: #6455af;
+		border-radius: 10px;
+		outline: none;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+		.container .button a{
+			font-size: 30px;
+			font-weight: bold;
+			color: white;
+		}
+			.container .button a:before,
+			.container .button a:hover,
+			.container .button a:after{
+				font-size: 30px;
+				text-decoration:none;
+				font-weight: bold;
+				color: white;
+			}
+		
+	
+	

@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../../assets/css/reset.css" type="text/css">
-<link rel="stylesheet" href="../../assets/css/common/style.css" type="text/css">
+<link rel="stylesheet" href="../assets/css/reset.css" type="text/css">
+<link rel="stylesheet" href="../assets/css/common/style.css" type="text/css">
 <link rel="stylesheet" href="../assets/css/member/member.css" type="text/css">
 </head>
 <body>
@@ -73,9 +73,14 @@
 
 				<section class="content">
 					<div class="join-container">
-						<h4>아이디 찾기</h4>
-						<form action="/admin/member/add" name="member" method="post">
+						<h4>비밀번호 찾기</h4>
+						<form action="/member/findPw" name="member" method="post">
 							<div class="form-group">
+								<div class="input-box">
+									<label>아이디</label>
+									<input type="text" name="id"  placeholder="아이디" autofocus required>
+								</div>
+								
 								<div class="input-box">
 									<label>이름</label>
 									<input type="text" name="name"  placeholder="이름" autofocus required>

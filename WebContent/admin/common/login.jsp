@@ -1,21 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>관리자 - 회원관리</title>
 <link href="../../assets/css/reset.css" type="text/css" rel="stylesheet">
 <link href="../../assets/css/admin/style.css" type="text/css" rel="stylesheet">
 <link href="../../assets/css/admin/member.css" type="text/css" rel="stylesheet">
+
+<script type="text/javascript" src="../../assets/js/admin/member/login.js"></script>
+
 </head>
 <body>
 <!------------------------------------------- 헤더 -------------------------------------------------->
-    <jsp:include page="../common/header.jsp"></jsp:include> 
+    <jsp:include page="header.jsp"></jsp:include> 
 	
     <div id="body" class="body" >  
         <!------------------------------------------- 메인  -------------------------------------------------->
@@ -28,10 +27,12 @@
                         <div class="login-img">
                             <img src="<%=request.getContextPath()%>/assets/images/member/login_icon.png" alt="LOGIN">
                         </div>
-                        <form>
-                            <input type="text" name="id" class="input-wf" placeholder="ID"><br>
-                            <input type="password" name="pw" class="input-wf" placeholder="PASSWORD"><br>
-                            <input type="submit" class="puple-button-wf" value="LOGIN"> 
+                        <form action="login" method="post" class="loginForm">
+                            <input type="text" name="loginId" class="input-wf loginId" placeholder="ID"><br>
+                            <input type="password" name="pw" class="input-wf pw" placeholder="PASSWORD"><br>
+                            
+                            <input type="hidden" name="return-url" value="${returnUrl}" />
+                            <input type="submit" class="puple-button-wf loginBtn" value="LOGIN"> 
                         </form>
                     </section>
                 </div>
@@ -39,7 +40,7 @@
             
         	<!------------------------------------------- 풋터  -------------------------------------------------->
             
-            <jsp:include page="../common/footer.jsp"></jsp:include> 
+            <jsp:include page="footer.jsp"></jsp:include> 
         </main>
 
     </div>

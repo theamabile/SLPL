@@ -1,4 +1,4 @@
-package com.slpl.web.controller.admin.member;
+package com.slpl.web.controller.member.message;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,21 +14,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.slpl.web.dao.jdbc.MemberContext;
-import com.slpl.web.entity.member.MemberView;
+import com.slpl.web.entity.member.Member;
 import com.slpl.web.entity.member.MessageSendView;
-import com.slpl.web.service.member.MemberService;
 import com.slpl.web.service.member.MessageSendService;
 
-@WebServlet("/admin/member/messageList")
+@WebServlet("/member/message/list")
 public class MessageListController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		MessageSendService service = new MessageSendService();
-		boolean isSender = true;
-		int senderId = 1;   // 로그인 기능 전이라 상수로 넣어둠
 		
+		// 로그인 정보 가져오기
+		Member loginMember = (Member) request.getSession().getAttribute("login");
+		boolean isSender = false;
+		int receiverId = loginMember.getId();   // 로그인 기능 전이라 상수로 넣어둠
+		
+		System.out.println("receiverId : "+receiverId);
 		List<MessageSendView> list = new ArrayList<MessageSendView>();
 		
 		
@@ -51,7 +54,7 @@ public class MessageListController extends HttpServlet {
 		String query = request.getParameter("query");
 		
 		if(field != null && query != null) {   //검색임
-			allCount = service.getViewList(isSender, senderId, field, query).size();   //검색 결과에 대한 전체 count 갖고오기
+			allCount = service.getViewList(isSender, receiverId, field, query).size();   //검색 결과에 대한 전체 count 갖고오기
 			if(allCount > 0) {
 				// 전체 페이지 수 계산
 				allPageCount = allCount / itemCount;
@@ -69,7 +72,7 @@ public class MessageListController extends HttpServlet {
 			}
 			
 			// 검색 결과에 맞는 정보 가져오기
-			list = service.getViewList(isSender, senderId, currentPage, itemCount, field, query);
+			list = service.getViewList(isSender, receiverId, currentPage, itemCount, field, query);
 			System.out.println(currentPage+"쪽 / "+itemCount+" / getViewList 갯수 - "+list.size());
 			boolean searchResult = false;
 			if(list.size() > 0) {
@@ -81,10 +84,10 @@ public class MessageListController extends HttpServlet {
 			request.setAttribute("searchResult", searchResult);
 			
 		} else {    // 낫 검색
-			allCount = service.getViewList(isSender, senderId).size();   //전체 목록 수
+			allCount = service.getViewList(isSender, receiverId).size();   //전체 목록 수
 			
 			// 페이지에 맞는 정보 가져오기
-			list = service.getViewList(isSender, senderId, currentPage, itemCount);
+			list = service.getViewList(isSender, receiverId, currentPage, itemCount);
 			
 	        // 전체 페이지 수 계산
 	        allPageCount = allCount / itemCount;
@@ -113,7 +116,7 @@ public class MessageListController extends HttpServlet {
 		request.setAttribute("endPage", endPage);
 		
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("message_list.jsp").forward(request, response);
+		request.getRequestDispatcher("list.jsp").forward(request, response);
 	}
 	
 }

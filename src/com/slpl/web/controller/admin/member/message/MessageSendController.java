@@ -1,4 +1,4 @@
-package com.slpl.web.controller.admin.member;
+package com.slpl.web.controller.admin.member.message;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -20,7 +20,7 @@ import com.slpl.web.service.member.MemberService;
 import com.slpl.web.service.member.MessageSendService;
 import com.slpl.web.service.member.MessageService;
 
-@WebServlet("/admin/member/messageSend")
+@WebServlet("/admin/member/message/send")
 public class MessageSendController extends HttpServlet {
 
 	MessageService service;
@@ -77,20 +77,28 @@ public class MessageSendController extends HttpServlet {
 		request.setAttribute("list", list);
 		request.setAttribute("sendAllMember", sendAllMember);
 		request.setAttribute("memberNames", sb.toString());
-		request.getRequestDispatcher("message_send.jsp").forward(request, response);
+		request.getRequestDispatcher("send.jsp").forward(request, response);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		// 로그인 되어 있는지 확인
+		Member loginMember = (Member) request.getSession().getAttribute("login");
+		if(loginMember == null) {
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+			return;
+		}
+		
 		String sendAllMember = request.getParameter("sendAllMember");
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		String type = request.getParameter("type");
-		int adminId = 64;          // @@@@ 로그인 기능 생기기 전까지는 일단 임시값
+		int adminId = loginMember.getId();          // 로그인 된 관리자 계정 아이디를 갖고옴
 		int[] memberIds = null;
 		
 		if(sendAllMember != null) {
+			System.out.println("sendAllMember : "+sendAllMember);
 			if(sendAllMember.equals("n") == true) {
 				String[] ids = request.getParameterValues("id");
 				if(ids != null) {
@@ -113,6 +121,8 @@ public class MessageSendController extends HttpServlet {
 					}
 				}
 			}
+
+			System.out.println("memberIds[0] : "+memberIds[0]);
 			
 			if(memberIds.length > 0) {
 				Message m = new Message(title, content, type);
@@ -121,13 +131,15 @@ public class MessageSendController extends HttpServlet {
 				if(result > 0) {
 					for(int i=0 ; i<memberIds.length ; i++) {
 						MessageSend ms = new MessageSend(adminId, memberIds[i], messageId);
-						sendService.insert(ms);
+						int sendResult = sendService.insert(ms);
+						System.out.printf("member[%d] 보냄 : %d\n",i, sendResult);
 					}
 				}
+				System.out.println("다보냄!~!~~!~ / memberIds.length : "+memberIds.length);
 			}
 		}
 		
-		response.sendRedirect("messageList");
+		response.sendRedirect("list");
 	}
 	
 	

@@ -1,4 +1,4 @@
-package com.slpl.web.controller.admin.member;
+package com.slpl.web.controller.admin.member.message;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -23,7 +23,7 @@ import com.slpl.web.service.member.MemberService;
 import com.slpl.web.service.member.MessageSendService;
 
 
-@WebServlet("/admin/member/messageDetail")
+@WebServlet("/admin/member/message/detail")
 public class MessageDetailController extends HttpServlet {
 	
 	MessageSendService service;
@@ -41,7 +41,7 @@ public class MessageDetailController extends HttpServlet {
 		MessageSendView m = service.getView(id);
 		
 		request.setAttribute("message", m);
-		request.getRequestDispatcher("message_detail.jsp").forward(request, response);
+		request.getRequestDispatcher("detail.jsp").forward(request, response);
 	}
 	
 }

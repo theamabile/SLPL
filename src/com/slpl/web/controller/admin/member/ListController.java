@@ -23,6 +23,12 @@ public class ListController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 로그인 되어 있는지 확인
+//		Member loginMember = (Member) request.getSession().getAttribute("login");
+//		if(loginMember == null) {
+//			request.getRequestDispatcher("login.jsp").forward(request, response);
+//			return;
+//		}
 		
 		MemberService service = new MemberService();
 
@@ -67,7 +73,6 @@ public class ListController extends HttpServlet {
 			
 			// 검색 결과에 맞는 정보 가져오기
 			list = service.getViewList(currentPage, itemCount, field, query);
-			System.out.println(currentPage+"쪽 / "+itemCount+" / getViewList 갯수 - "+list.size());
 			boolean searchResult = false;
 			if(list.size() > 0) {
 				searchResult = true;
@@ -76,6 +81,8 @@ public class ListController extends HttpServlet {
 			request.setAttribute("field", field);
 			request.setAttribute("query", query);
 			request.setAttribute("searchResult", searchResult);
+			
+			System.out.println("검색 - field : "+field+" / query : "+query +" / searchResult : "+searchResult);
 			
 		} else {    // 낫 검색
 			allCount = service.getViewList().size();   //전체 멤버수 갖고오기

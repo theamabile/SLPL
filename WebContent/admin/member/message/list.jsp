@@ -9,21 +9,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 - 메세지관리</title>
-    <link href="../../assets/css/reset.css" type="text/css" rel="stylesheet">
-    <link href="../../assets/css/admin/style.css" type="text/css" rel="stylesheet">
-    <link href="../../assets/css/admin/message.css" type="text/css" rel="stylesheet">
+    <link href="../../../assets/css/reset.css" type="text/css" rel="stylesheet">
+    <link href="../../../assets/css/admin/style.css" type="text/css" rel="stylesheet">
+    <link href="../../../assets/css/admin/member.css" type="text/css" rel="stylesheet">
+    <link href="../../../assets/css/admin/message.css" type="text/css" rel="stylesheet">
     
-    <script src="../../assets/js/member/list.js"></script>
+    <script src="../../../assets/js/admin/member/message_list.js"></script>
 </head>
 <body>
 
     <!------------------------------------------- 헤더 -------------------------------------------------->
-    <jsp:include page="../common/header.jsp"></jsp:include> 
+    <jsp:include page="../../common/header.jsp"></jsp:include> 
 	
     <div id="body" class="body" >  
         
         <!------------------------------------------- 메뉴  -------------------------------------------------->
-        <jsp:include page="../common/menu.jsp"></jsp:include>
+        <jsp:include page="../../common/menu.jsp"></jsp:include>
 
 
         <!------------------------------------------- 메인  -------------------------------------------------->
@@ -44,15 +45,10 @@
                                     <option value="title" <c:if test="${field eq 'title'}">selected</c:if>>제목</option>
                                 </select>
                                 <input type="text" name="query" class="query" placeholder="검색어 입력" autocomplete="off"
-                                	<c:if test="${searchResult == true}">value="${query}"</c:if> >
+                                	<c:if test="${query != null}">value="${query}"</c:if> >
                                 <input type="button" class="gray-button-m searchButton" value="검색"> 
 	                        </section>   
 	            
-	                        <section class="tools-box">
-	                            <h1 class="d-none">부가 메뉴</h1>
-	                            <input type="button" value="공지 메세지 전송" class="puple-button-l messageBtn">
-	                            <input type="submit" value="선택 삭제" class="gray-button-m checkDelBtn">
-	                        </section>
 	                    </div>  
 	                    <section>
 	                        <h1 class="d-none">메세지 목록</h1>
@@ -62,6 +58,7 @@
 	                                    <th class="table-width-s">식별번호</th>
 	                                    <th class="table-width-m">메세지 분류</th>
 	                                    <th class="table-width-l">제목</th>
+	                                    <th class="table-width-m">발신인</th>
 	                                    <th class="table-width-m">수신인</th>
 	                                    <th class="table-width-m">날짜</th>
 	                                </tr>
@@ -69,14 +66,15 @@
 	                            <tbody class="table-body">
 	                            	<c:if test="${searchResult eq false}">
 	                            		<tr>
-	                            			<td colspan="9">'${keyword}'에 대한 검색 결과가 없습니다.</td>
+	                            			<td colspan="9">'${query}'에 대한 검색 결과가 없습니다.</td>
 	                            		</tr>
 	                            	</c:if>
 	                            	<c:forEach var="m" items="${list}">
 		                            	<tr>
 		                                    <td>${m.id}</td>
 		                                    <td>${m.type}</td>  <!-- 경고/공지 -->
-		                                    <td><a href="messageDetail?id=${m.id}">${m.title}</a></td>
+		                                    <td><a href="detail?id=${m.id}">${m.title}</a></td>
+		                                    <td>${m.senderName}</td>
 		                                    <td>${m.receiverName}</td>
 		                                    <td>${m.regdate}</td>
 		                                </tr>
@@ -86,38 +84,30 @@
 	                    </section>
                     </form>
                     
-                  	 <div>
-                       	<input type="button" value="◀◀" class="prevScopeBtn"/>
-                       	<input type="button" value="◀"  class="prevBtn"/>
-                        <ul>
+                  	<div class="pager">
+                       	<input type="button" value="이전" class="prevScopeBtn"/>
+                        <ul class="pageList">
                         	<c:forEach varStatus="i" begin="${startPage}" end="${endPage}">
                         		  <c:choose>
 							         <c:when test="${field != null && query != null}">
-								         <li><a href="messageList?field=${field}&query=${query}&page=${i.index}" <c:if test="${currentPage == i.index}">class="current-page"</c:if> >
+								         <li><a href="list?field=${field}&query=${query}&page=${i.index}" <c:if test="${currentPage == i.index}">class="current-page"</c:if> >
 	                        					${i.index}</a></li>
 							         </c:when>
 							         <c:otherwise>
-							           	<li><a href="messageList?page=${i.index}" <c:if test="${currentPage == i.index}">class="current-page"</c:if> >
+							           	<li><a href="list?page=${i.index}" <c:if test="${currentPage == i.index}">class="current-page"</c:if> >
 	                        				${i.index}</a></li>
 							         </c:otherwise>
 							      </c:choose>
                         	</c:forEach>
                         </ul>
-                        <input type="button" value="▶"  class="nextBtn" />
-                        <input type="button" value="▶▶" class="nextScopeBtn" />
-                        
-                        
-                        <input type="hidden" name="startPage" value="${startPage}" class="startPage">   
-                        <input type="hidden" name="endPage" value="${endPage}" class="endPage">   
-                        <input type="hidden" name="currentPage" value="${currentPage}" class="currentPage">    <!-- next나 pre 버튼을 누를 때 현재 페이지 정보가 필요함 -->
-                        <input type="hidden" name="allPageCount" value="${allPageCount}" class="allPageCount">    <!-- next나 pre 버튼을 누를 때 현재 페이지 정보가 필요함 --> 
-                      	</div>
+                        <input type="button" value="다음" class="nextScopeBtn" />
+                    </div>
                 </section>
             </section>
             
         	<!------------------------------------------- 풋터  -------------------------------------------------->
             
-            <jsp:include page="../common/footer.jsp"></jsp:include> 
+            <jsp:include page="../../common/footer.jsp"></jsp:include> 
         </main>
 
     </div>
