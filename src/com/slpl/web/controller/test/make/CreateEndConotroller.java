@@ -44,9 +44,6 @@ public class CreateEndConotroller extends HttpServlet {
 		String nickname = m.getNickname();
 		String testName = t.getName();
 		
-		System.out.println("testName:" +testName);
-		System.out.println("nickName:" +nickname);
-		
 		request.setAttribute("nickName", nickname);
 		request.setAttribute("testName", testName);
 		
