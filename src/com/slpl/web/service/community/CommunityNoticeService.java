@@ -15,19 +15,18 @@ public class CommunityNoticeService {
 		communityNoticeDao = new JdbcCommunityNoticeDao();
 	}
 
-	public List<CommunityNotice> getList(int page, int[] communityCategoryIds) {
-
-		return communityNoticeDao.getList(page, communityCategoryIds);
-	}
+//	public List<CommunityNotice> getList(int page, int[] communityCategoryIds) {
+//
+//		return communityNoticeDao.getList(page, communityCategoryIds);
+//	}
 
 	public List<CommunityNotice> getList() {
 		return communityNoticeDao.getList();
 	}
 
-	public List<CommunityNoticeView> getViewList() {
-		int page = 0;
-		int[] ids = {0,1,2,3,4,5,6,7,8};
-		return communityNoticeDao.getViewList(page, ids);
+	public List<CommunityNoticeView> getViewList(int page) {
+		
+		return communityNoticeDao.getViewList(page);
 	}
 	
 	public int delete(int id) {
@@ -46,10 +45,7 @@ public class CommunityNoticeService {
 		
 	}
 
-	public List<CommunityNoticeView> getViewList(int page, int[] ids) {
-		
-		return communityNoticeDao.getViewList(page,ids);
-	}
+
 	//categoryId
 	public int insert(CommunityNotice reg) {
 		return communityNoticeDao.insert(reg);
@@ -72,11 +68,9 @@ public class CommunityNoticeService {
 		return null;
 	}
 
-	public List<CommunityNoticeView> getViewList(int page) {
-		// TODO Auto-generated method stub
-		int[] ids = {0,1,2,3,4,5,7,8};
-		return communityNoticeDao.getViewList(page,ids);
-	}
+//	public List<CommunityNoticeView> getViewList(int page) {
+//		return communityNoticeDao.getViewList(page);
+//	}
 
 	public int getNoticeCount() {
 		return communityNoticeDao.getNoticeCount();
@@ -90,6 +84,11 @@ public class CommunityNoticeService {
 		}
 		return result;
 		
+	}
+
+	public List<CommunityNoticeView> getViewList() {
+		// TODO Auto-generated method stub
+		return communityNoticeDao.getViewList();
 	}
 
 

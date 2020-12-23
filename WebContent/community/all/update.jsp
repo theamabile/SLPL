@@ -66,21 +66,9 @@
 					</div>
 					<form method="post" >
 						<input class="button" type="submit" value="등록" >
-						 <input class="button" type="button" value="목록">
+						<a class="a-input" href="list?c=${param.c}">목록</a>
 					
-					<div>
-						<select name="community">
-							<option selected="selected">전체게시판</option>
-							<option>민팥부</option>
-							<option>민팥찍</option>
-							<option>민슈부 </option>
-							<option>민슈찍 </option>
-							<option>반민팥부</option>
-							<option>반민팥찍</option>
-							<option>반민슈부</option>
-							<option>반민슈찍 </option>
-						</select>
-					</div>
+					
 						<div>
 							<input class="input-text input-title" type="text" placeholder="제목"
 								name="title" value=" ${n.title}">

@@ -90,7 +90,7 @@ public class JdbcCommunityReportDao implements CommunityReportDao{
 
 			while (rs.next()) {
 
-				int id = rs.getInt("id");
+				int id = rs.getInt("num");
 				String badMember = rs.getString("bad_member");
 				int communityId = rs.getInt("community_id");
 				int categoryId = rs.getInt("category_id");
@@ -127,7 +127,7 @@ public class JdbcCommunityReportDao implements CommunityReportDao{
 		int count = 0;
 		
 		String url = DBContext.URL;
-		String sql =  "select count(id) count from (select rownum num,n.* \r\n" + 
+		String sql =  "select count(community_id) count from (select rownum num,n.* \r\n" + 
 				"from (select * from community_report_view order by regdate desc) n)\r\n";
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
