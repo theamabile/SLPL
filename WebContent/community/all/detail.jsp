@@ -32,7 +32,7 @@
 		//recommendBtn.comment-form //visibility:hidden; heart-click-check
 		var commentForm = document.getElementsByClassName("comment-form")[0];
 		var heartClick = document.getElementsByClassName("heart-click-check")[0];
-		
+
 		regBtn.onclick = function(e) {
 			e.preventDefault();
 			if (commentBox.value == "") {
@@ -46,30 +46,27 @@
 		//visibility: hidden;
 		recommendBtn.onclick = function(e) {
 			console.log("하트 보여줘");
-			 e.preventDefault();
-			 
-			 if(heartClick.value == "click2"){
-					heart.style.visibility = "hidden";
-					heartClick.value = "click";
-					console.log(heartClick.value);
-				} 
-			 else if(heartClick.value == "click"){
+			e.preventDefault();
+
+			if (heartClick.value == "click2") {
+				heart.style.visibility = "hidden";
+				heartClick.value = "click";
+				console.log(heartClick.value);
+			} else if (heartClick.value == "click") {
 				heart.style.visibility = "visible";
 				heartClick.value = "click2";
 				console.log(heartClick.value);
 			}
-			
-			
-		}
-	
-		
-		  var reportAdd = document.getElementById("report-add");
 
-	      
-		  reportAdd.onclick = function(){
-	      	var win = open("report?id=${n.id}","_blank", "width=350px, height=370px");
-	          
-	      };
+		}
+
+		var reportAdd = document.getElementById("report-add");
+
+		reportAdd.onclick = function() {
+			var win = open("report?id=${n.id}", "_blank",
+					"width=350px, height=370px");
+
+		};
 
 	}
 </script>
@@ -77,27 +74,24 @@
 </head>
 
 <body>
-	<%@include file="../../common/header.jsp"%>
-
-
+	<jsp:include page="../../common/header.jsp" />
 	<section id="body" class="body">
 
 
 		<div class="container">
 			<main id="main" class="main">
-				<%@include file="../../common/nav.jsp"%>
-
+				<jsp:include page="../../common/nav.jsp" />
 				<section class="content detail">
 					<div class="content-box">
 						<div class="content-box-top">
 							<div class="detail-list">
-								<a class="a-input" href="list?c=${param.c}">목록</a> <a class="a-input" href="">이전글</a>
-								<a class="a-input" href="">다음글</a>
+								<a class="a-input" href="list?c=${param.c}">목록</a> <a
+									class="a-input" href="">이전글</a> <a class="a-input" href="">다음글</a>
 							</div>
 							<div class="detail-update">
 								<a class="a-input-black" href="update?id=${n.id}">수정</a> <a
-									class="a-input-black" href="delete?id=${n.id}">삭제</a> <a id="report-add"
-									class="a-input-black">신고</a>
+									class="a-input-black" href="delete?id=${n.id}">삭제</a> <a
+									id="report-add" class="a-input-black">신고</a>
 							</div>
 						</div>
 
@@ -140,9 +134,9 @@
 						</div>
 
 						<div class="reply-view">
-						<div class="reply-count">댓글 ${n.commentCnt}</div> 
+							<div class="reply-count">댓글 ${n.commentCnt}</div>
 							<c:forEach var="c" items="${comment}">
-									
+
 								<div class="comment-info">
 									<img class="comment-info-img"
 										src="/assets/images/community/dog.jpg" />
@@ -165,5 +159,4 @@
 		</div>
 	</section>
 	<!--//content -->
-
-	<%@include file="../../common/footer.jsp"%>
+	<jsp:include page="../../common/footer.jsp" />
