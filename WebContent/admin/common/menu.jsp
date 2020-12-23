@@ -43,7 +43,7 @@
 	            <ul>
 	                <li><a href="/admin/member/list">LIST</a></li>
 	                <li><a href="/admin/member/add">ADD</a></li>
-	                <li><a href="/admin/member/messageList">MESSAGE</a></li>
+	                <li><a href="/admin/member/message/list">MESSAGE</a></li>
 	            </ul>
 	        </li>
 	        <li>
@@ -60,9 +60,9 @@
 	            </div>                    
 	
 	            <ul>
-	                <li><a href="">맡으신거</a></li>
-	                <li><a href="">여기다</a></li>
-	                <li><a href="">적어주세요</a></li>
+	                <li><a href="/admin/test/list/test-list">전체</a></li>
+	                <li><a href="/admin/test/best/test">베스트 테스트 </a></li>
+	                <li><a href="/admin/test/report/list">블랙리스트</a></li>
 	            </ul>
 	        </li>
 	    </ul>

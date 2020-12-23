@@ -36,7 +36,7 @@ public class Member {
 	}
 	
 	// insert용 - id, regdate 없음
-	public Member(String loginId, String pw, String name, String nickname, String authority, String gender,
+	public Member(String loginId, String pw, String name, String nickname, String gender,
 			Date birthday, String phoneNumber, String email, String profileImg, int categoryId) {
 		this.loginId = loginId;
 		this.pw = pw;

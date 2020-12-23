@@ -7,12 +7,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import com.slpl.web.dao.test.TestDao;
 import com.slpl.web.entity.test.Test;
+
+import oracle.jdbc.OraclePreparedStatement;
 
 public class JdbcTestDao implements TestDao {
 
@@ -21,16 +23,22 @@ public class JdbcTestDao implements TestDao {
 	      int result = 0;
 	     
 	      String url = DBContext.URL;
-	      String sql = "INSERT INTO TEST(MEMBER_ID, NAME,PUBLIC_STATE,FORM_LEVEL_ID) VALUES(?,?,?,?,?) RETURNING ID INTO ?"; 
+	      String sql = "INSERT INTO TEST(MEMBER_ID, NAME,PUBLIC_STATE,FORM_LEVEL_ID) VALUES(?,?,?,?) RETURNING ID INTO ?"; 
 	      try {
 	         Class.forName("oracle.jdbc.driver.OracleDriver");
 	         Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);
-	         PreparedStatement st = con.prepareStatement(sql);
+	         OraclePreparedStatement st = (OraclePreparedStatement) con.prepareStatement(sql);
 	         st.setInt(1, test.getMemberId());
 	         st.setString(2, test.getName());         
 	         st.setInt(3,test.getPublicState());
-	         //ResultSet rs = st.executeQuery();  // select 문장에만
-	         result = st.executeUpdate(); // insert, update, delete 문장일 때                  
+	         st.setInt(4,test.getFormLevelId());
+//	         id값 반환
+	         st.registerReturnParameter(5,Types.INTEGER);
+	         
+	         st.execute();
+	         ResultSet rs = st.getReturnResultSet();
+	         rs.next();
+	         result = rs.getInt(1);
 	         st.close();
 	         con.close();         
 	      } catch (SQLException e) {
@@ -311,6 +319,40 @@ public class JdbcTestDao implements TestDao {
 		}
 
 		return list;
+	}
+
+	@Override
+	public Test update(Test t) {
+		
+		   int result = 0;
+		String url = DBContext.URL;
+		String sql = "UPDATE TEST SET NAME=?,COVER_IMG=?,PUBLIC_STATE=?,BEST_STATE=? WHERE ID=?" ;
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);
+			PreparedStatement st = con.prepareStatement(sql);
+
+		         st.setString(1, t.getName());
+		         st.setString(2, t.getCoverImg());      
+		         st.setInt(3, t.getPublicState());
+		         st.setInt(4, t.getBestState());      
+		         st.setInt(5, t.getId());
+		         
+		         result = st.executeUpdate();                
+		         st.close();
+		         con.close();         
+		      } catch (SQLException e) {
+		         // TODO Auto-generated catch block
+		         e.printStackTrace();
+		      } catch (ClassNotFoundException e) {
+		         // TODO Auto-generated catch block
+		         e.printStackTrace();
+		      }
+//			
+			
+
+		return t;
 	}
 
 }

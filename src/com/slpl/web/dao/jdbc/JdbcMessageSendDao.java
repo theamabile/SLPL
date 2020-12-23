@@ -129,7 +129,7 @@ public class JdbcMessageSendDao implements MessageSendDao{
 	
 
 	// ============================================== View ========================================================
-
+	
 	@Override
 	public MessageSendView getView(int id) {
 		String url = DBContext.URL;
@@ -188,6 +188,70 @@ public class JdbcMessageSendDao implements MessageSendDao{
 			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);		
 			PreparedStatement pst = con.prepareStatement(sql);
 			
+			
+			ResultSet rs = pst.executeQuery();
+
+			while(rs.next()) {
+				int id = rs.getInt("id");
+				int senderId = rs.getInt("sender_id");
+				int receiverId = rs.getInt("receiver_id");
+				int messageId = rs.getInt("message_id");
+				Timestamp regdate = rs.getTimestamp("regdate");
+				
+				String senderName = rs.getString("sender_name");
+				String receiverName = rs.getString("receiver_name");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				String type = rs.getString("type");
+				
+				MessageSendView m = new MessageSendView(id, senderId, receiverId, messageId, regdate, 
+						senderName, receiverName, title, content, type);
+				list.add(m);
+			}
+			
+			rs.close();
+			pst.close();
+			con.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	
+	
+	@Override
+	public List<MessageSendView> getViewList(int startIndex, int endIndex, String field, String query) {
+		// 동적 쿼리 만들기
+		String url = DBContext.URL;
+		StringBuilder sb = new StringBuilder();
+		sb.append("select * "+
+				"from ( select rownum num, m.* "+
+			      	  "from ( select * from MESSAGE_SEND_MEMBER_VIEW ");
+
+		if(field != null && query != null) {
+			sb.append( "      where REGEXP_LIKE("+field+", '.*"+query+".*') ");
+		}
+		sb.append( "order by regdate desc"+
+	              ") m " +
+	              ")where num between ? and ?");
+		
+		String sql = sb.toString();
+		
+		List<MessageSendView> list = new ArrayList<>();
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);		
+			PreparedStatement pst = con.prepareStatement(sql);
+			
+			pst.setInt(1, startIndex);
+			pst.setInt(2, endIndex);
 			
 			ResultSet rs = pst.executeQuery();
 
@@ -297,5 +361,6 @@ public class JdbcMessageSendDao implements MessageSendDao{
 		return list;
 		
 	}
+
 
 }

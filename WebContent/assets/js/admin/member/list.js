@@ -37,7 +37,7 @@ window.addEventListener("load", function() {
     messageBtn.onclick = function() {
 		//http://localhost:8080/admin/member/message?checkMember=1&checkMember=3
 		
-		var hrefURL = "messageSend?sendAllMember=n&";     	
+		var hrefURL = "message/send?sendAllMember=n&";     	
 		// get방식으로 name에 따른 값을 url로 만들것이므로, class 말고 name을 사용
 		var checks = document.getElementsByName("checkMember");
 		var checkedCount = 0;
@@ -64,88 +64,177 @@ window.addEventListener("load", function() {
 	var messageAllBtn = container.querySelector(".messageAllBtn");
 	
     messageAllBtn.onclick = function() {
-		var hrefURL = "messageSend?sendAllMember=y";     	
+		var hrefURL = "message/send?sendAllMember=y";     	
 		location.href = hrefURL;
     }
 });
 
 
-// 페이지 전환
+// 페이지 전환 ajax
 window.addEventListener("load", function() {
+	var tbody = document.querySelector("tbody");
+	var pager = document.querySelector(".pager");
+	var pageList = pager.querySelector(".pageList");
+	
+	var prevScopeBtn = pager.querySelector(".prevScopeBtn");
+	var nextScopeBtn = pager.querySelector(".nextScopeBtn");
+	
     var container = document.querySelector(".container-item");
-
-	var prevBtn = container.querySelector(".prevBtn");
-	var nextBtn = container.querySelector(".nextBtn");
 	var fieldInput = container.querySelector(".field");
 	var queryInput = container.querySelector(".query");
 	
+	var pageScopeCount = 0;   // 일단 안받아옴
+	var pageItemCount = 0;
 	
-	var currentPageInput = container.querySelector(".currentPage");
-	var allPageCountInput = container.querySelector(".allPageCount");
-	var currentPage = parseInt(currentPageInput.value);
-	var allPageCount = parseInt(allPageCountInput.value);
+	configLoad(); // 필요한 설정 정보 로드
 	
 	
-	var prevScopeBtn = container.querySelector(".prevScopeBtn");
-	var nextScopeBtn = container.querySelector(".nextScopeBtn");
+	pageList.addEventListener("click", function(e){
+		e.preventDefault();
+		if(e.target.tagName != "A") {    // 눌린애가 a태그가 아니면 리턴
+			return;
+		}
+		
+		var page = parseInt(e.target.innerText);    //숫자 연산 때문에 parseInt해줘야함
+		var current = pager.querySelector(".current-page");	
+		var currentPage = parseInt(current.innerText);    //현재 페이지 정보를 받아옴
+		if(currentPage == page) {
+			return;
+		}
+		
+		load(page);
+	});
 	
-	var startPageInput = container.querySelector(".startPage");
-	var endPageInput = container.querySelector(".endPage");
-	var startPage = parseInt(startPageInput.value);
-	var endPage = parseInt(endPageInput.value);
+	// 이전 영역 버튼 
+	prevScopeBtn.onclick = function() {
+		var current = pager.querySelector(".current-page");	
+		var page = parseInt(current.innerText);    //현재 페이지 정보를 받아옴
+		if(page == undefined) {
+			page = 1;
+		}
+		page = page - pageScopeCount;
+		load(page);
+    }
+
+	// 다음 영역 버튼 
+	nextScopeBtn.onclick = function() {
+		var current = pager.querySelector(".current-page");	
+		var page = parseInt(current.innerText);    //현재 페이지 정보를 받아옴
+		if(page == undefined) {
+			page = 1;
+		}
+		page = page + pageScopeCount;
+		load(page);
+    }
 	
-	var url = "";
-	//검색어가 있으면 같이 넘겨주기
-	console.log("fieldInput.value : "+fieldInput.value);
-	if(fieldInput.value != "" && queryInput.value != "") {
-		url = "list?field="+fieldInput.value+"&query="+queryInput.value+"&page=";
-	} else {
-		url = "list?page=";
+	
+	function load(page){
+		if(page == undefined) {
+			page = 1;
+		} 
+		
+		var request = new XMLHttpRequest();
+        request.onload = function() {
+			var results = JSON.parse(request.responseText);
+			var header = results.header;
+			var list = results.list;
+			var allCount = header.allCount;   		   
+			var field = header.field;
+			var query = header.query;   
+			
+			var isSearched = false;
+			if(field != undefined && query != undefined) {
+				isSearched = true;
+				queryInput.value = query;   // 검색이면 검색어 넣어주기
+			}
+
+			if(list.length <= 0) {   // nextScope 버튼 눌렀을때  예외처리
+				alert('이동 할 페이지가 없습니다.');
+				return;
+			}
+			
+			// 비우기
+			tbody.innerHTML = "";
+			pageList.innerHTML = "";
+			
+			if(allCount <= 0) {
+				var textInfo = '<td colspan="9">항목이 존재하지 않습니다.</tr>';
+				if(isSearched == true) {
+					textInfo = '<td colspan="9">"'+queryInput.value+'"에 대한 검색 결과가 없습니다.</td>';
+				}	
+				tbody.insertAdjacentHTML('beforeend', textInfo);  //태그에 끼워넣기*/
+				
+				var pageNum = '<li><a class="current-page">'+1+'</a></li>'
+				pageList.insertAdjacentHTML('beforeend', pageNum);  //태그에 끼워넣기*/
+				
+			} else {
+				var pageCount = 1 + Math.floor((allCount-1)/pageItemCount);             // 띄울 수 있는 전체 페이지 갯수
+				var startPage = 1 + pageScopeCount * Math.floor((page-1)/pageScopeCount);   // 페이지 범위
+				var endPage = startPage + (pageScopeCount-1);
+				
+				if(endPage > pageCount) {
+					endPage = pageCount;
+				}
+			
+				// 페이지 scope
+				for(var i=startPage ; i<=endPage ; i++) {
+					var pageNum = '<li><a>'+i+'</a></li>';
+					if(i == page) {
+						pageNum = '<li><a class="current-page">'+i+'</a></li>';
+					}
+					pageList.insertAdjacentHTML('beforeend', pageNum);  //태그에 끼워넣기*/
+				}
+				
+				// 테이블
+				for(var i=0 ; i<list.length ; i++) {
+					var m = list[i];
+					var tr = '<tr>\
+	                            <td><input type="checkbox" class="checkMember" name="checkMember" value="${m.id}"></td>\
+	                            <td>'+m.id+'</td>\
+	                            <td><a href="detail?id=${m.id}">'+m.loginId+'</a></td>\
+	                            <td>'+m.name+'</td>\
+	                            <td>'+m.nickname+'</td>\
+	                            <td>'+m.authority+'</td>\
+	                            <td>'+m.categoryName+'</td>\
+	                            <td>'+m.email+'</td>\
+	                            <td>'+m.regdate+'</td>\
+	                        </tr>';
+					
+					tbody.insertAdjacentHTML('beforeend', tr);  //태그에 끼워넣기*/
+				}
+			}
+        }
+
+		var url = makeURL();
+        request.open("GET", url+page, true);  
+        request.send();
+	};
+	
+	function makeURL() {
+		var url = "/api/admin/member/list";
+		//검색어가 있으면 같이 넘겨주기
+		if(fieldInput.value != "" && queryInput.value != "") {
+			url += "?field="+fieldInput.value+"&query="+queryInput.value+"&page=";
+		} else {
+			url += "?page=";
+		}
+		return url;
 	}
 	
-    prevBtn.onclick = function() {
-		if(currentPage > 1) {
-			var prevPage = currentPage - 1;
-			location.href = url + prevPage;
-		} else {
-			alert('이전 페이지가 없습니다');
+	function configLoad() {
+		var configRequest = new XMLHttpRequest();
+	    configRequest.onload = function() {
+			console.log(configRequest.responseText);
+			var results = JSON.parse(configRequest.responseText);
+			
+			pageScopeCount = parseInt(results.pageScopeCount);
+			pageItemCount =  parseInt(results.pageItemCount);
 		}
-    }
-
-	nextBtn.onclick = function() {		
-		if(currentPage < allPageCount) {
-			var nextPage = currentPage + 1;
-			location.href = url + nextPage;
-		} else {
-			alert('다음 페이지가 없습니다');
-		}
-    }
-
- 	prevScopeBtn.onclick = function() {
-		if(startPage > 1) {
-			location.href = url + (startPage-1);
-		}  else {
-			alert('이동 할 페이지가 없습니다.');
-		}
-		
-    }
-
-	nextScopeBtn.onclick = function() {	
-		if(endPage < allPageCount) {
-			location.href = url + (endPage+1);
-		} else {
-			alert('이동 할 페이지가 없습니다.');
-		}
-		
-    }
+	    configRequest.open("POST", "/api/admin/member/list", true);  
+	    configRequest.send();
+	}
 	
-
 });
-
-
-
-
-
 
 
 // 리스트 row 클릭
@@ -153,3 +242,31 @@ function clickTableRow(url, id) {
 	location.href = url+id;
 }
 
+
+
+
+
+
+
+
+
+
+/*					var m = list[i];
+					var tr = document.createElement("tr");
+
+					tr.classList.add  = "addTableRow";   // 미리 만들어놓은 애니메이션 추가
+					
+					
+					var tds = '<td><input type="checkbox" class="checkMember" name="checkMember" value="${m.id}"></td>\
+	                            <td>'+m.id+'</td>\
+	                            <td><a href="detail?id=${m.id}">'+m.loginId+'</a></td>\
+	                            <td>'+m.name+'</td>\
+	                            <td>'+m.nickname+'</td>\
+	                            <td>'+m.authority+'</td>\
+	                            <td>'+m.categoryName+'</td>\
+	                            <td>'+m.email+'</td>\
+	                            <td>'+m.regdate+'</td>'
+					
+					tbody.append(tr);   // tr 추가
+					tr.insertAdjacentHTML('beforeend', tds);  //태그에 끼워넣기
+					*/
