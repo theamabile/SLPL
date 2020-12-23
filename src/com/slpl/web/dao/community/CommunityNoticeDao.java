@@ -18,7 +18,7 @@ public interface CommunityNoticeDao {
 	
 	List<CommunityNoticeView> getViewList();
 	List<CommunityNoticeView> getViewList(int page);
-	//List<CommunityNoticeView> getViewList(int page, String[] communityCategoryIds);
+	List<CommunityNoticeView> getViewList(int page, int[] communityCategoryIds);
 	int getNoticeCount();
 	
 	

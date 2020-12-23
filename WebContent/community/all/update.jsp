@@ -6,82 +6,57 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="../../common/header.jsp"%>
 
-<!-- <!-- <!DOCTYPE html>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
-reset을 제일 위에
+<!-- reset을 제일 위에 -->
 <link rel="stylesheet" href="../../assets/css/reset.css" type="text/css">
 <link rel="stylesheet" href="../../assets/css/common/style.css"
 	type="text/css">
-<link rel="stylesheet" href="../../assets/css/community/write.css"
+<link rel="stylesheet" href="../../assets/css/community/community.css"
 	type="text/css">
-		<link rel="stylesheet" href="../../assets/css/community/community.css"
-	type="text/css">
+	
+
+
+<script type="text/javascript">
+
+ window.onload = function() {
+    console.log("시작");
+
+    console.log("시작22");
+	//var recommendBtn = document.getElementById(".recommend-button");
+	var regBtn =  document.getElementsByClassName("reg-button")[0];
+	var commentBox = document.getElementsByClassName("input-reply")[0];
+	//recommendBtn.
+	
+	regBtn.onclick = function(e){
+        e.preventDefault();
+    	if(commentBox.value == ""){
+    		alert("댓글을 입력해주세요");
+    	}
+    	return;
+    }
+    
+};  
+   
+
+    </script>
+
 </head>
 
 <body>
-	<header id="header">
-		<div id="top_header" class="top_header">
-			<div>mypage</div>
-			<div>logout</div>
-		</div>
-		<div id="main_header" class="main_header">
-			<ul class="main_nav">
-				<a href="index.html"><img
-					src="../../assets/images/common/logo.png" alt="MBTI로고"></a>
-
-				<li><a href="#">MAKE</a></li>
-				<li><a href="#">TEST</a></li>
-				<li><a href="#">COMMUNITY</a></li>
-			</ul>
-		</div>
-	</header>
-	//header --> -->
+<%@include file="../../common/header.jsp"%>
 
 	<section id="body" class="body">
 		<div class="container">
 			<main id="main" class="main">
 			<%@include file="../../common/nav.jsp"%>
-				<!-- <nav class="body-nav">
-					<div class="my-info">
-						<div>
-							<h5>내 정보</h5>
-							<h3>심심풀이</h3>
-							<div>
-								<img alt="" src=""> <span>닉네임</span> <span>소속정보</span>
-								<div>
-									<a>내가쓴글</a> <a>쪽지</a>
-									<div>
-										<a href=""></a><input type="button" class="input" value="글쓰기">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div>
-						<ul class="body-menu">
-							<li><a href="#">MAKE</a></li>
-							<li><a href="#">TEST</a></li>
-							<li><a href="#">COMMUNITY</a>
-								<ul class="body-detail-menu">
-									<li><a href="">전체게시판 </a></li>
-									<li><a href="">민팥부 </a></li>
-									<li><a href="">민팥찍 </a></li>
-									<li><a href="">민슈부 </a></li>
-									<li><a href="">민슈찍 </a></li>
-									<li><a href="">반민팥부 </a></li>
-									<li><a href="">반민팥찍 </a></li>
-									<li><a href="">반민슈부 </a></li>
-									<li><a href="">반민슈찍 </a></li>
-								</ul></li>
-
-						</ul>
-					</div>
-				</nav> -->
+				
 				<section class="content write">
 					<div class="content-box">
 					<div class="breadcrumbs">

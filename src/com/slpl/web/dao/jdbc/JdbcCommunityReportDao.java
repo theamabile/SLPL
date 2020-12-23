@@ -153,5 +153,36 @@ public class JdbcCommunityReportDao implements CommunityReportDao{
 		return count;
 	}
 
+	@Override
+	public int insert(CommunityReport communityReport) {
+		int result = 0;
+		String url = DBContext.URL;
+		String sql = "INSERT INTO community_report(id,member_id,REPORT_CATEGORY_ID,COMMUNITY_ID) VALUES(SEQ_report_reg.nextval,3,?,?)";
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);
+			PreparedStatement st = con.prepareStatement(sql);
+
+			st.setInt(1, communityReport.getreportCategoryId());
+			st.setInt(2, communityReport.getCommunityId());
+			System.out.println("++++++++++++++++++++++"+communityReport.getreportCategoryId() + communityReport.getCommunityId());
+
+			result = st.executeUpdate();
+
+			st.close();
+			con.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(result);
+		return result;
+	}
+
 
 }
