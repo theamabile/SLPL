@@ -16,4 +16,8 @@ public class TestResultService {
 	public List<TestResultView> getList(int id) {
 		return testResultDao.getList(id);
 	}
+
+	public TestResultView get(int id) {
+		return testResultDao.get(id);
+	}
 }

@@ -67,7 +67,7 @@
                                 <input type="text" name="keyword" class="search-keyword" placeholder="검색어 입력">
                                 <input type="button" class="gray-button-m" name="search" value="검색"> 
                             </form> -->
-							<form action="list" method="post">
+				<!-- 			<form action="list" method="post">
 								<div class="notice-select">
 									<input class="select-checkbox" type="checkbox"
 										name="checkCategory">전체 <input class="select-checkbox"
@@ -84,7 +84,7 @@
 										class="select-checkbox" type="checkbox" name="checkCategory"
 										value=4>반민팥부
 								</div>
-							</form>
+							</form> -->
 
 						</section>
 

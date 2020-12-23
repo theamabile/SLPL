@@ -11,14 +11,14 @@ window.addEventListener("load", function() {
 		var pageMoveVal = e.target.value;
 		switch(pageMoveVal){
 			case "test-save":
-			location.href="/test/test/list/test_list";
+			location.href="/test/list/test_list";
 			break;
 			
 			case "test-another-play":
-			location.href="/test/test/list/test_list";
+			location.href="/test/list/test_list";
 			
 			case "go-make":
-			location.href="/test/test/make/reg-test";
+			location.href="/test/make/formSelect.jsp";
 		}
 		
 	}
