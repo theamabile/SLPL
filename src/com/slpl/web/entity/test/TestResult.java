@@ -1,6 +1,6 @@
 package com.slpl.web.entity.test;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class TestResult {
 	private int id;
@@ -46,6 +46,4 @@ public class TestResult {
 	public String toString() {
 		return "TestResult [id=" + id + ", testId=" + testId + ", regdate=" + regdate + "]";
 	}
-	
-	
 }

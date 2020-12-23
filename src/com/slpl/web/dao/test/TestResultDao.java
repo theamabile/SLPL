@@ -2,11 +2,13 @@ package com.slpl.web.dao.test;
 
 import java.util.List;
 
+import com.slpl.web.entity.test.TestResultView;
+
 public interface TestResultDao {
-	int insert(TestResultDao testResultDao);
-	int update(TestResultDao testResultDao);
+	int insert(TestResultView testResultView);
+	int update(TestResultView testResultView);
 	int delete(int id);
 	
-	TestResultDao get(int id);
-	List<TestResultDao> getList();
+	TestResultView get(int id);
+	List<TestResultView> getList(int id);
 }
