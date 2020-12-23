@@ -492,27 +492,28 @@
 							</section>
 							<section class="input-container low-step6">
 								<h1 class="title-h1">결과 미리보기</h1>
+								<c:set var="request" value="requestScope!"></c:set>
 								<div class="result-preview-container">
 									<div class="result-preview">
 										<div class="result">
 											<div class="result-img"  style="background: center / cover no-repeat url('/test/make/character-img?no=1')"></div>
 											<div class="text">
-												<p>${name1}</p>
+												<span>결과 나와라</span>
 											</div>
 										</div>
 										<div class="result">
 											<div class="result-img"  style="background: center / cover no-repeat url('/test/make/character-img?no=2')"></div>
 											<div class="text">
-											<p>${requestScope.name2}</p>
+											<span></span>
 											</div>
 										</div>
 										<div class="result">
 											<div class="result-img"  style="background: center / cover no-repeat url('/test/make/character-img?no=3')"></div>
-											<div class="text"></div>
+											<div class="text"><span></span></div>
 										</div>
 										<div class="result">
 											<div class="result-img"  style="background: center / cover no-repeat url('/test/make/character-img?no=4')"></div>
-											<div class="text"></div>
+											<div class="text"><span></span></div>
 										</div>
 									</div>
 								</div>

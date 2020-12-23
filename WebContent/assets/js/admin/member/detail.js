@@ -63,7 +63,7 @@ window.addEventListener("load", function() {
 	var infoText = nicknameBox.querySelector(".infoText");
 	var isNicknameConfirm = nicknameBox.querySelector(".nicknameConfirm");
 	
-	var originalNickname = nicknameInput.value;			// 변경 전 닉네임
+	originalNickname = nicknameInput.value;			// 변경 전 닉네임
 	
 	nicknameInput.addEventListener("focusout", function() {
 		var value = nicknameInput.value;
@@ -107,6 +107,7 @@ window.addEventListener("load", function() {
 	var nicknameInput = nicknameBox.querySelector(".nickname");
 	var isNicknameConfirm = container.querySelector(".nicknameConfirm");
 	
+	
 	addForm.addEventListener("submit", function(e) {
 		if(originalNickname != nicknameInput.value){
 			if(isNicknameConfirm.value != "y") {
@@ -116,5 +117,4 @@ window.addEventListener("load", function() {
 			} 
 		}
 	});
-	
 });	

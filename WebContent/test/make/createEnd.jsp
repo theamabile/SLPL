@@ -38,7 +38,7 @@
 							</div>
 							<div class="end-comment">
 								<p>
-									짝짝짝. <span>ooo</span>님의 < <span>ㅡㅡㅡ테스트명</span> > 완성되었습니다!
+									짝짝짝. <span>${nickName}</span>님의 < <span>${testName}</span> > 완성되었습니다!
 								</p>
 							</div>
 							<nav class="end-nav">

@@ -13,8 +13,10 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import com.slpl.web.entity.member.Member;
 import com.slpl.web.entity.test.Character;
 import com.slpl.web.service.test.CharacterService;
 
@@ -50,8 +52,8 @@ public class RegResultContentConotroller extends HttpServlet {
 			for (Cookie cookie : cookies)
 				if ("testId".equals(cookie.getName()))
 					testId = Integer.parseInt(cookie.getValue());
-				else if ("memberId".equals(cookie.getName()))
-					memberId = Integer.parseInt(cookie.getValue());
+//				else if ("memberId".equals(cookie.getName()))
+//					memberId = Integer.parseInt(cookie.getValue());
 				else if("characterIds".equals(cookie.getName())){
 						String temp = URLDecoder.decode(cookie.getValue(), "UTF-8");
 						String temp2 = temp.substring(1, temp.length() - 1);
@@ -59,6 +61,12 @@ public class RegResultContentConotroller extends HttpServlet {
 						characterIds = temp.split(",");
 				}
 		}
+		
+		HttpSession session = request.getSession();
+		Member m = (Member) session.getAttribute("login");
+		
+		if(m!=null)
+			memberId=m.getId();
 
 //		캐릭터 정보 업데이트
 		String content = request.getParameter("result-content");

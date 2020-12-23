@@ -30,7 +30,8 @@ window.addEventListener("load",function(){
 	var section = document.querySelector("#create-container");
 	var lowStep3 = section.querySelector(".low-step3");
 	var lowStep4 = section.querySelectorAll(".low-step4");
-	
+	var lowStep6 = section.querySelector(".low-step6");
+	var prevBox =lowStep6.querySelectorAll(".text");
 	var nameContainers = lowStep3.querySelectorAll(".result-name-container");
 	
 	var name1=nameContainers[0].querySelector(".result-name");
@@ -42,18 +43,22 @@ window.addEventListener("load",function(){
 	name1.addEventListener("change",function(){
 			
 		lowStep4[0].querySelector(".result-name").innerHTML=name1.value;
+		prevBox[0].firstElementChild.innerHTML=name1.value;
 	});
 	name2.addEventListener("change",function(){
 			
 		lowStep4[1].querySelector(".result-name").innerHTML=name2.value;
+		prevBox[1].firstElementChild.innerHTML=name2.value;
 	});
 	name3.addEventListener("change",function(){
 			
 		lowStep4[2].querySelector(".result-name").innerHTML=name3.value;
+		prevBox[2].firstElementChild.innerHTML=name3.value;
 	});
 	name4.addEventListener("change",function(){
 			
 		lowStep4[3].querySelector(".result-name").innerHTML=name4.value;
+		prevBox[3].firstElementChild.innerHTML=name4.value;
 	});
 	
 //표지에 테스트명 넣어주기
@@ -108,20 +113,20 @@ window.addEventListener("load",function(){
 });
 
 // step6 -> deatil
-window.addEventListener("load",function(){
-    var section = document.querySelector("#create-container");
-    var resultPreview = section.querySelector(".result-preview");
+//window.addEventListener("load",function(){
+ //   var section = document.querySelector("#create-container");
+ //   var resultPreview = section.querySelector(".result-preview");
 
-    resultPreview.onclick = function(event){
+//    resultPreview.onclick = function(event){
         // 이벤트
-        if(event.target.className =="result-preview"){
-            return;
-        }
+//        if(event.target.className =="result-preview"){
+//            return;
+//        }
 //        var detail = window.open("/test/make/result-detail?id="+id, "","width=650,height=800,left=650,top=100");
-        var detail = window.open("/test/make/result-detail", "","width=650,height=800,left=650,top=100");
-    };
+ //       var detail = window.open("/test/make/result-detail", "","width=650,height=800,left=650,top=100");
+ //   };
 
-});
+//});
 
 
 // 예시보기 기능
@@ -166,7 +171,7 @@ window.addEventListener("load",function(){
     next.onclick = function(){
         if(current.nextElementSibling ==nav){
             //alert("해당 테스트를 등록하시겠습니까??");
-			location.href="createEnd.jsp";
+			location.href="create-end";
 
             return;     
         }

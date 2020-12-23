@@ -132,12 +132,14 @@ public class AddController extends HttpServlet {
 				birthday, phoneNumber, email, profileImgName, categoryId);
 		int result = service.insert(member);
 		
+		System.out.println("insert 변경후 받아온 result : "+result);
+		
 		// 권한은 member테이블에 추가 된 후 따로 추가 필요
 		System.out.println("authority : "+authority);
 		// admin을 선택 했을 경우만 admin 테이블에 insert 
 		if(result > 0 && authority.equals("admin") == true) {   // member에 잘 추가 됐고 admin 선택 한 거면
-			int lastId = service.getLastId();   // 방금 추가 된 아이디 갖고옴
-			Admin admin = new Admin(lastId);
+			//int lastId = service.getLastId();   // 방금 추가 된 아이디 갖고옴
+			Admin admin = new Admin(result);
 			adminService.insert(admin);
 		} 
 				
