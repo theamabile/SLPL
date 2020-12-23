@@ -1,6 +1,10 @@
 .hidden {
 	display: none;
 }
+.left-padding50{
+	text-align: left;
+	padding-left: 50px;
+}
 /* ---------------------------------------detail------------------ */
 
 .detail .breadcrumbs {
@@ -37,7 +41,7 @@
 
 .detail .detail-list{
 	display: inline-block;
-	padding-right: 400px;
+	padding-right: 365px;
 }
 
 .detail .detail-update{
@@ -65,7 +69,26 @@
 }
 .detail .reply-view{
 	min-height: 150px;
-	background-color: #d6cee6;
+	margin: 0 0 20px 0;
+    padding: 10px 10px 20px 10px;
+	background-color: #e2ddee;
+}
+
+.detail .reg-button {
+    width: 70px;
+    height: 70px;
+    background-color: #6455af;
+    color: white;
+    border-radius: 5px;
+    margin-bottom: 3%;
+    margin-top: 1%;
+    border: none;
+}
+
+.detail .input-reply {
+  border: 1px solid #b4b4b4;
+  width: 680px;
+  height: 70px;
 }
 /* .detail .content table {
 	--width: 850px;
@@ -146,7 +169,7 @@
 }
 .recommend-button .heart{
 	display:inline-block;
-	visibility:hidden;
+	visibility: hidden;
 	width: 30px;
 	margin: 15px 35px 0px 0px;
     float: right;
@@ -160,12 +183,100 @@
 .recommend-button .recommen-cnt{
 	display:inline-block;
 	font-size: 16px;
-    margin: 5px 40px 10px 0px;
+    margin: 5px 45px 10px 0px;
     float: right;
     
 }
 
+ .reply-view{
+	position: relative;
+} 
+
+.reply-count{
+	font-size: 15px;
+	color: #6455af;
+	font-weight: 600;
+}
+.comment-info{
+	padding-left:20px;
+	padding-top:15px;
+	padding-bottom:10px;
+	margin-left:20px;
+	width: 680px;
+	 border-bottom: 2px #c4bde8 dotted;
+}
+.comment-info-img{
+	 --display:inline-block;
+	--margin:10px;
+	--padding:5px 0 5px 0;
+    width: 35px;
+    height: 35px;
+    border-radius: 40px;
+    float: left;
+}
+
+.comment-info-nick{
+	--margin: 10px;
+    font-size: 14px;
+    color: #696969;
+    padding:  0 5px 5px 5px;
+}
+.comment-info-reg{
+	--margin: 10px;
+    font-size: 12px;
+    color: gray;
+}
+
+.comment-info-content{
+	--margin: 10px;
+    font-size: 15px;
+    color: #4d4d4d;
+    margin-left: 45px;
+   
+}
+
 /* -------------------------list-------------------------------- */
+
+
+#dispBox {
+	display: none;
+	--display: table-row-group;
+	color: #5c4ea3;
+}
+
+#dispBox a{
+	color: #5c4ea3;
+	font-weight: 600;
+	font-size: 15px
+}
+
+.list .notice-hide-btn{
+	margin-left: 730px;
+	font-size: 15px;
+	color:#727272;
+	margin-bottom: 5px;
+}
+
+.list .button-margin-left{
+	width: 65px;
+  height: 35px;
+  background-color: #6455af;
+  color: white;
+  border-radius: 5px;
+  margin-bottom: 3%;
+  margin-top: 1%;
+  margin-left:500px;
+  border: none;
+}
+
+.list .search-field{
+	height: 50px;
+}
+
+.list .searh-box{
+	height: 30px;
+	
+}
 
 .list .breadcrumbs {
 	justify-content: space-between;
@@ -215,6 +326,8 @@
 
   .list-table tbody {
 	font-size: 14px;
+	background: rgba(255, 255, 255, 0.4);
+	--opacity: 0.5;
 	--width: 850px;
 	--width: 100%;
 }
@@ -239,11 +352,41 @@
 	padding: 1px;
 }
 
+.pager{
+	margin-top:20px;
+	--text-align:center;
+	display: flex;
+	font-size: 14px;
+	justify-content: center;
+	--padding: 10px;
+	color: gray;
+	
+}
 
+.pager .ul-pager{
+	display: flex;
+}
+
+.pager .li-pager{
+	padding: 0 5px 0 5px;
+}
+
+.pager span{
+	padding: 0 10px 0 10px;
+}
 
 /* ----------------------------------write----------------------- */
 
+.write .write-list-section{
+	height: 40px;
+    padding-left: 650px;
+}
 
+.write .write-reg-section{
+	height: 50px;
+    padding-left: 350px;
+    padding-top: 20px;
+}
 .write .breadcrumbs {
 	justify-content: space-between;
 	display: flex;

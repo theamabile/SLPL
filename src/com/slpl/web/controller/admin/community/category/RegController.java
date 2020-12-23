@@ -22,12 +22,13 @@ public class RegController extends HttpServlet{
 			//1.사용자 입력을 변수에 담기
 			int id = Integer.parseInt(request.getParameter("id"));
 			String name = request.getParameter("name");
+			System.out.println("출력"+id+name);
 			CommunityCategory reg = new CommunityCategory(id,name);
 			
 			//2.데이터베이스에 입력
 			CommunityCategoryService service = new CommunityCategoryService();
 			service.insert(reg);
-			System.out.println("출력"+id+name);
+			
 			
 		}
 		//response.sendRedirect("list");

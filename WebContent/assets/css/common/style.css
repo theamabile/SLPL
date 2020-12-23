@@ -66,11 +66,7 @@ input:focus {
   border-top: #c5bcf0 solid 3px;
 }
 
-.input-reply {
-  border: 1px solid #b4b4b4;
-  width: 700px;
-  height: 70px;
-}
+
 
 
 
@@ -155,6 +151,7 @@ input:focus {
   --background: url("../../images/common/background.png") no-repeat;
   background: url("../../images/common/bg.svg") no-repeat;
   background-size:cover;
+  min-height: 900px;
 }
 
 .main {

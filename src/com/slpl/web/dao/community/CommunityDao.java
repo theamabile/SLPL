@@ -15,12 +15,15 @@ public interface CommunityDao {
 	int comentDelete(int id);
 	Community getLast();
 	
-	Community get(int id);
+	CommunityView get(int id);
 	List<Community> getList();
 	List<CommunityView> getViewList();
 	List<CommunityView> getViewList(int page);
 	List<CommunityView> getViewList(String field, String query, int page);
-	int getCommunityCount(String field, String query);
+	//int getCommunityCount(String field, String query);
+	List<CommunityView> getViewList(String field, String query, int page, String category);
+	int getCommunityCount(String field, String query, String category);
+	int updateCnt(int community_id, int addCnt);
 
 
 }
