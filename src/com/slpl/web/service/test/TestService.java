@@ -83,9 +83,23 @@ public class TestService {
 	}
 
 	public int insert(Test t) {
-		testDao.insert(t);
-		return 0;
+		
+		return testDao.insert(t);
 	}
+
+	public void update(Test t) {
+		testDao.update(t);
+		
+	}
+
+	public void coverUpdate(int testId, String img) {
+		
+		Test t = testDao.get(testId);
+		t.setCoverImg(img);
+		testDao.update(t);
+	}
+
+	
 
 
 
