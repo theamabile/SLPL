@@ -85,8 +85,8 @@
 					<div class="content-box">
 						<div class="content-box-top">
 							<div class="detail-list">
-								<a class="a-input" href="list?c=${param.c}">목록</a> <a
-									class="a-input" href="">이전글</a> <a class="a-input" href="">다음글</a>
+								<a class="a-input" href="list?c=${param.c}">목록</a> <!-- <a
+									class="a-input" href="">이전글</a> <a class="a-input" href="">다음글</a> -->
 							</div>
 							<div class="detail-update">
 								<a class="a-input-black" href="update?id=${n.id}">수정</a> <a

@@ -14,11 +14,10 @@ public interface CommunityNoticeDao {
 	int insertAll(String title, String content, int ids);
 	
 	List<CommunityNotice> getList();
-	List<CommunityNotice> getList(int page, int[] communityCategoryIds);
+	//List<CommunityNotice> getList(int page, int[] communityCategoryIds);
 	
 	List<CommunityNoticeView> getViewList();
 	List<CommunityNoticeView> getViewList(int page);
-	List<CommunityNoticeView> getViewList(int page, int[] communityCategoryIds);
 	int getNoticeCount();
 	
 	
