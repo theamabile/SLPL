@@ -10,7 +10,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.slpl.web.entity.member.Member;
 import com.slpl.web.entity.test.Test;
 import com.slpl.web.service.test.TestService;
 import com.slpl.web.service.test.TypeService;
@@ -27,12 +29,15 @@ public class RegTestConotroller extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-//		response.setCharacterEncoding("UTF-8");      
-//		response.setContentType("text/json; charset=UTF-8");
-
-//		임시 아이디 -> 로그인한 데이터 얻어오기 추가예정
+//		임시 아이디
 		int memberId = 4;
 		int formLevelId = 1;
+
+		HttpSession session = request.getSession();
+		Member m = (Member) session.getAttribute("login");
+		
+		if(m!=null)
+			memberId=m.getId();
 
 		String testId_ = request.getParameter("testId");
 		int testId = 0;
@@ -81,7 +86,7 @@ public class RegTestConotroller extends HttpServlet {
 		
 //		Cookie typeIdsCookie = new Cookie("typeIds", Arrays.toString(typeId));
 		response.addCookie(testCookie);
-		response.addCookie(memberCookie);
+//		response.addCookie(memberCookie);
 		response.addCookie(typeIdsCookie);
 		
 		

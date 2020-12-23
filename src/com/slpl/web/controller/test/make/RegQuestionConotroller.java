@@ -13,8 +13,10 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import com.slpl.web.entity.member.Member;
 import com.slpl.web.entity.test.Answer;
 import com.slpl.web.entity.test.AnswerScore;
 import com.slpl.web.entity.test.Question;
@@ -35,9 +37,6 @@ public class RegQuestionConotroller extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/json; charset=UTF-8");
 
-//		TypeService typeService = new TypeService();
-//		Test t = (Test) request.getAttribute("t");
-//		System.out.println("get " + t.getName());
 
 	}
 
@@ -58,8 +57,8 @@ public class RegQuestionConotroller extends HttpServlet {
 			for (Cookie cookie : cookies)
 				if ("testId".equals(cookie.getName()))
 					testId = Integer.parseInt(cookie.getValue());
-				else if ("memberId".equals(cookie.getName()))
-					memberId = Integer.parseInt(cookie.getValue());
+				//else if ("memberId".equals(cookie.getName()))
+				//	memberId = Integer.parseInt(cookie.getValue());
 				else if ("typeIds".equals(cookie.getName())) {
 //					문자열 쿠키 인코딩
 					String temp = URLDecoder.decode(cookie.getValue(), "UTF-8");
@@ -69,6 +68,12 @@ public class RegQuestionConotroller extends HttpServlet {
 					typeIds = temp.split(",");
 				}
 		}
+		
+		HttpSession session = request.getSession();
+		Member m = (Member) session.getAttribute("login");
+		
+		if(m!=null)
+			memberId=m.getId();
 
 //	---문제 등록-----
 		QuestionService queService = new QuestionService();
