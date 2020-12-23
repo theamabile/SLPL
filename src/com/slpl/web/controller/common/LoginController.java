@@ -48,10 +48,11 @@ public class LoginController extends HttpServlet {
 		System.out.println("name : "+m.getName());
 		
 		MemberView mv = service.getView(m.getId());
+		String role = mv.getAuthority();
 		String categoryName = mv.getCategoryName();
 		
 		session.setAttribute("login", m);
-		session.setAttribute("role", "user");
+		session.setAttribute("role", role);
 		session.setAttribute("categoryName", categoryName);
 		
 		String returnURL = request.getParameter("return-url");
