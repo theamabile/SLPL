@@ -97,7 +97,8 @@ public class JdbcTestPlayDao implements TestPlayDao {
 		String url = DBContext.URL;
 		String sql = "SELECT * FROM ( " + "    SELECT ROWNUM NUM, T.* FROM TEST_PLAY_VIEW T WHERE T_ID=? " + "    ) P "
 				+ whereSql + " ORDER BY A_NUM";
-		System.out.printf("sql:%s\n", sql);
+		
+		//System.out.printf("sql:%s\n", sql);
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);

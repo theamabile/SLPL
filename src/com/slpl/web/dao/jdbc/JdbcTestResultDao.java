@@ -57,7 +57,7 @@ public class JdbcTestResultDao implements TestResultDao {
 				"LEFT JOIN CHARACTER C ON C.TEST_ID = TP.T_ID " + 
 				"JOIN TEST T ON TP.T_ID = T.ID " + 
 				"JOIN MEMBER M ON T.MEMBER_ID = M.ID "+whereSql;
-		System.out.printf("sql:%s\n", sql);
+		//System.out.printf("sql:%s\n", sql);
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);

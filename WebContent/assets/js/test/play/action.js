@@ -73,7 +73,7 @@ window.addEventListener("load", function() {
 			var contentSize = contents.length/formSize;
 			
 			if(contentSize < qId ){
-				location.href="/test/test/play/result?id="+id;					
+				location.href="/test/play/result?id="+id;					
 				return; 
 			}
 				
@@ -96,7 +96,7 @@ window.addEventListener("load", function() {
 			progress.insertAdjacentHTML('beforeend', qId+'/'+contentSize);
 		};
 		
-		request.open("GET", "/test/test/play/content?id="+id+"&qId="+qId+"&answerVal="+answerValueArray, true);
+		request.open("GET", "/test/play/content?id="+id+"&qId="+qId+"&answerVal="+answerValueArray, true);
 		
 		request.send();
 	};
