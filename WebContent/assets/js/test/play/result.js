@@ -18,7 +18,7 @@ window.addEventListener("load", function() {
 			location.href="/test/list/test_list";
 			
 			case "go-make":
-			location.href="/test/make/reg-test";
+			location.href="/test/make/formSelect.jsp";
 		}
 		
 	}
