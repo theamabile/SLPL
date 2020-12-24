@@ -44,12 +44,12 @@ public class LoginController extends HttpServlet {
 		HttpSession session = request.getSession();			// true : 세션이 없을경우 생성, false : 세션이 없을경우 생성안함
 		MemberService service = new MemberService();
 		
-		Member m = service.get(loginId);
-		System.out.println("name : "+m.getName());
-		
-		MemberView mv = service.getView(m.getId());
+		// 로그인 정보 때문에 뷰를 조회
+		MemberView mv = service.getView(loginId);
 		String role = mv.getAuthority();
 		String categoryName = mv.getCategoryName();
+		
+		Member m = mv;
 		
 		session.setAttribute("login", m);
 		session.setAttribute("role", role);

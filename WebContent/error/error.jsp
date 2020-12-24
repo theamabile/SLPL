@@ -10,6 +10,6 @@
 
 </head>
 <body>
-  <h1>${params.errorNo} 오류가 발생하였습니다</h1>
+  <h1>${errorNo} 오류가 발생하였습니다</h1>
 </body>
 </html>

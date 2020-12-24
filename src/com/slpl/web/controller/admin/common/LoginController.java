@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.slpl.web.entity.member.Member;
+import com.slpl.web.entity.member.MemberView;
 import com.slpl.web.service.member.AdminService;
 import com.slpl.web.service.member.MemberService;
 
@@ -39,18 +40,20 @@ public class LoginController extends HttpServlet {
 		String pw = request.getParameter("pw");
 
 		HttpSession session = request.getSession();			// true : 세션이 없을경우 생성, false : 세션이 없을경우 생성안함
-		Member m = null;
+		MemberView mv = null;
 		int adminId = 0;
 		if(memberService.isValid(loginId, pw)) {
-			m = memberService.get(loginId);
-			if(m != null) {
-				adminId = m.getId();
+			mv = memberService.getView(loginId);
+			if(mv != null) {
+				adminId = mv.getId();
 			} 
 		}
 		
 		if(service.isValid(adminId)) {  // 어드민 테이블에 존재하면 
+			Member m = mv;
 			session.setAttribute("login", m);
 			session.setAttribute("role", "admin");
+			session.setAttribute("categoryName", mv.getCategoryName());
 			
 			String returnURL = request.getParameter("return-url");
 			if(returnURL != null && !returnURL.equals("")) { 	// 로그인으로 돌려버린애가 어디로 갈지 알려줘야함

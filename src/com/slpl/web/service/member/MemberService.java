@@ -44,10 +44,10 @@ public class MemberService {
 		return memberDao.get(id);
 	}
 
-	public Member get(String loginId) {
-		// TODO Auto-generated method stub
-		return memberDao.get(loginId);
-	}
+	/*
+	 * public Member get(String loginId) { // TODO Auto-generated method stub return
+	 * memberDao.get(loginId); }
+	 */
 	
 	public List<Member> getList(String field, String query) {
 		// TODO Auto-generated method stub
@@ -66,6 +66,10 @@ public class MemberService {
 		return memberDao.getView(id);
 	}
 	
+	public MemberView getView(String loginId) {
+		// TODO Auto-generated method stub
+		return memberDao.getView(loginId);
+	}
 
 	// 회원 목록 - 페이징 X | 검색 X
 	public List<MemberView> getViewList() {
@@ -131,7 +135,7 @@ public class MemberService {
 
 	public boolean isValid(String loginId, String pw) {
 			
-		Member member = memberDao.get(loginId);
+		MemberView member = memberDao.getView(loginId);
 		
 		if(member == null) {   // 회원이 아닌 경우 
 			return false;

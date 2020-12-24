@@ -42,7 +42,7 @@ public class LoginController extends HttpServlet {
 		Member m = null;
 		int adminId = 0;
 		if(memberService.isValid(loginId, pw)) {
-			m = memberService.get(loginId);
+			m = memberService.getView(loginId);
 			if(m != null) {
 				adminId = m.getId();
 			} 

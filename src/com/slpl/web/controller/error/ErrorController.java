@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 public class ErrorController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String no = request.getParameter("errorNo");
+		request.setAttribute("errorNo", no);
 		request.getRequestDispatcher("error.jsp").forward(request, response);
 	}
 }
