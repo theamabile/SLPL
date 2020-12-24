@@ -34,9 +34,9 @@ window.addEventListener("load", function() {
 	                <a href="#">MEMBER</a>    
 	            </div>           
 	            <ul class="second-menu">
-	                <li><a href="/admin/member/list">LIST</a></li>
-	                <li><a href="/admin/member/add">ADD</a></li>
-	                <li><a href="/admin/member/message/list">MESSAGE</a></li>
+	                <li><a href="/admin/member/list">회원 목록</a></li>
+	                <li><a href="/admin/member/add">회원 추가</a></li>
+	                <li><a href="/admin/member/message/list">메세지 목록</a></li>
 	            </ul>
 	        </li>
 	        <li>
