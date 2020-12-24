@@ -22,6 +22,7 @@ public class LogoutController extends HttpServlet {
 		if(session.getAttribute("login") != null) {
 			session.removeAttribute("login");
 			session.removeAttribute("role");
+			session.removeAttribute("categoryName");
 		}
 		
 		response.sendRedirect("login");

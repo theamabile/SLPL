@@ -36,7 +36,6 @@ public class LoginController extends HttpServlet {
 		boolean result = false;
 		
 		if(service.isValid(loginId, pw)) {
-			Member m = service.get(loginId);
 			result = true;
 		} 
 	    

@@ -62,13 +62,11 @@ window.addEventListener("load", function() {
 		</div>
 		<div id="main_header" class="main_header">
 			<ul class="main_nav">
-				<a href="list"><img src="../../assets/images/common/logo.png"
-					alt="MBTI로고"></a>
-
-				<li><a href="#">MAKE</a></li>
-				<li><a href="#">TEST</a></li>
-				<li><a href="#">COMMUNITY</a></li>
-			</ul>
+				<a href="#"><img src="../../assets/images/common/logo.png"alt="심리플리 로고"></a>
+				<li><a href="/test/make/formSelect.jsp">MAKE</a></li>
+				<li><a href="/test/list/test_list">TEST</a></li>
+				<li><a href="/community/all/list?c=전체게시판">COMMUNITY</a></li>
+			</ul>ㄴ
 		</div>
 	</header>
 

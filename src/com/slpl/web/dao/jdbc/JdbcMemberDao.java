@@ -182,52 +182,6 @@ public class JdbcMemberDao implements MemberDao {
 		
 		return m;
 	}
-
-	@Override
-	public Member get(String loginId) {
-		Member m = null;	
-		
-		String url = DBContext.URL;
-		String sql = "select * from member where login_id=?";
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);		
-			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setString(1, loginId);
-			
-			ResultSet rs = pst.executeQuery();
-			
-			if(rs.next()) {
-				int id = rs.getInt("id");
-				String pw = rs.getString("pw");
-				String name = rs.getString("name");
-				String nickname = rs.getString("nickname");
-				String gender = rs.getString("gender");
-				Date birthday = rs.getDate("birthday");
-				String phoneNumber = rs.getString("phone_number");
-				String email = rs.getString("email");
-				Timestamp regdate = rs.getTimestamp("regdate");
-				String profileImg = rs.getString("profile_img");
-				int categoryId = rs.getInt("category_id");
-				
-				m = new Member(id, loginId, pw, name, nickname, gender,
-						birthday, phoneNumber, email, regdate, profileImg, categoryId);
-			}
-			
-			rs.close();
-			pst.close();
-			con.close();
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return m;
-	}
 	
 	@Override
 	public List<Member> getList() {
@@ -338,7 +292,55 @@ public class JdbcMemberDao implements MemberDao {
 		
 		return m;
 	}
+	
+	@Override
+	public MemberView getView(String loginId) {
+		MemberView m = null;	
+		
+		String url = DBContext.URL;
+		String sql = "select * from member_community_category_view where login_id=? ";
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, DBContext.UID, DBContext.PWD);		
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setString(1, loginId);
+			
+			ResultSet rs = pst.executeQuery();
+			
+			if(rs.next()) {
+				int id = rs.getInt("id");
+				String name = rs.getString("name");
+				String nickname = rs.getString("nickname");
+				String pw = rs.getString("pw");		
+				String gender = rs.getString("gender");
+				Date birthday = rs.getDate("birthday");
+				String phoneNumber = rs.getString("phone_number");
+				String email = rs.getString("email");
+				Timestamp regdate = rs.getTimestamp("regdate");
+				String profileImg = rs.getString("profile_img");
+				int categoryId = rs.getInt("category_id");
+				String categoryName = rs.getString("category_name");
+				String authority = rs.getString("authority");
 
+				m = new MemberView(id, loginId, pw, name, nickname, gender,
+						birthday, phoneNumber, email, regdate, profileImg, categoryId, categoryName, authority);
+			}
+			
+			rs.close();
+			pst.close();
+			con.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return m;
+	}
+	
 	@Override
 	public List<MemberView> getViewList() {   
 		// TODO Auto-generated method stub 
