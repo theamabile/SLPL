@@ -246,7 +246,7 @@ width: 120%;
     justify-content: space-between;
   }
     .level-select-box .test-levels {
-      border: 3px solid lightcoral;
+      border: 3px solid #f08080c4;
       border-radius: 20px;
       flex: 0 1 50px;
       text-align: center;
@@ -257,6 +257,12 @@ width: 120%;
       flex-direction: column;
       justify-content: space-evenly;
     }
+    
+    .level-select-box .test-levels:hover{
+		 background: #f08080c4;
+		  color: white;
+		  transform: scale(1.05) ;
+		}
       .level-select-container .level-title{
         padding: 10px 0px;
         font-size: 40px;
